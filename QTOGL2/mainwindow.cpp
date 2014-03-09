@@ -2,13 +2,23 @@
 #include <QAction>
 #include <QMenu>
 #include <QMenuBar>
+#include "qmessagebox.h"
 
 #include "mainwindow.h"
 #include "scene3D.h"
 
 MainWindow::MainWindow()
 {
-   scene1 = new Scene3D;
+   scene1 = new Scene3D();
+
+   // проверяем, поддерживается ли мультивыборка (сглаживание)
+   if (scene1->format().sampleBuffers()) // мультивыборка поддерживается
+      // сообщение-информация:
+      QMessageBox::information(0, "Ok", "Multisampling is supported");
+   else // мультивыборка не поддерживается
+      // сообщение-предупреждение:
+      QMessageBox::warning(0, "Problem", "Multisampling does not supported");
+
    setCentralWidget(scene1);
 
    this->setWindowTitle(tr("lecture2"));

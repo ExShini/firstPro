@@ -3,6 +3,7 @@
 #include "scene3D.h"
 #include "GL/glext.h"
 #include "GL/glu.h"
+#include "qmessagebox.h"
 
 const GLfloat pi=3.141593, k=pi/180;
 
@@ -17,7 +18,7 @@ GLint signs[2]={1, 1};
 bool motionParameters[2]={1, 1};
 int textureParameters[2]={0, 1};
 
-Scene3D::Scene3D(QWidget* parent) : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+Scene3D::Scene3D(QWidget* parent) : QGLWidget(QGLFormat(QGL::DoubleBuffer), parent)
 {
    xRot1=-90.0f; yRot1=0.0f; zRot1=0.0f; zTra1=0.0f;
    xRot2=-90.0f; yRot2=0.0f; zRot2=0.0f; zTra2=0.0f;
@@ -26,9 +27,12 @@ Scene3D::Scene3D(QWidget* parent) : QGLWidget(QGLFormat(QGL::SampleBuffers), par
    connect(timer, SIGNAL(timeout()), this, SLOT(change()));
    timer->start(10);
 
+
    QGLFormat frmt;
    frmt.setSwapInterval(1);
    setFormat(frmt);
+
+
 }
 
 Scene3D::~Scene3D()
@@ -102,11 +106,11 @@ void Scene3D::mousePressEvent(QMouseEvent* pe)
 
 void Scene3D::genTextures()
 {
-   textureID[0]=bindTexture(QPixmap(QString("../textures/picture1.jpg")), GL_TEXTURE_2D);
+   textureID[0]=bindTexture(QPixmap(QString(":/textures/picture1.jpg")), GL_TEXTURE_2D);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-   textureID[1]=bindTexture(QPixmap(QString("../textures/picture2.jpg")), GL_TEXTURE_2D);
+   textureID[1]=bindTexture(QPixmap(QString(":/textures/picture2.jpg")), GL_TEXTURE_2D);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 }

@@ -1,0 +1,1 @@
+Add next libs in makefile for successfully building: -lGLU -lglut 
