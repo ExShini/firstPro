@@ -15,11 +15,17 @@ GameApp::GameApp():
     m_randGen(0),
     m_queue(0)
 {
-    m_queue = (AEQueue*) malloc(sizeof(AEQueue));
-    memset (m_queue, 0, sizeof(AEQueue));
+    m_queue = (AEQueue*) calloc(1, sizeof(AEQueue));
     m_render = new Render(m_queue);
     m_randGen = new RandomGen();
-    memset(m_map, 0, sizeof(AliveElement *) * FIELD_HEIGHT * FIELD_WIDTH);
+
+    for (int i = 0; i < FIELD_WIDTH; i++)
+    {
+        for (int j = 0; j < FIELD_HEIGHT; j++)
+        {
+            m_map[i][j] = NULL;
+        }
+    }
 }
 
 /*************************************
@@ -29,6 +35,10 @@ DESC: destructor
 GameApp::~GameApp()
 {
     delete m_render;
+    delete m_randGen;
+    delete[] m_map;
+
+    free(m_queue);
 }
 
 /*************************************
