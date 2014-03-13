@@ -9,24 +9,23 @@ QT       -= gui
 
 TARGET = StarRunners
 CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 
 
 SOURCES += main.cpp \
     render/render.cpp \
-    gobject.cpp \
     render/textureprovider.cpp \
     objectController/gobject.cpp \
-    objectController/testobjects.cpp
+    objectController/testobjects.cpp \
+    objectController/objectcontroller.cpp \
+    gameapp.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
 
 HEADERS += \
     render/render.h \
-    gobject.h \
     enums/enums.h \
     enums/gui_enums.h \
     enums/random_enums.h \
@@ -34,4 +33,6 @@ HEADERS += \
     render/textureprovider.h \
     enums/objects.h \
     objectController/gobject.h \
-    objectController/testobjects.h
+    objectController/testobjects.h \
+    objectController/objectcontroller.h \
+    gameapp.h

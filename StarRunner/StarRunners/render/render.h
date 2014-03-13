@@ -3,13 +3,15 @@
 
 #include"SDL2/SDL.h"
 #include "iostream"
-#include "objectController/gobject.h"
-#include "textureprovider.h"
+#include "objectController/objectcontroller.h"
+//#include "objectController/gobject.h"
+//#include "textureprovider.h"
+
 
 class Render
 {
 public:
-    Render(GOQueue *Queue);
+    Render();
     ~Render();
     bool init();
     void renderScreen();
@@ -23,7 +25,8 @@ private:
 
     void drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend);
 
-    GOQueue * m_queue;
+    ObjectController* m_objController;
+    list<GObject*>* m_olist;
 };
 
 #endif // RENDER_H

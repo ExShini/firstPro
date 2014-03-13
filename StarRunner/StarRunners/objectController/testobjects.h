@@ -2,16 +2,44 @@
 #define TESTOBJECTS_H
 #include "gobject.h"
 
-class TestObject1: public GObject
+class TestObject11: public GObject
 {
 public:
-    TestObject1();
+    TestObject11();
+    SDL_Texture* getTexture();
+
+    //geometry func
+    virtual int getX() {return m_x;}
+    virtual int getY() {return m_y;}
+    virtual int getH() {return m_height;}
+    virtual int getW() {return m_width;}
 };
 
-class TestObject2: public GObject
+class TestObject22: public GObject
 {
 public:
-    TestObject2();
+    TestObject22();
+    SDL_Texture* getTexture();
+
+    //geometry func
+    virtual int getX() {return m_x;}
+    virtual int getY() {return m_y;}
+    virtual int getH() {return m_height;}
+    virtual int getW() {return m_width;}
+};
+
+
+class BackGround: public GObject
+{
+public:
+    BackGround();
+    SDL_Texture* getTexture();
+
+    //geometry func
+    virtual int getX() {return m_x;}
+    virtual int getY() {return m_y;}
+    virtual int getH() {return m_height;}
+    virtual int getW() {return m_width;}
 };
 
 #endif // TESTOBJECTS_H

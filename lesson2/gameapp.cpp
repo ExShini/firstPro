@@ -53,6 +53,7 @@ void GameApp::startGame()
         eventHandler();
         gameProcessing();
         rendring();
+        SDL_Delay(70);
     }
     cleanup();
 }

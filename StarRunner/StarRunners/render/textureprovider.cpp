@@ -1,5 +1,7 @@
 #include "textureprovider.h"
 
+#include "iostream"
+
 TextureProvider * TextureProvider::m_instance = new TextureProvider();
 
 /*************************************
@@ -12,6 +14,11 @@ TextureProvider::TextureProvider()
     m_textures[BACKGROUND] = loadImage(p_BACKGROUND);
     m_textures[TestObject1] = loadImage(p_TEST_OBJ1);
     m_textures[TestObject2] = loadImage(p_TEST_OBJ2);
+}
+
+void TextureProvider::setRender(SDL_Renderer *rend)
+{
+    m_rend = rend;
 }
 
 TextureProvider::~TextureProvider()
@@ -29,7 +36,7 @@ TextureProvider::~TextureProvider()
 FUNC: getInstance()
 DESC: very simple singleton
 *************************************/
-TextureProvider::getInstance()
+TextureProvider* TextureProvider::getInstance()
 {
     return m_instance;
 }
