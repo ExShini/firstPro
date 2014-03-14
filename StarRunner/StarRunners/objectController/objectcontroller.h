@@ -12,6 +12,8 @@ public:
     static ObjectController* getInstance();
     list<GObject*>* getObjectList();
 
+    void init();
+
 protected:
     ObjectController();
     static ObjectController* m_instance;

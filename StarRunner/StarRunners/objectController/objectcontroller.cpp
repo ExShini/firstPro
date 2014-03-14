@@ -6,13 +6,15 @@ ObjectController* ObjectController::m_instance = new ObjectController();
 ObjectController::ObjectController()
 {
     m_OList = new list<GObject*>();
+}
 
+void ObjectController::init()
+{
     TestObject11* to1 = new TestObject11();
     to1->setX(50);
     to1->setY(50);
     to1->setH(8);
     to1->setW(8);
-
 
     TestObject22* to2 = new TestObject22();
     to2->setX(150);

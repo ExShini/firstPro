@@ -12,6 +12,7 @@ GameApp::GameApp():
     m_gameStatus(0),
     m_render(0)
 {
+    m_gameStatus = 1;
     m_render = new Render();
 }
 

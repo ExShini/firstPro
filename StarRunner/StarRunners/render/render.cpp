@@ -25,9 +25,6 @@ Render::~Render()
 {
     SDL_DestroyRenderer(m_rend);
     SDL_DestroyWindow(m_window);
-
-    m_objController = ObjectController::getInstance();
-    m_olist = m_objController->getObjectList();
 }
 
 /*************************************
@@ -44,10 +41,12 @@ bool Render::init()
     //set render to textProvider
     TextureProvider::getInstance()->setRender(m_rend);
 
-
-//    //init textures
-//    SDL_Texture * objText = m_textureProvider->getTexture(TestObject1);
-//    SDL_Texture * back = m_textureProvider->getTexture(BACKGROUND);
+    m_objController = ObjectController::getInstance();
+    m_objController->init();
+    m_olist = m_objController->getObjectList();
+    //    //init textures
+    //    SDL_Texture * objText = m_textureProvider->getTexture(TestObject1);
+    //    SDL_Texture * back = m_textureProvider->getTexture(BACKGROUND);
 
     if (m_window && m_rend)
     {
@@ -66,24 +65,20 @@ DESC: draw all element from map for current step
 *************************************/
 void Render::renderScreen()
 {
-    list<GObject*>::iterator iter = m_olist->begin();
-
-    for (; iter != m_olist->end(); iter++)
+    if (!m_olist->empty())
     {
-        GObject* obj = /*(GObject*)*/*iter;
-        drawSurface( obj->getX(), obj->getY(), obj->getTexture(), m_rend);
-    }
+        list<GObject*>::iterator iter = m_olist->begin();
 
-//    if (m_aliveTexture != NULL)
-//    {
-//        AliveElement * el = m_queue->m_head;
-//        // draw all element from queue
-//        while ( el != NULL )
-//        {
-//            drawSurface( el->getX() * SIZE_OF_FIELD_EL , el->getY() * SIZE_OF_FIELD_EL , m_aliveTexture, m_rend);
-//            el = el->getNextEl();
-//        }
-//    }
+        for (; iter != m_olist->end(); iter++)
+        {
+            GObject* obj = /*(GObject*)*/*iter;
+            drawSurface( obj->getX(), obj->getY(), obj->getTexture(), m_rend);
+        }
+    }
+    else
+    {
+        cout << "List is empty!" << endl;
+    }
 
     SDL_RenderPresent(m_rend);
 }
