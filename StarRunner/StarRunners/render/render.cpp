@@ -12,7 +12,8 @@ DESC: constructor
 *************************************/
 Render::Render():
     m_window(NULL),
-    m_rend(NULL)
+    m_rend(NULL),
+    m_camera(NULL)
 {
     m_textureProvider = TextureProvider::getInstance();
 }
@@ -33,21 +34,23 @@ DESC: initialize and prepare render's members
 *************************************/
 bool Render::init()
 {
-
+    //Craeta new main window
     m_window = SDL_CreateWindow ("Main Window", X_COR_MAIN_WINDOW, Y_COR_MAIN_WINDOW, WIDTH_MAIN_WINDOW, HEIGHT_MAIN_WINDOW, SDL_WINDOW_SHOWN);
     m_rend = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_RenderClear(m_rend);
 
-    //set render to textProvider
+    //set sdl_render to textProvider
     TextureProvider::getInstance()->setRender(m_rend);
 
+    //set ObjectController to render
     m_objController = ObjectController::getInstance();
     m_objController->init();
     m_olist = m_objController->getObjectList();
-    //    //init textures
-    //    SDL_Texture * objText = m_textureProvider->getTexture(TestObject1);
-    //    SDL_Texture * back = m_textureProvider->getTexture(BACKGROUND);
 
+    //init camera
+    m_camera = new Camera(m_objController->getPlayer());
+
+    //check status
     if (m_window && m_rend)
     {
         return true;
@@ -72,7 +75,9 @@ void Render::renderScreen()
         for (; iter != m_olist->end(); iter++)
         {
             GObject* obj = /*(GObject*)*/*iter;
-            drawSurface( obj->getX(), obj->getY(), obj->getTexture(), m_rend);
+            drawSurface( obj->getX() - m_camera->x(),
+                         obj->getY() - m_camera->y(),
+                         obj->getTexture(), m_rend);
         }
     }
     else
@@ -94,4 +99,29 @@ void Render::drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend){
     pos.y = y;
     SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h);
     SDL_RenderCopy(rend, tex, NULL, &pos);
+}
+
+
+/****************************************************************************
+Camera class!
+****************************************************************************/
+Camera::Camera(GObject *target)
+{
+    m_target = target;
+    m_shiftX = WIDTH_MAIN_WINDOW /2 - m_target->getW() /2;
+    m_shiftY = HEIGHT_MAIN_WINDOW /2 - m_target->getY() /2;
+}
+
+int Camera::x()
+{
+    return m_target->getX() - m_shiftX;
+}
+
+int Camera::y()
+{
+    return m_target->getY() - m_shiftY;
+}
+
+Camera::~Camera()
+{
 }

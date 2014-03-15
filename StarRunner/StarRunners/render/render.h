@@ -4,9 +4,8 @@
 #include"SDL2/SDL.h"
 #include "iostream"
 #include "objectController/objectcontroller.h"
-//#include "objectController/gobject.h"
-//#include "textureprovider.h"
 
+class Camera;
 
 class Render
 {
@@ -20,6 +19,7 @@ public:
 private:
     SDL_Window * m_window;
     SDL_Renderer * m_rend;
+    Camera * m_camera;
 
     TextureProvider * m_textureProvider;
 
@@ -27,6 +27,24 @@ private:
 
     ObjectController* m_objController;
     list<GObject*>* m_olist;
+};
+
+
+
+/****************************************************************************
+Camera class!
+****************************************************************************/
+class Camera
+{
+public:
+    Camera(GObject * target);
+    ~Camera();
+    int x();
+    int y();
+
+protected:
+    GObject * m_target;
+    int m_shiftX, m_shiftY;
 };
 
 #endif // RENDER_H
