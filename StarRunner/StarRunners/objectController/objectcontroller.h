@@ -11,13 +11,15 @@ class ObjectController
 public:
     static ObjectController* getInstance();
     list<GObject*>* getObjectList();
-
+    GObject* getPlayer();
     void init();
 
 protected:
     ObjectController();
     static ObjectController* m_instance;
     list<GObject*>* m_OList;
+
+    GObject* m_player;
 };
 
 #endif // OBJECTCONTROLLER_H

@@ -3,7 +3,8 @@
 
 ObjectController* ObjectController::m_instance = new ObjectController();
 
-ObjectController::ObjectController()
+ObjectController::ObjectController():
+    m_player(NULL)
 {
     m_OList = new list<GObject*>();
 }
@@ -15,6 +16,8 @@ void ObjectController::init()
     to1->setY(50);
     to1->setH(8);
     to1->setW(8);
+
+    m_player = to1;
 
     TestObject22* to2 = new TestObject22();
     to2->setX(150);
@@ -31,7 +34,13 @@ list<GObject*>* ObjectController::getObjectList()
     return m_OList;
 }
 
+GObject* ObjectController::getPlayer()
+{
+    return m_player;
+}
+
 ObjectController* ObjectController::getInstance()
 {
     return m_instance;
 }
+

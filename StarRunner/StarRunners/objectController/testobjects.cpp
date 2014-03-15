@@ -1,7 +1,7 @@
 #include "testobjects.h"
 
 TestObject11::TestObject11():
-    GObject()
+    MovableObj()
 {
     m_type = TestObject1;
     m_texture = TextureProvider::getInstance()->getTexture(m_type);
@@ -14,7 +14,7 @@ SDL_Texture* TestObject11::getTexture()
 
 
 TestObject22::TestObject22():
-    GObject()
+    ImmovableObj()
 {
     m_type = TestObject2;
     m_texture = TextureProvider::getInstance()->getTexture(m_type);

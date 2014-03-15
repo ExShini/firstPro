@@ -1,7 +1,11 @@
 #ifndef GAMEAPP_H
 #define GAMEAPP_H
-#include "render/render.h"
 #include "SDL2/SDL.h"
+
+#include "render/render.h"
+#include "eventController/eventcontroller.h"
+
+
 
 
 class GameApp
@@ -16,6 +20,8 @@ private:
     // memebers:
     short m_gameStatus;
     Render * m_render;
+    EventController * m_evController;
+
 
     // main handlers
     void initialize();

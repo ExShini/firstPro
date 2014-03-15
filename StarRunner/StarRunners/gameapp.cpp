@@ -14,6 +14,7 @@ GameApp::GameApp():
 {
     m_gameStatus = 1;
     m_render = new Render();
+    m_evController = new EventController(&m_gameStatus);
 }
 
 /*************************************
@@ -23,7 +24,7 @@ DESC: destructor
 GameApp::~GameApp()
 {
     delete m_render;
-
+    delete m_evController;
 }
 
 /*************************************
@@ -38,7 +39,6 @@ void GameApp::startGame()
         eventHandler();
         gameProcessing();
         rendring();
-        SDL_Delay(100);
     }
     cleanup();
 }
@@ -64,14 +64,7 @@ DESC: handle all input events (mouse, keybord)
 *************************************/
 void GameApp::eventHandler()
 {
-    SDL_Event Event;
-    while(SDL_PollEvent(&Event))
-    {
-        if(Event.type == SDL_KEYDOWN)
-        {
-            m_gameStatus = 0;
-        }
-    }
+    m_evController->processEvent();
 }
 
 /*************************************

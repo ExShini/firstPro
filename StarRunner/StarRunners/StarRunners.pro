@@ -19,7 +19,10 @@ SOURCES += main.cpp \
     objectController/gobject.cpp \
     objectController/testobjects.cpp \
     objectController/objectcontroller.cpp \
-    gameapp.cpp
+    gameapp.cpp \
+    eventController/eventcontroller.cpp \
+    eventController/keyboardeventproc.cpp \
+    objectController/movableobj.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -35,4 +38,7 @@ HEADERS += \
     objectController/gobject.h \
     objectController/testobjects.h \
     objectController/objectcontroller.h \
-    gameapp.h
+    gameapp.h \
+    eventController/eventcontroller.h \
+    eventController/keyboardeventproc.h \
+    objectController/movableobj.h

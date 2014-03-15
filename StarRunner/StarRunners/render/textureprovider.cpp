@@ -10,15 +10,17 @@ DESC: constructor
 *************************************/
 TextureProvider::TextureProvider()
 {
-    //initialize textures for all objects type
-    m_textures[BACKGROUND] = loadImage(p_BACKGROUND);
-    m_textures[TestObject1] = loadImage(p_TEST_OBJ1);
-    m_textures[TestObject2] = loadImage(p_TEST_OBJ2);
+
 }
 
+/*************************************
+FUNC: setRender()
+DESC: set render for textureProvider and initialize texture loading
+*************************************/
 void TextureProvider::setRender(SDL_Renderer *rend)
 {
     m_rend = rend;
+    initTextureProvider();
 }
 
 TextureProvider::~TextureProvider()
@@ -30,6 +32,18 @@ TextureProvider::~TextureProvider()
         if ((*curr).second != NULL)
             SDL_DestroyTexture((*curr).second);
     }
+}
+
+/*************************************
+FUNC: initTextureProvider()
+DESC: load and prepare all textures
+*************************************/
+void TextureProvider::initTextureProvider()
+{
+    //initialize textures for all objects type
+    m_textures[BACKGROUND] = loadImage(p_BACKGROUND);
+    m_textures[TestObject1] = loadImage(p_TEST_OBJ1);
+    m_textures[TestObject2] = loadImage(p_TEST_OBJ2);
 }
 
 /*************************************

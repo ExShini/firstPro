@@ -6,7 +6,8 @@ enum ObjectsType
     BACKGROUND,
     TestObject1,
     TestObject2,
-    NumberOfTextures
+    NumberOfTextures,
+    NULLOBJECT
 };
 
 #endif // OBJECTS_H

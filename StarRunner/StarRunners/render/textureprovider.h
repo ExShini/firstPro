@@ -22,6 +22,7 @@ protected:
 
     SDL_Renderer* m_rend;
     SDL_Texture* loadImage(std::string file);
+    void initTextureProvider();
 
     static TextureProvider * m_instance;
     map< ObjectsType, SDL_Texture* > m_textures;
