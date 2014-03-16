@@ -24,9 +24,18 @@ private:
     TextureProvider * m_textureProvider;
 
     void drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend);
+    void drawBackground();
 
     ObjectController* m_objController;
     list<GObject*>* m_olist;
+
+
+    //background data:
+    //
+    int m_graphFWidth, m_graphFHeight,
+        m_fieldGapX, m_fieldGapY;
+    GObject* m_backGround;
+    GObject* m_player;
 };
 
 
@@ -37,7 +46,7 @@ Camera class!
 class Camera
 {
 public:
-    Camera(GObject * target);
+    Camera(GObject * target, int gapX, int gapY);
     ~Camera();
     int x();
     int y();

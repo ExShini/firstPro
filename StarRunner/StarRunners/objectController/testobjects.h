@@ -19,7 +19,7 @@ public:
 };
 
 
-class BackGround: public GObject
+class BackGround: public ImmovableObj
 {
 public:
     BackGround();

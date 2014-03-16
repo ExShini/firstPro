@@ -47,8 +47,18 @@ bool Render::init()
     m_objController->init();
     m_olist = m_objController->getObjectList();
 
+    //set backGround object to render
+    m_backGround = m_objController->getBackGround();
+
+    //set parameters for background drawing
+    m_graphFWidth = FIELD_SIZE * MAP_WIDTH + WIDTH_MAIN_WINDOW;
+    m_graphFHeight = FIELD_SIZE * MAP_HEIGHT + HEIGHT_MAIN_WINDOW;
+    m_fieldGapX = WIDTH_MAIN_WINDOW / 2;
+    m_fieldGapY = HEIGHT_MAIN_WINDOW / 2;
+
     //init camera
-    m_camera = new Camera(m_objController->getPlayer());
+    m_player = m_objController->getPlayer();
+    m_camera = new Camera(m_player, m_fieldGapX, m_fieldGapY);
 
     //check status
     if (m_window && m_rend)
@@ -68,6 +78,9 @@ DESC: draw all element from map for current step
 *************************************/
 void Render::renderScreen()
 {
+    //draw background
+    drawBackground();
+
     if (!m_olist->empty())
     {
         list<GObject*>::iterator iter = m_olist->begin();
@@ -75,8 +88,8 @@ void Render::renderScreen()
         for (; iter != m_olist->end(); iter++)
         {
             GObject* obj = /*(GObject*)*/*iter;
-            drawSurface( obj->getX() - m_camera->x(),
-                         obj->getY() - m_camera->y(),
+            drawSurface( (obj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
+                         (obj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
                          obj->getTexture(), m_rend);
         }
     }
@@ -101,25 +114,36 @@ void Render::drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend){
     SDL_RenderCopy(rend, tex, NULL, &pos);
 }
 
+void Render::drawBackground()
+{
+    int x = -((( m_player->getX() M_ACCURACY_FACTOR) PART_OF_MAP_W )
+                * ( m_backGround->getW() - WIDTH_MAIN_WINDOW ) ) D_ACCURACY_FACTOR;
+
+    int y = -((( m_player->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
+                * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
+
+    drawSurface( x, y, m_backGround->getTexture(), m_rend);
+}
+
 
 /****************************************************************************
 Camera class!
 ****************************************************************************/
-Camera::Camera(GObject *target)
+Camera::Camera(GObject *target, int gapX, int gapY)
 {
     m_target = target;
-    m_shiftX = WIDTH_MAIN_WINDOW /2 - m_target->getW() /2;
-    m_shiftY = HEIGHT_MAIN_WINDOW /2 - m_target->getY() /2;
+    m_shiftX = WIDTH_MAIN_WINDOW /2 - (m_target->getW() MULTIPLY_FS) /2 - gapX;
+    m_shiftY = HEIGHT_MAIN_WINDOW /2 - (m_target->getY() MULTIPLY_FS) /2 - gapY;
 }
 
 int Camera::x()
 {
-    return m_target->getX() - m_shiftX;
+    return (m_target->getX() MULTIPLY_FS) - m_shiftX;
 }
 
 int Camera::y()
 {
-    return m_target->getY() - m_shiftY;
+    return (m_target->getY() MULTIPLY_FS) - m_shiftY;
 }
 
 Camera::~Camera()

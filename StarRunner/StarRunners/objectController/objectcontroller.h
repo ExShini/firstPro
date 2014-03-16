@@ -12,6 +12,7 @@ public:
     static ObjectController* getInstance();
     list<GObject*>* getObjectList();
     GObject* getPlayer();
+    GObject* getBackGround();
     void init();
 
 protected:
@@ -19,7 +20,8 @@ protected:
     static ObjectController* m_instance;
     list<GObject*>* m_OList;
 
-    GObject* m_player;
+    GObject * m_player;
+    GObject * m_backGround;
 };
 
 #endif // OBJECTCONTROLLER_H

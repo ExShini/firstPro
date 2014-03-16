@@ -28,7 +28,7 @@ SDL_Texture* TestObject22::getTexture()
 
 
 BackGround::BackGround():
-    GObject()
+    ImmovableObj()
 {
     m_x = 0;
     m_y = 0;
