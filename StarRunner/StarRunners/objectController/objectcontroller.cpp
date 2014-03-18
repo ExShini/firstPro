@@ -24,15 +24,20 @@ void ObjectController::init()
     to1->setW(1);
 
     m_player = to1;
-
-    TestObject22* to2 = new TestObject22();
-    to2->setX(3);
-    to2->setY(2);
-    to2->setH(1);
-    to2->setW(1);
-
     m_OList->push_back(to1);
-    m_OList->push_back(to2);
+
+    for (int i = 0; i < 10; i++)
+    {
+
+        TestObject22* to2 = new TestObject22();
+        to2->setX(3 + i);
+        to2->setY(2);
+        to2->setH(1);
+        to2->setW(1);
+
+        m_OList->push_back(to2);
+    }
+
 }
 
 list<GObject*>* ObjectController::getObjectList()
