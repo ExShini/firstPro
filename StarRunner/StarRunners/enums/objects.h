@@ -4,6 +4,7 @@
 enum ObjectsType
 {
     BACKGROUND,
+    Floor,
     TestObject1,
     TestObject2,
     NumberOfTextures,
