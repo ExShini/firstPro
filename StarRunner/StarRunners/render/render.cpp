@@ -35,9 +35,34 @@ DESC: initialize and prepare render's members
 bool Render::init()
 {
     //Craeta new main window
-    m_window = SDL_CreateWindow ("Main Window", X_COR_MAIN_WINDOW, Y_COR_MAIN_WINDOW, WIDTH_MAIN_WINDOW, HEIGHT_MAIN_WINDOW, SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+    m_window = SDL_CreateWindow ("Main Window",
+                                 SDL_WINDOWPOS_UNDEFINED,
+                                 SDL_WINDOWPOS_UNDEFINED,
+                                 0,
+                                 0,
+                                 SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
     m_rend = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_RenderClear(m_rend);
+    SDL_RenderSetLogicalSize(m_rend, WIDTH_MAIN_WINDOW, HEIGHT_MAIN_WINDOW);
+
+    //set resolution for displaing
+    //get current display mode
+    SDL_DisplayMode * current = new SDL_DisplayMode();
+    for(int i = 0; i < SDL_GetNumVideoDisplays(); ++i)
+    {
+        int should_be_zero = SDL_GetCurrentDisplayMode(i, current);
+
+        if(should_be_zero != 0)
+        {
+            // In case of error...
+            printf("Could not get display mode for video display #%d: %s", i, SDL_GetError());
+        }
+        else
+           break;
+    }
+
+
+
 
     //set sdl_render to textProvider
     TextureProvider::getInstance()->setRender(m_rend);
@@ -117,10 +142,10 @@ void Render::drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend){
 void Render::drawBackground()
 {
     int x = -((( m_player->getX() M_ACCURACY_FACTOR) PART_OF_MAP_W )
-                * ( m_backGround->getW() - WIDTH_MAIN_WINDOW ) ) D_ACCURACY_FACTOR;
+              * ( m_backGround->getW() - WIDTH_MAIN_WINDOW ) ) D_ACCURACY_FACTOR;
 
     int y = -((( m_player->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
-                * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
+              * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
 
     drawSurface( x, y, m_backGround->getTexture(), m_rend);
 }

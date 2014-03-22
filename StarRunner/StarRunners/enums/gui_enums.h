@@ -7,8 +7,8 @@
 //default windows location and sizes
 #define X_COR_MAIN_WINDOW 100
 #define Y_COR_MAIN_WINDOW 100
-#define WIDTH_MAIN_WINDOW 640
-#define HEIGHT_MAIN_WINDOW 480
+#define WIDTH_MAIN_WINDOW 800
+#define HEIGHT_MAIN_WINDOW 600
 
 //Field sizes
 #define FIELD_SIZE 16 // !WARNING! FIELD_SIZE and MULTIPLY_FS and DIVIDE_FS should be synchronized
