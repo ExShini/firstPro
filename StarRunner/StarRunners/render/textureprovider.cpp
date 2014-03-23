@@ -68,6 +68,7 @@ SDL_Texture* TextureProvider::loadImage(std::string file)
     SDL_Texture *texture = NULL;
 
     loadedImage = SDL_LoadBMP(file.c_str());
+    loadedImage->format->Amask = 0xFF0000;
     if (loadedImage != NULL)
     {
         texture = SDL_CreateTextureFromSurface(m_rend, loadedImage);
@@ -79,7 +80,7 @@ SDL_Texture* TextureProvider::loadImage(std::string file)
     }
 
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
-    SDL_SetTextureAlphaMod(texture, 0);
+    SDL_SetTextureAlphaMod(texture, 255);
     return texture;
 }
 
