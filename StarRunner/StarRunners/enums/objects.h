@@ -3,10 +3,13 @@
 
 enum ObjectsType
 {
-    BACKGROUND,
-    Floor,
-    TestObject1,
-    TestObject2,
+    t_BACKGROUND,
+    t_Floor,
+    t_StationBlock,
+    t_Wall,
+    t_ArmoredWall,
+    t_TestObject1,
+    t_TestObject2,
     NumberOfTextures,
     NULLOBJECT
 };

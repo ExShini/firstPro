@@ -6,7 +6,7 @@ class GObject
 {
 public:
     virtual ~GObject();
-    virtual SDL_Texture * getTexture() = 0;
+    virtual SDL_Texture * getTexture() { return m_texture; }
 
     //geometry func
     virtual int getX() { return m_x; }

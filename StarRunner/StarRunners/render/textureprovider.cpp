@@ -41,10 +41,12 @@ DESC: load and prepare all textures
 void TextureProvider::initTextureProvider()
 {
     //initialize textures for all objects type
-    m_textures[BACKGROUND] = loadImage(p_BACKGROUND);
-    m_textures[TestObject1] = loadImage(p_TEST_OBJ1);
-    m_textures[TestObject2] = loadImage(p_TEST_OBJ2);
-    m_textures[Floor] = loadImage(p_FLOOR);
+    m_textures[t_BACKGROUND] = loadImage(p_BACKGROUND);
+    m_textures[t_StationBlock] = loadImage(p_STATIONBLOCK);
+    m_textures[t_Wall] = loadImage(p_WALL);
+    m_textures[t_TestObject1] = loadImage(p_TEST_OBJ1);
+    m_textures[t_TestObject2] = loadImage(p_TEST_OBJ2);
+    m_textures[t_Floor] = loadImage(p_FLOOR);
 }
 
 /*************************************
@@ -75,6 +77,9 @@ SDL_Texture* TextureProvider::loadImage(std::string file)
     {
         std::cout << SDL_GetError() << std::endl;
     }
+
+    SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
+    SDL_SetTextureAlphaMod(texture, 0);
     return texture;
 }
 

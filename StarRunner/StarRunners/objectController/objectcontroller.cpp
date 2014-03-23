@@ -1,5 +1,6 @@
 #include "objectcontroller.h"
 #include"testobjects.h"
+#include "wall.h"
 
 ObjectController* ObjectController::m_instance = new ObjectController();
 
@@ -30,6 +31,16 @@ void ObjectController::init()
         to2->setY(2);
 
         m_OList->push_back(to2);
+    }
+
+    for (int i = 0; i < 100; i++)
+    {
+
+        wall* cwall = new wall();
+        cwall->setX(3 + i * cwall->getW() );
+        cwall->setY(4);
+
+        m_OList->push_back(cwall);
     }
 
 }
