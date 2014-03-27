@@ -23,7 +23,9 @@ SOURCES += main.cpp \
     eventController/eventcontroller.cpp \
     eventController/keyboardeventproc.cpp \
     objectController/movableobj.cpp \
-    objectController/wall.cpp
+    objectController/wall.cpp \
+    objectController/mapGenarator/mapgenarator.cpp \
+    objectController/mapGenarator/room.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -43,4 +45,6 @@ HEADERS += \
     eventController/eventcontroller.h \
     eventController/keyboardeventproc.h \
     objectController/movableobj.h \
-    objectController/wall.h
+    objectController/wall.h \
+    objectController/mapGenarator/mapgenarator.h \
+    objectController/mapGenarator/room.h
