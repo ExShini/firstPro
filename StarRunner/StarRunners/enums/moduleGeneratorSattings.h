@@ -13,4 +13,16 @@ enum Direction
     RIGHT
 };
 
+enum ModuleType
+{
+    ResidentialUnit,
+    MedicalModule,
+    EngineeringCompartment,
+    EngineCompartment,
+    NoType
+};
+
+#define CostFloor 1
+#define CostWall 20
+
 #endif // MODULEGENERATORSATTINGS_H
