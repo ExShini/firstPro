@@ -1,6 +1,6 @@
 #ifndef TESTOBJECTS_H
 #define TESTOBJECTS_H
-#include "movableobj.h"
+#include "../movableobj.h"
 
 class TestObject11: public MovableObj
 {

@@ -1,6 +1,6 @@
 #include "objectcontroller.h"
-#include"testobjects.h"
-#include "wall.h"
+#include"objects/testobjects.h"
+#include "objects/wall.h"
 
 ObjectController* ObjectController::m_instance = new ObjectController();
 

@@ -17,15 +17,17 @@ SOURCES += main.cpp \
     render/render.cpp \
     render/textureprovider.cpp \
     objectController/gobject.cpp \
-    objectController/testobjects.cpp \
     objectController/objectcontroller.cpp \
     gameapp.cpp \
     eventController/eventcontroller.cpp \
     eventController/keyboardeventproc.cpp \
     objectController/movableobj.cpp \
-    objectController/wall.cpp \
-    objectController/mapGenarator/mapgenarator.cpp \
-    objectController/mapGenarator/room.cpp
+    objectController/mapGenarator/room.cpp \
+    objectController/mapGenarator/modulegenerator.cpp \
+    objectController/objects/testobjects.cpp \
+    objectController/objects/wall.cpp \
+    randomgen.cpp \
+    objectController/mapGenarator/rooms/testroom.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -39,12 +41,15 @@ HEADERS += \
     render/textureprovider.h \
     enums/objects.h \
     objectController/gobject.h \
-    objectController/testobjects.h \
     objectController/objectcontroller.h \
     gameapp.h \
     eventController/eventcontroller.h \
     eventController/keyboardeventproc.h \
     objectController/movableobj.h \
-    objectController/wall.h \
-    objectController/mapGenarator/mapgenarator.h \
-    objectController/mapGenarator/room.h
+    objectController/mapGenarator/room.h \
+    objectController/mapGenarator/modulegenerator.h \
+    objectController/objects/testobjects.h \
+    objectController/objects/wall.h \
+    enums/moduleGeneratorSattings.h \
+    randomgen.h \
+    objectController/mapGenarator/rooms/testroom.h
