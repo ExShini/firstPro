@@ -60,13 +60,35 @@ void moduleGenerator::generateModule(ModuleType moduleType)
         }
 
 
-
     }
+
+
+    //clean memory after using
+    for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
+    {
+        for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
+        {
+            delete costMap[i][j];
+        }
+    }
+}
+
+
+/*************************************
+FUNC: placeRoom(room* croom, int x, int y, genMapField* map[][])
+DESC: places room into module map
+*************************************/
+void moduleGenerator::placeRoom(room* croom, int x, int y,
+                                genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT])
+{
 
 }
 
+
+
+
 /*************************************
-FUNC: checkArea(int x, int y, int width, int height, genMapField*** map)
+FUNC: checkArea(int x, int y, int width, int height, genMapField* map[][])
 DESC: return true if place is free, else - false
 *************************************/
 bool moduleGenerator::checkArea(int x,

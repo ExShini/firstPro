@@ -19,6 +19,7 @@ protected:
     bool checkArea(int x, int y,
                    int width, int height,
                    genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
+    void placeRoom(room *croom, int x, int y, genMapField *map[][]);
 
     RandomGen* m_randGen;
 };
