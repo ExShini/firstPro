@@ -17,7 +17,7 @@ public:
     void addObject(genMapField* obj, int x, int y);
     int getWidth() { return m_width; }
     int getHeight() { return m_height; }
-    genMapField*** getObjects();
+    genMapField*** getObjects() { return m_objects; }
 
 protected:
     //objects map
@@ -36,12 +36,13 @@ class genMapField
 public:
     genMapField():
       m_parentDirection(NODIR),
-      m_cost(999),
+      m_cost(CostEmpty),
       m_fieldType(NULLOBJECT)
     {}
     Direction ParDir() { return m_parentDirection; }
     void SetObj(ObjectsType type);
     ObjectsType getObjType() { return m_fieldType; }
+    void SetCost(short cost) { m_cost = cost; }
 
 protected:
     Direction m_parentDirection;

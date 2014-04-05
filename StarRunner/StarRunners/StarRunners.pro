@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     objectController/objects/testobjects.cpp \
     objectController/objects/wall.cpp \
     randomgen.cpp \
-    objectController/mapGenarator/rooms/testroom.cpp
+    objectController/mapGenarator/rooms/testroom.cpp \
+    objectController/objects/floor.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -52,4 +53,6 @@ HEADERS += \
     objectController/objects/wall.h \
     enums/moduleGeneratorSattings.h \
     randomgen.h \
-    objectController/mapGenarator/rooms/testroom.h
+    objectController/mapGenarator/rooms/testroom.h \
+    objectController/objects/floor.h \
+    objectController/objectList.h

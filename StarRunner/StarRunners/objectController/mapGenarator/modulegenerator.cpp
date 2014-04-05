@@ -1,5 +1,6 @@
 #include "rooms/testroom.h"
 #include "modulegenerator.h"
+#include "objectController/objectList.h"
 
 /*************************************
 FUNC: moduleGenerator()
@@ -25,6 +26,7 @@ DESC: generate and return module by type
 *************************************/
 void moduleGenerator::generateModule(ModuleType moduleType)
 {
+    list<GObject*>* moduleList = new list<GObject*>();
     list<genMapField*> ping, pong;
     list<genMapField*>* procList;
 
@@ -58,7 +60,8 @@ void moduleGenerator::generateModule(ModuleType moduleType)
                                     croom->getHeight(),
                                     costMap);
         }
-
+        //place room to cost map and obj list
+        placeRoom(croom, x, y, costMap, moduleList);
 
     }
 
@@ -79,8 +82,58 @@ FUNC: placeRoom(room* croom, int x, int y, genMapField* map[][])
 DESC: places room into module map
 *************************************/
 void moduleGenerator::placeRoom(room* croom, int x, int y,
-                                genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT])
+                                genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT],
+                                list<GObject*>* objList)
 {
+    int roomX = croom->getWidth();
+    int roomY = croom->getHeight();
+
+    for (int i = 1; i < roomX -1 ; i++)
+    {
+        for (int j = 1; j < roomY - 1; j++)
+        {
+            map[i + x][j + y]->SetCost(CostFloor);
+            floor * fl = new floor();
+            fl->setX(i + x);
+            fl->setY(j + y);
+            objList->push_back(fl);
+
+            //get object by type here!
+        }
+    }
+
+    //add wall's
+    for (int i = 0; i < roomX; i++)
+    {
+        map[i + x][y]->SetCost(CostEmpty);
+        map[i + x][y + roomY -1]->SetCost(CostEmpty);
+
+        wall * wl1 = new wall();
+        wl1->setX(i + x);
+        wl1->setY(y);
+        objList->push_back(wl1);
+
+        wall * wl2 = new wall();
+        wl2->setX(i + x);
+        wl2->setY(y + roomY -1);
+        objList->push_back(wl2);
+    }
+
+    for (int i = 1; i < roomY - 1; i++)
+    {
+        map[x][i + y]->SetCost(CostEmpty);
+        map[x + roomX -1][y + i]->SetCost(CostEmpty);
+
+        wall * wl1 = new wall();
+        wl1->setX(x);
+        wl1->setY(i + y);
+        objList->push_back(wl1);
+
+        wall * wl2 = new wall();
+        wl2->setX(x + roomX -1);
+        wl2->setY(y + i);
+        objList->push_back(wl2);
+    }
 
 }
 

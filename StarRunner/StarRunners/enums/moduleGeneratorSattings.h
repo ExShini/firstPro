@@ -24,5 +24,6 @@ enum ModuleType
 
 #define CostFloor 1
 #define CostWall 20
+#define CostEmpty 4
 
 #endif // MODULEGENERATORSATTINGS_H

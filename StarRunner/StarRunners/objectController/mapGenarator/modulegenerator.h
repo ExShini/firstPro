@@ -4,6 +4,7 @@
 
 #include "room.h"
 #include "randomgen.h"
+#include "objectController/gobject.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ protected:
     bool checkArea(int x, int y,
                    int width, int height,
                    genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
-    void placeRoom(room *croom, int x, int y, genMapField *map[][]);
+    void placeRoom(room *croom, int x, int y, genMapField *map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT], list<GObject *> *objList);
 
     RandomGen* m_randGen;
 };
