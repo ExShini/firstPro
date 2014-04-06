@@ -2,10 +2,10 @@
 #define FLOOR_H
 #include "objectController/movableobj.h"
 
-class floor : public ImmovableObj
+class Floor : public ImmovableObj
 {
 public:
-    floor();
+    Floor();
 };
 
 #endif // FLOOR_H

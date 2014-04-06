@@ -54,24 +54,3 @@ void room::addObject(genMapField* obj, int x, int y)
 genMapField class!
 Support class. It contain members, which used at module generation phase
 ****************************************************************************/
-
-/*************************************
-FUNC: SetObj(ObjectsType type)
-DESC: set object type and cost for current genMapField
-*************************************/
-void genMapField::SetObj(ObjectsType type)
-{
-    m_fieldType = type;
-
-    switch(type)
-    {
-    case t_Floor:
-        m_cost = CostFloor;
-        break;
-    case t_Wall:
-        m_cost = CostWall;
-        break;
-    default:
-        break;
-    }
-}

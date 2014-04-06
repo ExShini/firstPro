@@ -1,7 +1,7 @@
 #include "floor.h"
 #include "enums/gui_enums.h"
 
-floor::floor():
+Floor::Floor():
     ImmovableObj()
 {
     m_type = t_Floor;

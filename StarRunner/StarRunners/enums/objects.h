@@ -10,7 +10,7 @@ enum ObjectsType
     t_ArmoredWall,
     t_TestObject1,
     t_TestObject2,
-    NumberOfTextures,
+    NumberOfObjectTypes,
     NULLOBJECT
 };
 

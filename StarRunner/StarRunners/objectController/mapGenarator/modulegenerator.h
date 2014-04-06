@@ -1,6 +1,7 @@
 #ifndef MODULEGENERATOR_H
 #define MODULEGENERATOR_H
 #include "list"
+#include "vector"
 
 #include "room.h"
 #include "randomgen.h"
@@ -13,14 +14,20 @@ class moduleGenerator
 public:
     moduleGenerator();
     ~moduleGenerator();
-    void generateModule(ModuleType moduleType);
+    list<GObject *> *generateModule(ModuleType moduleType);
 
 protected:
-    list<room *> *getRooms(ModuleType moduleType);
+    vector<room *> *getRooms(ModuleType moduleType);
     bool checkArea(int x, int y,
                    int width, int height,
                    genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
-    void placeRoom(room *croom, int x, int y, genMapField *map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT], list<GObject *> *objList);
+    void placeRoom(room *croom, int x, int y, genMapField *genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT],
+                   list<GObject *> *objList);
+
+    void createCorridors(room *croom, room *troom, genMapField *genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
+
+    int getFieldKey(int x, int y);
+    int getCostByType(ObjectsType type);
 
     RandomGen* m_randGen;
 };

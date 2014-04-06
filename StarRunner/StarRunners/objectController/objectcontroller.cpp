@@ -1,47 +1,32 @@
 #include "objectcontroller.h"
 #include"objects/testobjects.h"
 #include "objects/wall.h"
+#include "mapGenarator/modulegenerator.h"
 
 ObjectController* ObjectController::m_instance = new ObjectController();
 
 ObjectController::ObjectController():
     m_player(NULL)
 {
-    m_OList = new list<GObject*>();
 }
 
 void ObjectController::init()
 {
+    moduleGenerator* modGen =  new moduleGenerator();
+    m_OList = modGen->generateModule(ResidentialUnit);
+
+
+
     m_backGround = new BackGround();
     m_backGround->setX(0);
     m_backGround->setY(0);
 
     TestObject11* to1 = new TestObject11();
-    to1->setX(0);
-    to1->setY(0);
+    to1->setX(50);
+    to1->setY(50);
 
     m_player = to1;
     m_OList->push_back(to1);
-
-    for (int i = 0; i < 50; i++)
-    {
-
-        TestObject22* to2 = new TestObject22();
-        to2->setX(3 + i * to2->getW() );
-        to2->setY(2);
-
-        m_OList->push_back(to2);
-    }
-
-    for (int i = 0; i < 100; i++)
-    {
-
-        wall* cwall = new wall();
-        cwall->setX(3 + i * cwall->getW() );
-        cwall->setY(4);
-
-        m_OList->push_back(cwall);
-    }
 
 }
 
