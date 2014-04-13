@@ -46,12 +46,16 @@ class genMapField
 public:
     genMapField():
       m_parentDirection(NODIR),
+      m_parent(0),
       m_cost(9999),
       m_fieldType(NULLOBJECT)
     {}
 
     void setParDir(Direction dir) { m_parentDirection = dir; }
     Direction ParDir() { return m_parentDirection; }
+
+    genMapField* Parent() { return m_parent; }
+    void setParent(genMapField* parent) { m_parent = parent; }
 
     void setObjType(ObjectsType type) { m_fieldType = type; }
     ObjectsType getObjType() { return m_fieldType; }
@@ -61,6 +65,7 @@ public:
 
 protected:
     Direction m_parentDirection;
+    genMapField * m_parent;
     short m_cost;
     ObjectsType m_fieldType;
 };

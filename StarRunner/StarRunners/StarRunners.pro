@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     objectController/objects/wall.cpp \
     randomgen.cpp \
     objectController/mapGenarator/rooms/testroom.cpp \
-    objectController/objects/floor.cpp
+    objectController/objects/floor.cpp \
+    objectController/objects/door.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -55,4 +56,5 @@ HEADERS += \
     randomgen.h \
     objectController/mapGenarator/rooms/testroom.h \
     objectController/objects/floor.h \
-    objectController/objectList.h
+    objectController/objectList.h \
+    objectController/objects/door.h

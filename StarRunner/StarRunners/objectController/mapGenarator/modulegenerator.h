@@ -28,6 +28,7 @@ protected:
 
     int getFieldKey(int x, int y);
     int getCostByType(ObjectsType type);
+    GObject* getGObjectByType(ObjectsType type);
 
     RandomGen* m_randGen;
 };

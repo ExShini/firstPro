@@ -8,6 +8,7 @@ enum ObjectsType
     t_StationBlock,
     t_Wall,
     t_ArmoredWall,
+    t_Door,
     t_TestObject1,
     t_TestObject2,
     NumberOfObjectTypes,
