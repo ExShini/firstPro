@@ -158,7 +158,7 @@ Camera::Camera(GObject *target, int gapX, int gapY)
 {
     m_target = target;
     m_shiftX = WIDTH_MAIN_WINDOW /2 - (m_target->getW() MULTIPLY_FS) /2 - gapX;
-    m_shiftY = HEIGHT_MAIN_WINDOW /2 - (m_target->getY() MULTIPLY_FS) /2 - gapY;
+    m_shiftY = HEIGHT_MAIN_WINDOW /2 - (m_target->getH() MULTIPLY_FS) /2 - gapY;
 }
 
 int Camera::x()

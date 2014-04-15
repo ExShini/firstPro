@@ -56,12 +56,12 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
         int x, y;
         while (possibility != true)
         {
-            x = m_randGen->getRand() % (GENERATED_MAP_WIDTH - croom->getWidth());
-            y = m_randGen->getRand() % (GENERATED_MAP_HEIGHT - croom->getHeight());
-            possibility = checkArea(x,
-                                    y,
-                                    croom->getWidth(),
-                                    croom->getHeight(),
+            x = (m_randGen->getRand()) % (GENERATED_MAP_WIDTH - croom->getWidth() - roomBorder * 2) + roomBorder;
+            y = (m_randGen->getRand()) % (GENERATED_MAP_HEIGHT - croom->getHeight() - roomBorder * 2) + roomBorder;
+            possibility = checkArea(x - roomBorder,
+                                    y - roomBorder,
+                                    croom->getWidth() + roomBorder * 2,
+                                    croom->getHeight() + roomBorder * 2,
                                     costMap);
         }
         //place room to cost map and floor to obj list
@@ -97,6 +97,51 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
                 obj->setX(i);
                 obj->setY(j);
                 moduleList->push_back(obj);
+            }
+            else
+            {
+                //check near fields
+                bool isWall = false;
+
+                //right field
+                if (i < GENERATED_MAP_WIDTH - 1)
+                {
+                    isWall |= (costMap[i + 1][j]->getObjType() == t_Floor);
+                    //right down field
+                    if (j < GENERATED_MAP_HEIGHT - 1)
+                        isWall |= (costMap[i + 1][j + 1]->getObjType() == t_Floor);
+
+                    //right top field
+                    if (j > 0)
+                        isWall |= (costMap[i + 1][j - 1]->getObjType() == t_Floor);
+                }
+
+                //left field
+                if (i > 0)
+                {
+                    isWall |= (costMap[i - 1][j]->getObjType() == t_Floor);
+
+                    //left down field
+                    if (j < GENERATED_MAP_HEIGHT - 1)
+                        isWall |= (costMap[i - 1][j + 1]->getObjType() == t_Floor);
+
+                    //left top field
+                    if (j > 0)
+                        isWall |= (costMap[i - 1][j - 1]->getObjType() == t_Floor);
+                }
+                if (j < GENERATED_MAP_HEIGHT - 1)
+                    isWall |= (costMap[i][j + 1]->getObjType() == t_Floor);
+                if (j > 0)
+                    isWall |= (costMap[i][j - 1]->getObjType() == t_Floor);
+
+                if (isWall)
+                {
+                    field->setObjType(t_Wall);
+                    obj = getGObjectByType(field->getObjType());
+                    obj->setX(i);
+                    obj->setY(j);
+                    moduleList->push_back(obj);
+                }
             }
         }
     }
@@ -473,11 +518,11 @@ void moduleGenerator::placeRoom(room* croom, int x, int y,
         for (int j = 1; j < roomY - 1; j++)
         {
             genMap[i + x][j + y]->setObjType(t_Floor);
-//            genMap[i + x][j + y]->SetCost(CostFloor);
-//            Floor * fl = new Floor();
-//            fl->setX(i + x);
-//            fl->setY(j + y);
-//            objList->push_back(fl);
+            //            genMap[i + x][j + y]->SetCost(CostFloor);
+            //            Floor * fl = new Floor();
+            //            fl->setX(i + x);
+            //            fl->setY(j + y);
+            //            objList->push_back(fl);
         }
     }
 
@@ -487,19 +532,6 @@ void moduleGenerator::placeRoom(room* croom, int x, int y,
         genMap[i + x][y]->setObjType(t_Wall);
         genMap[i + x][y + roomY -1]->setObjType(t_Wall);
 
-
-//        genMap[i + x][y]->SetCost(CostEmpty);
-//        genMap[i + x][y + roomY -1]->SetCost(CostEmpty);
-
-//        wall * wl1 = new wall();
-//        wl1->setX(i + x);
-//        wl1->setY(y);
-//        objList->push_back(wl1);
-
-//        wall * wl2 = new wall();
-//        wl2->setX(i + x);
-//        wl2->setY(y + roomY -1);
-//        objList->push_back(wl2);
     }
 
     for (int i = 1; i < roomY - 1; i++)
@@ -507,19 +539,6 @@ void moduleGenerator::placeRoom(room* croom, int x, int y,
         genMap[x][i + y]->setObjType(t_Wall);
         genMap[x + roomX -1][y + i]->setObjType(t_Wall);
 
-
-//        genMap[x][i + y]->SetCost(CostEmpty);
-//        genMap[x + roomX -1][y + i]->SetCost(CostEmpty);
-
-//        wall * wl1 = new wall();
-//        wl1->setX(x);
-//        wl1->setY(i + y);
-//        objList->push_back(wl1);
-
-//        wall * wl2 = new wall();
-//        wl2->setX(x + roomX -1);
-//        wl2->setY(y + i);
-//        objList->push_back(wl2);
     }
 
 }
@@ -538,14 +557,16 @@ bool moduleGenerator::checkArea(int x,
                                 genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT])
 {
     bool res = true;
-    for (int i = 0; i < width; i++)
-    {
-        for (int j = 0; j < height; j++)
+
+        for (int i = 0; i < width; i++)
         {
-            if (map[x + i][y + j]->getObjType() != NULLOBJECT)
-                res = false;
+            for (int j = 0; j < height; j++)
+            {
+                ObjectsType type = map[x + i][y + j]->getObjType();
+                if (type != NULLOBJECT && type != t_Wall)
+                    res = false;
+            }
         }
-    }
 
     return res;
 }
@@ -572,6 +593,17 @@ vector<room *> *moduleGenerator::getRooms(ModuleType moduleType)
         roomList->push_back(new testRoom());
         roomList->push_back(new testRoom());
         roomList->push_back(new testRoom());
+
+
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
+        roomList->push_back(new testRoom2());
         break;
     default:
         break;

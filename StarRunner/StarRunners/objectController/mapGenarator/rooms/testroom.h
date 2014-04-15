@@ -8,4 +8,11 @@ public:
     testRoom();
 };
 
+
+class testRoom2: public room
+{
+public:
+    testRoom2();
+};
+
 #endif // TESTROOM_H

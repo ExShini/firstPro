@@ -22,8 +22,8 @@ void ObjectController::init()
     m_backGround->setY(0);
 
     TestObject11* to1 = new TestObject11();
-    to1->setX(50);
-    to1->setY(50);
+    to1->setX(10);
+    to1->setY(10);
 
     m_player = to1;
     m_OList->push_back(to1);

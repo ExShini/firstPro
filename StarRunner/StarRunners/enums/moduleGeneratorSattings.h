@@ -22,8 +22,10 @@ enum ModuleType
     NoType
 };
 
+#define roomBorder 2
+
 #define CostFloor 1
 #define CostWall 20
-#define CostEmpty 4
+#define CostEmpty 5
 
 #endif // MODULEGENERATORSATTINGS_H
