@@ -34,13 +34,11 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
 {
     list<GObject*>* moduleList = new list<GObject*>();
 
-    genMapField* costMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT];
-
     for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
         {
-            costMap[i][j] = new genMapField();
+            m_costMap[i][j] = new genMapField();
         }
     }
 
@@ -61,11 +59,10 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
             possibility = checkArea(x - roomBorder,
                                     y - roomBorder,
                                     croom->getWidth() + roomBorder * 2,
-                                    croom->getHeight() + roomBorder * 2,
-                                    costMap);
+                                    croom->getHeight() + roomBorder * 2);
         }
         //place room to cost map and floor to obj list
-        placeRoom(croom, x, y, costMap, moduleList);
+        placeRoom(croom, x, y);
         possibility = false;
 
     }
@@ -79,18 +76,18 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
         {
             room* curRomm = (*rooms).at(current);
             room* tarRomm = (*rooms).at(target);
-            createCorridors(curRomm, tarRomm, costMap);
+            createCorridors(curRomm, tarRomm);
         }
     }
 
 
-    //create objects to moduleList by costMap
+    //create objects to moduleList by m_costMap
     for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
         {
             //get object by type here!
-            genMapField* field = costMap[i][j];
+            genMapField* field = m_costMap[i][j];
             GObject* obj = getGObjectByType(field->getObjType());
             if (obj != NULL)
             {
@@ -106,33 +103,33 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
                 //right field
                 if (i < GENERATED_MAP_WIDTH - 1)
                 {
-                    isWall |= (costMap[i + 1][j]->getObjType() == t_Floor);
+                    isWall |= (m_costMap[i + 1][j]->getObjType() == t_Floor);
                     //right down field
                     if (j < GENERATED_MAP_HEIGHT - 1)
-                        isWall |= (costMap[i + 1][j + 1]->getObjType() == t_Floor);
+                        isWall |= (m_costMap[i + 1][j + 1]->getObjType() == t_Floor);
 
                     //right top field
                     if (j > 0)
-                        isWall |= (costMap[i + 1][j - 1]->getObjType() == t_Floor);
+                        isWall |= (m_costMap[i + 1][j - 1]->getObjType() == t_Floor);
                 }
 
                 //left field
                 if (i > 0)
                 {
-                    isWall |= (costMap[i - 1][j]->getObjType() == t_Floor);
+                    isWall |= (m_costMap[i - 1][j]->getObjType() == t_Floor);
 
                     //left down field
                     if (j < GENERATED_MAP_HEIGHT - 1)
-                        isWall |= (costMap[i - 1][j + 1]->getObjType() == t_Floor);
+                        isWall |= (m_costMap[i - 1][j + 1]->getObjType() == t_Floor);
 
                     //left top field
                     if (j > 0)
-                        isWall |= (costMap[i - 1][j - 1]->getObjType() == t_Floor);
+                        isWall |= (m_costMap[i - 1][j - 1]->getObjType() == t_Floor);
                 }
                 if (j < GENERATED_MAP_HEIGHT - 1)
-                    isWall |= (costMap[i][j + 1]->getObjType() == t_Floor);
+                    isWall |= (m_costMap[i][j + 1]->getObjType() == t_Floor);
                 if (j > 0)
-                    isWall |= (costMap[i][j - 1]->getObjType() == t_Floor);
+                    isWall |= (m_costMap[i][j - 1]->getObjType() == t_Floor);
 
                 if (isWall)
                 {
@@ -152,7 +149,7 @@ list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
         {
-            delete costMap[i][j];
+            delete m_costMap[i][j];
         }
     }
 
@@ -191,7 +188,7 @@ GObject* moduleGenerator::getGObjectByType(ObjectsType type)
 FUNC: createCorridors(room *croom, room *troom, genMapField *map[][])
 DESC: places room into module map
 *************************************/
-void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT])
+void moduleGenerator::createCorridors(room *croom, room *troom)
 {
 
     //refresh map costs and set default value
@@ -199,7 +196,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
         {
-            genMap[i][j]->SetCost(9999);
+            m_costMap[i][j]->SetCost(9999);
         }
     }
 
@@ -228,7 +225,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
     startX -= startX % coridorWidth;
     startY -= startY % coridorWidth;
 
-    startField = genMap[startX][startY];
+    startField = m_costMap[startX][startY];
     startField->SetCost(0);
 
     //set strart point for processing
@@ -243,7 +240,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
     targetX -= targetX % coridorWidth;
     targetY -= targetY % coridorWidth;
 
-    targetField = genMap[targetX][targetY];
+    targetField = m_costMap[targetX][targetY];
 
 
 
@@ -269,7 +266,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
             {
                 int fieldX = x - coridorWidth;
                 int fieldY = y;
-                genMapField* field = genMap[fieldX][fieldY];
+                genMapField* field = m_costMap[fieldX][fieldY];
 
                 //calculate cost of building this area
                 int cost = 0;
@@ -277,7 +274,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
                 {
                     for (int j = 0; j < coridorWidth; j++)
                     {
-                        genMapField* nearField = genMap[fieldX + i][fieldY + j];
+                        genMapField* nearField = m_costMap[fieldX + i][fieldY + j];
                         cost += getCostByType(nearField->getObjType());
                     }
                 }
@@ -301,7 +298,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
             {
                 int fieldX = x + coridorWidth;
                 int fieldY = y;
-                genMapField* field = genMap[fieldX][fieldY];
+                genMapField* field = m_costMap[fieldX][fieldY];
 
                 //calculate cost of building this area
                 int cost = 0;
@@ -309,7 +306,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
                 {
                     for (int j = 0; j < coridorWidth; j++)
                     {
-                        genMapField* nearField = genMap[fieldX + i][fieldY + j];
+                        genMapField* nearField = m_costMap[fieldX + i][fieldY + j];
                         cost += getCostByType(nearField->getObjType());
                     }
                 }
@@ -333,7 +330,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
             {
                 int fieldX = x;
                 int fieldY = y - coridorWidth;
-                genMapField* field = genMap[fieldX][fieldY];
+                genMapField* field = m_costMap[fieldX][fieldY];
 
                 //calculate cost of building this area
                 int cost = 0;
@@ -341,7 +338,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
                 {
                     for (int j = 0; j < coridorWidth; j++)
                     {
-                        genMapField* nearField = genMap[fieldX + i][fieldY + j];
+                        genMapField* nearField = m_costMap[fieldX + i][fieldY + j];
                         cost += getCostByType(nearField->getObjType());
                     }
                 }
@@ -365,7 +362,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
             {
                 int fieldX = x;
                 int fieldY = y + coridorWidth;
-                genMapField* field = genMap[fieldX][fieldY];
+                genMapField* field = m_costMap[fieldX][fieldY];
 
                 //calculate cost of building this area
                 int cost = 0;
@@ -373,7 +370,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
                 {
                     for (int j = 0; j < coridorWidth; j++)
                     {
-                        genMapField* nearField = genMap[fieldX + i][fieldY + j];
+                        genMapField* nearField = m_costMap[fieldX + i][fieldY + j];
                         cost += getCostByType(nearField->getObjType());
                     }
                 }
@@ -413,7 +410,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
 
     //build corridors
 
-    genMapField* processField = genMap[targetX][targetY];
+    genMapField* processField = targetField;
     int procX = targetX;
     int procY = targetY;
 
@@ -421,18 +418,18 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
     while (processField != startField)
     {
 
-        processField = genMap[procX][procY];
+        processField = m_costMap[procX][procY];
 
         //build current block around processField
         for (int i = procX; i < procX + coridorWidth; i ++)
         {
             for (int j = procY; j < procY + coridorWidth; j++)
             {
-                ObjectsType type = genMap[i][j]->getObjType();
+                ObjectsType type = m_costMap[i][j]->getObjType();
                 if (type == t_Wall || type == t_Door)
-                    genMap[i][j]->setObjType(t_Door);
+                    m_costMap[i][j]->setObjType(t_Door);
                 else
-                    genMap[i][j]->setObjType(t_Floor);
+                    m_costMap[i][j]->setObjType(t_Floor);
             }
         }
 
@@ -455,7 +452,6 @@ void moduleGenerator::createCorridors(room *croom, room *troom, genMapField *gen
             break;
         }
     }
-
 
 }
 
@@ -491,11 +487,6 @@ DESC: calculate and return key for genMapField by coordinate
 *************************************/
 int moduleGenerator::getFieldKey(int x, int y)
 {
-    if (x > GENERATED_MAP_WIDTH || y > GENERATED_MAP_WIDTH)
-    {
-        int a = 158 + 1;
-        int b = a +5;
-    }
     return y * GENERATED_MAP_WIDTH + x;
 }
 
@@ -503,9 +494,7 @@ int moduleGenerator::getFieldKey(int x, int y)
 FUNC: placeRoom(room* croom, int x, int y, genMapField* map[][])
 DESC: places room into module map
 *************************************/
-void moduleGenerator::placeRoom(room* croom, int x, int y,
-                                genMapField* genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT],
-                                list<GObject*>* objList)
+void moduleGenerator::placeRoom(room* croom, int x, int y)
 {
     croom->sX(x);
     croom->sY(y);
@@ -517,33 +506,24 @@ void moduleGenerator::placeRoom(room* croom, int x, int y,
     {
         for (int j = 1; j < roomY - 1; j++)
         {
-            genMap[i + x][j + y]->setObjType(t_Floor);
-            //            genMap[i + x][j + y]->SetCost(CostFloor);
-            //            Floor * fl = new Floor();
-            //            fl->setX(i + x);
-            //            fl->setY(j + y);
-            //            objList->push_back(fl);
+            m_costMap[i + x][j + y]->setObjType(t_Floor);
         }
     }
 
     //add wall's
     for (int i = 0; i < roomX; i++)
     {
-        genMap[i + x][y]->setObjType(t_Wall);
-        genMap[i + x][y + roomY -1]->setObjType(t_Wall);
-
+        m_costMap[i + x][y]->setObjType(t_Wall);
+        m_costMap[i + x][y + roomY -1]->setObjType(t_Wall);
     }
 
     for (int i = 1; i < roomY - 1; i++)
     {
-        genMap[x][i + y]->setObjType(t_Wall);
-        genMap[x + roomX -1][y + i]->setObjType(t_Wall);
-
+        m_costMap[x][i + y]->setObjType(t_Wall);
+        m_costMap[x + roomX -1][y + i]->setObjType(t_Wall);
     }
 
 }
-
-
 
 
 /*************************************
@@ -553,20 +533,19 @@ DESC: return true if place is free, else - false
 bool moduleGenerator::checkArea(int x,
                                 int y,
                                 int width,
-                                int height,
-                                genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT])
+                                int height)
 {
     bool res = true;
 
-        for (int i = 0; i < width; i++)
+    for (int i = 0; i < width; i++)
+    {
+        for (int j = 0; j < height; j++)
         {
-            for (int j = 0; j < height; j++)
-            {
-                ObjectsType type = map[x + i][y + j]->getObjType();
-                if (type != NULLOBJECT && type != t_Wall)
-                    res = false;
-            }
+            ObjectsType type = m_costMap[x + i][y + j]->getObjType();
+            if (type != NULLOBJECT && type != t_Wall)
+                res = false;
         }
+    }
 
     return res;
 }

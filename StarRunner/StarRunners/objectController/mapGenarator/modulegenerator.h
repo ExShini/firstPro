@@ -19,18 +19,18 @@ public:
 protected:
     vector<room *> *getRooms(ModuleType moduleType);
     bool checkArea(int x, int y,
-                   int width, int height,
-                   genMapField* map[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
-    void placeRoom(room *croom, int x, int y, genMapField *genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT],
-                   list<GObject *> *objList);
+                   int width, int height);
+    void placeRoom(room *croom, int x, int y);
 
-    void createCorridors(room *croom, room *troom, genMapField *genMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT]);
+    void createCorridors(room *croom, room *troom);
 
     int getFieldKey(int x, int y);
     int getCostByType(ObjectsType type);
     GObject* getGObjectByType(ObjectsType type);
 
     RandomGen* m_randGen;
+
+    genMapField* m_costMap[GENERATED_MAP_WIDTH][GENERATED_MAP_HEIGHT];
 };
 
 #endif // MODULEGENERATOR_H
