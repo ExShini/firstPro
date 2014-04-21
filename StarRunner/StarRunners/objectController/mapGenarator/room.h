@@ -1,10 +1,14 @@
 #ifndef ROOM_H
 #define ROOM_H
+#include "map"
+
 #include "enums/moduleGeneratorSattings.h"
 #include "enums/objects.h"
 
 //find definition for genMapField at the end of this file
 class genMapField;
+
+using namespace std;
 
 /****************************************************************************
 room class!
@@ -16,7 +20,7 @@ public:
     room(int width, int height);
 
     void addObject(genMapField* obj, int x, int y);
-    genMapField*** getObjects() { return m_objects; }
+    map<int, genMapField*>* getObjects() { return m_objects; }
 
     int getWidth() { return m_width; }
     int getHeight() { return m_height; }
@@ -29,7 +33,7 @@ public:
 
 protected:
     //objects map
-    genMapField*** m_objects;
+     map<int, genMapField*>* m_objects;
     //sizes should be a power of 2
     int m_width;
     int m_height;
@@ -62,6 +66,9 @@ public:
 
     void SetCost(short cost) { m_cost = cost; }
     short Cost() { return m_cost; }
+
+    /***********************/
+    static int getFieldKey(int x, int y);
 
 protected:
     Direction m_parentDirection;

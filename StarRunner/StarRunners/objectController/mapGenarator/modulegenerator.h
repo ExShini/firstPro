@@ -6,6 +6,7 @@
 #include "room.h"
 #include "randomgen.h"
 #include "objectController/gobject.h"
+#include "module.h"
 
 using namespace std;
 
@@ -14,7 +15,7 @@ class moduleGenerator
 public:
     moduleGenerator();
     ~moduleGenerator();
-    list<GObject *> *generateModule(ModuleType moduleType);
+    module *generateModule(ModuleType moduleType);
 
 protected:
     vector<room *> *getRooms(ModuleType moduleType);

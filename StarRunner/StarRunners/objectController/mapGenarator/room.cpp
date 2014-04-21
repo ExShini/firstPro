@@ -13,22 +13,8 @@ room::room(int width, int height)
     m_height = height;
 
     //create columns;
-    m_objects = new genMapField**[m_width];
+    m_objects = map<int, genMapField*>();
 
-    //create rows
-    for (int i = 0; i < width; i ++)
-    {
-        m_objects[i] = new genMapField*[height];
-    }
-
-    //clear mamory
-    for (int i = 0; i < width; i ++)
-    {
-        for (int j = 0; j < width; j ++)
-        {
-            m_objects[i][j] = NULL;
-        }
-    }
 }
 
 /*************************************
@@ -39,7 +25,7 @@ void room::addObject(genMapField* obj, int x, int y)
 {
     if (x < m_width && y < m_height && y >= 0 && x >= 0)
     {
-        m_objects[x][y] = obj;
+        m_objects[genMapField::getFieldKey(x,y)] = obj;
     }
     else
     {
@@ -54,3 +40,11 @@ void room::addObject(genMapField* obj, int x, int y)
 genMapField class!
 Support class. It contain members, which used at module generation phase
 ****************************************************************************/
+/*************************************
+FUNC: getFieldKey(genMapField *field)
+DESC: calculate and return key for genMapField by coordinate
+*************************************/
+int genMapField::getFieldKey(int x, int y)
+{
+    return y * GENERATED_MAP_WIDTH + x;
+}

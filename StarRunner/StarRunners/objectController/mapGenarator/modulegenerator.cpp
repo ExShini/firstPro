@@ -30,7 +30,7 @@ moduleGenerator::~moduleGenerator()
 FUNC: generateModule(ModuleType moduleType)
 DESC: generate and return module by type
 *************************************/
-list<GObject*>* moduleGenerator::generateModule(ModuleType moduleType)
+module *moduleGenerator::generateModule(ModuleType moduleType)
 {
     list<GObject*>* moduleList = new list<GObject*>();
 
@@ -229,7 +229,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
     startField->SetCost(0);
 
     //set strart point for processing
-    (*procList)[getFieldKey(startX, startY)] = startField;
+    (*procList)[genMapField::getFieldKey(startX, startY)] = startField;
 
     //get target field
     int targetX, targetY;
@@ -283,7 +283,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(RIGHT);
                     field->setParent(cfield);
@@ -315,7 +315,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(LEFT);
                     field->setParent(cfield);
@@ -347,7 +347,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(DOWN);
                     field->setParent(cfield);
@@ -379,7 +379,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(UP);
                     field->setParent(cfield);
@@ -481,14 +481,7 @@ int moduleGenerator::getCostByType(ObjectsType type)
     return res;
 }
 
-/*************************************
-FUNC: getFieldKey(genMapField *field)
-DESC: calculate and return key for genMapField by coordinate
-*************************************/
-int moduleGenerator::getFieldKey(int x, int y)
-{
-    return y * GENERATED_MAP_WIDTH + x;
-}
+
 
 /*************************************
 FUNC: placeRoom(room* croom, int x, int y, genMapField* map[][])
