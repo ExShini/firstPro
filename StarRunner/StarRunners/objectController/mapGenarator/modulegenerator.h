@@ -15,12 +15,11 @@ class moduleGenerator
 public:
     moduleGenerator();
     ~moduleGenerator();
-    module *generateModule(ModuleType moduleType);
+    Module *generateModule(ModuleType moduleType);
 
 protected:
     vector<room *> *getRooms(ModuleType moduleType);
-    bool checkArea(int x, int y,
-                   int width, int height);
+    bool checkArea(int x, int y, room *croom);
     void placeRoom(room *croom, int x, int y);
 
     void createCorridors(room *croom, room *troom);

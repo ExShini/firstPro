@@ -30,9 +30,9 @@ moduleGenerator::~moduleGenerator()
 FUNC: generateModule(ModuleType moduleType)
 DESC: generate and return module by type
 *************************************/
-module *moduleGenerator::generateModule(ModuleType moduleType)
+Module *moduleGenerator::generateModule(ModuleType moduleType)
 {
-    list<GObject*>* moduleList = new list<GObject*>();
+    Module* module = new Module();
 
     for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
     {
@@ -154,7 +154,7 @@ module *moduleGenerator::generateModule(ModuleType moduleType)
     }
 
 
-    return moduleList;
+    return module;
 }
 
 
@@ -521,23 +521,24 @@ void moduleGenerator::placeRoom(room* croom, int x, int y)
 
 /*************************************
 FUNC: checkArea(int x, int y, int width, int height, genMapField* map[][])
-DESC: return true if place is free, else - false
+DESC: return true if place for room is free, in over case - false
 *************************************/
-bool moduleGenerator::checkArea(int x,
-                                int y,
-                                int width,
-                                int height)
+bool moduleGenerator::checkArea(int x, int y,room * croom)
 {
     bool res = true;
 
-    for (int i = 0; i < width; i++)
+    map<int, genMapField*>::iterator iter = croom->getObjects()->begin();
+
+    //обавить проверку зоны очуждения!
+    for (;iter != croom->getObjects()->end(); iter++)
     {
-        for (int j = 0; j < height; j++)
-        {
-            ObjectsType type = m_costMap[x + i][y + j]->getObjType();
-            if (type != NULLOBJECT && type != t_Wall)
-                res = false;
-        }
+        int key = iter->first;
+        int cx = key % GENERATED_MAP_WIDTH;
+        int cy = key / GENERATED_MAP_WIDTH;
+
+        ObjectsType type = m_costMap[x + cx][y + cy]->getObjType();
+        if (type != NULLOBJECT && type != t_Wall)
+            res = false;
     }
 
     return res;

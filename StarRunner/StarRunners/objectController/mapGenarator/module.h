@@ -4,10 +4,10 @@
 
 #include "objectController/gobject.h"
 
-class module
+class Module
 {
 public:
-    module();
+    Module();
 
     map<int,GObject*>* externalLevel;
     map<int,GObject*>* middleLevel;
