@@ -13,7 +13,7 @@ ObjectController::ObjectController():
 void ObjectController::init()
 {
     moduleGenerator* modGen =  new moduleGenerator();
-    m_OList = modGen->generateModule(ResidentialUnit);
+    Module* module = modGen->generateModule(ResidentialUnit);
 
 
 

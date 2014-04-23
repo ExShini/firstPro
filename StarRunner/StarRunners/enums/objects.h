@@ -15,6 +15,15 @@ enum ObjectsType
     NULLOBJECT
 };
 
+
+enum ModuleObjLevel
+{
+    MLEVEL_0 = 0,
+    MLEVEL_1,
+    MLEVEL_2,
+    NUM_LEVELS
+};
+
 //MAP field settings
 #define MAP_WIDTH 256  //WARNING! PART_OF_MAP_W and MAP_WIDTH should be synchronized!
 #define MAP_HEIGHT 256  //WARNING! PART_OF_MAP_ and MAP_HEIGHT should be synchronized!

@@ -2,7 +2,8 @@
 
 Module::Module()
 {
-    externalLevel = new map<int,GObject*>();
-    middleLevel = map<int,GObject*>();
-    topLevel = map<int,GObject*>();
+    for (int ml = MLEVEL_0; ml < NUM_LEVELS; ml++)
+    {
+        objects[(ModuleObjLevel)ml] = new map<int,GObject*>();
+    }
 }

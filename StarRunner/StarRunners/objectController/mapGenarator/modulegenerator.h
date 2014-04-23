@@ -25,6 +25,7 @@ protected:
     void createCorridors(room *croom, room *troom);
 
     int getFieldKey(int x, int y);
+    int getFieldCost(int x, int y, int coridorWidth);
     int getCostByType(ObjectsType type);
     GObject* getGObjectByType(ObjectsType type);
 

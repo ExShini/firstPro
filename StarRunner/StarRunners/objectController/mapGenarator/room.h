@@ -19,7 +19,7 @@ class room
 public:
     room(int width, int height);
 
-    void addObject(ObjectsType *obj, int x, int y);
+    void addObject(ObjectsType obj, int x, int y);
     map<int, genMapField*>* getObjects() { return m_objects; }
 
     int getWidth() { return m_width; }
@@ -63,8 +63,8 @@ public:
     genMapField* Parent() { return m_parent; }
     void setParent(genMapField* parent) { m_parent = parent; }
 
-    void setObjType(ObjectsType type, ModuleGenLevel level) { m_fieldType[level] = type; }
-    ObjectsType getObjType() { return m_fieldType; }
+    void setObjType(ObjectsType type, ModuleObjLevel level) { m_fieldType[level] = type; }
+    ObjectsType getObjType(ModuleObjLevel level) { return m_fieldType[level]; }
 
     void SetCost(short cost) { m_cost = cost; }
     short Cost() { return m_cost; }

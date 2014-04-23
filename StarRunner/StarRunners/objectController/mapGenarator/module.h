@@ -8,10 +8,6 @@ class Module
 {
 public:
     Module();
-
-    map<int,GObject*>* externalLevel;
-    map<int,GObject*>* middleLevel;
-    map<int,GObject*>* topLevel;
+    map<int,GObject*>* objects[NUM_LEVELS];
 };
-
 #endif // MODULE_H

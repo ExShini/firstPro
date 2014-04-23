@@ -13,7 +13,7 @@ room::room(int width, int height)
     m_height = height;
 
     //create columns;
-    m_objects = map<int, genMapField*>();
+    m_objects = new map<int, genMapField*>();
 
 }
 
@@ -21,7 +21,7 @@ room::room(int width, int height)
 FUNC: addObject(genMapField* obj, int x, int y)
 DESC: add new object at room map
 *************************************/
-void room::addObject(ObjectsType* obj, int x, int y)
+void room::addObject(ObjectsType obj, int x, int y)
 {
     if (x < m_width && y < m_height && y >= 0 && x >= 0)
     {

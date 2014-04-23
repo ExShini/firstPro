@@ -22,14 +22,6 @@ enum ModuleType
     NoType
 };
 
-enum ModuleGenLevel
-{
-    MLEVEL_0 = 0,
-    MLEVEL_1,
-    MLEVEL_2,
-    NUM_LEVELS
-};
-
 #define roomBorder 2
 
 #define CostFloor 1
