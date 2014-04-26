@@ -13,5 +13,7 @@
 #define p_DOOR "res/door.bmp"
 #define p_STATIONBLOCK "res/StantionBlock.bmp"
 #define p_WALL "res/wall.bmp"
+#define p_MED_BOX "res/medBox.bmp"
+#define p_SF "res/sf.bmp"
 
 #endif // TEXTURES_PATHS_H

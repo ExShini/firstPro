@@ -48,6 +48,8 @@ void TextureProvider::initTextureProvider()
     m_textures[t_TestObject2] = loadImage(p_TEST_OBJ2);
     m_textures[t_Floor] = loadImage(p_FLOOR);
     m_textures[t_Door] = loadImage(p_DOOR);
+    m_textures[t_MedBox] = loadImage(p_MED_BOX);
+    m_textures[t_SF] = loadImage(p_SF);
 }
 
 /*************************************

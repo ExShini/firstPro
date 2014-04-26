@@ -11,6 +11,8 @@ enum ObjectsType
     t_Door,
     t_TestObject1,
     t_TestObject2,
+    t_MedBox,
+    t_SF,
     NumberOfObjectTypes,
     NULLOBJECT
 };

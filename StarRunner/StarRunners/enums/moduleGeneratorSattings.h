@@ -25,8 +25,9 @@ enum ModuleType
 #define roomBorder 2
 
 #define CostFloor 1
-#define CostWall 20
-#define CostEmpty 5
+#define CostWall 55
+#define CostEmpty 4
+#define CostItem 30
 
 
 

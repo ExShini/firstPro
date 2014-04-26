@@ -58,7 +58,7 @@ bool Render::init()
             printf("Could not get display mode for video display #%d: %s", i, SDL_GetError());
         }
         else
-           break;
+            break;
     }
 
 
@@ -70,7 +70,7 @@ bool Render::init()
     //set ObjectController to render
     m_objController = ObjectController::getInstance();
     m_objController->init();
-    m_olist = m_objController->getObjectList();
+    m_module = m_objController->getModule();
 
     //set backGround object to render
     m_backGround = m_objController->getBackGround();
@@ -106,21 +106,18 @@ void Render::renderScreen()
     //draw background
     drawBackground();
 
-    if (!m_olist->empty())
+    for (int level = MLEVEL_0; level < NUM_LEVELS; level++)
     {
-        list<GObject*>::iterator iter = m_olist->begin();
+        map<int, GObject*>::iterator iter = m_module->objects[level]->begin();
+        map<int, GObject*>::iterator end = m_module->objects[level]->end();
 
-        for (; iter != m_olist->end(); iter++)
+        for (; iter != end; iter++)
         {
-            GObject* obj = /*(GObject*)*/*iter;
+            GObject* obj = /*(GObject*)*/iter->second;
             drawSurface( (obj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
                          (obj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
                          obj->getTexture(), m_rend);
         }
-    }
-    else
-    {
-        cout << "List is empty!" << endl;
     }
 
     SDL_RenderPresent(m_rend);

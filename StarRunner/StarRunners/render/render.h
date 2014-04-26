@@ -27,7 +27,7 @@ private:
     void drawBackground();
 
     ObjectController* m_objController;
-    list<GObject*>* m_olist;
+    Module* m_module;
 
 
     //background data:

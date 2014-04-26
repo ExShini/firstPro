@@ -70,7 +70,7 @@ public:
     short Cost() { return m_cost; }
 
     /***********************/
-    static int getFieldKey(int x, int y);
+
 
 protected:
     Direction m_parentDirection;

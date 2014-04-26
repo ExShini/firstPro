@@ -5,6 +5,7 @@
 #include "rooms/testroom.h"
 #include "modulegenerator.h"
 #include "objectController/objectList.h"
+#include "objectController/objectcontroller.h"
 
 using namespace std;
 
@@ -95,7 +96,7 @@ Module *moduleGenerator::generateModule(ModuleType moduleType)
                     obj->setX(i);
                     obj->setY(j);
                     //set objects to model
-                    (*(module->objects[ml]))[genMapField::getFieldKey(i, j)] = obj;
+                    (*(module->objects[ml]))[ObjectController::getFieldKey(i, j)] = obj;
                 }
                 else if (ml == MLEVEL_0)
                 {
@@ -139,7 +140,7 @@ Module *moduleGenerator::generateModule(ModuleType moduleType)
                         obj = getGObjectByType(t_Wall);
                         obj->setX(i);
                         obj->setY(j);
-                        (*(module->objects[ml]))[genMapField::getFieldKey(i, j)] = obj;
+                        (*(module->objects[ml]))[ObjectController::getFieldKey(i, j)] = obj;
                     }
                 }
             }
@@ -178,8 +179,17 @@ GObject* moduleGenerator::getGObjectByType(ObjectsType type)
     case t_Door:
         obj = new Door();
         break;
+    case t_MedBox:
+        obj = new MedBox();
+        break;
+    case t_SF:
+        obj = new SF();
+        break;
     case NULLOBJECT:
+        break;
+
     default:
+        cout << "Try to create GObject by unknown type" << endl;
         break;
     }
 
@@ -233,7 +243,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
     startField->SetCost(0);
 
     //set strart point for processing
-    (*procList)[genMapField::getFieldKey(startX, startY)] = startField;
+    (*procList)[ObjectController::getFieldKey(startX, startY)] = startField;
 
     //get target field
     int targetX, targetY;
@@ -280,7 +290,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[ObjectController::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(RIGHT);
                     field->setParent(cfield);
@@ -304,7 +314,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[ObjectController::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(LEFT);
                     field->setParent(cfield);
@@ -328,7 +338,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[ObjectController::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(DOWN);
                     field->setParent(cfield);
@@ -352,7 +362,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
 
                 if (field->Cost() > cost)
                 {
-                    (*nextList)[genMapField::getFieldKey(fieldX, fieldY)] = field;
+                    (*nextList)[ObjectController::getFieldKey(fieldX, fieldY)] = field;
                     field->SetCost(cost);
                     field->setParDir(UP);
                     field->setParent(cfield);
@@ -388,6 +398,7 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
     int procY = targetY;
 
     //process until we returned to start point
+
     while (processField != startField)
     {
 
@@ -405,8 +416,15 @@ void moduleGenerator::createCorridors(room *croom, room *troom)
                 m_costMap[i][j]->setObjType(NULLOBJECT, MLEVEL_1);
 
                 //set NULLOBJECT or Door type to top (2 level)
-                if (m_costMap[i][j]->getObjType(MLEVEL_2) != t_Door)
+                if (m_costMap[i][j]->getObjType(MLEVEL_2) == t_Door ||
+                        m_costMap[i][j]->getObjType(MLEVEL_2) == t_Wall)
+                {
+                    m_costMap[i][j]->setObjType(t_Door, MLEVEL_2);
+                }
+                else
+                {
                     m_costMap[i][j]->setObjType(NULLOBJECT, MLEVEL_2);
+                }
             }
         }
 
@@ -474,10 +492,15 @@ int moduleGenerator::getCostByType(ObjectsType type)
     case t_Wall:
         res = CostWall;
         break;
+    case t_MedBox:
+    case t_SF:
+        res = CostItem;
+        break;
     case NULLOBJECT:
         res = CostEmpty;
         break;
     default:
+        cout << "Try get cost by unknoun type" << endl;
         break;
     }
 
@@ -498,7 +521,7 @@ void moduleGenerator::placeRoom(room* croom, int x, int y)
     map<int, genMapField*>::iterator iter = croom->getObjects()->begin();
     map<int, genMapField*>::iterator end = croom->getObjects()->end();
 
-    for ( ; iter != end; end++)
+    for ( ; iter != end; iter++)
     {
         int key = iter->first;
         int cx = key % GENERATED_MAP_WIDTH;
@@ -540,7 +563,7 @@ bool moduleGenerator::checkArea(int x, int y,room * croom)
         for (int ml = MLEVEL_0; ml < NUM_LEVELS; ml++)
         {
             ObjectsType type = m_costMap[x + cx][y + cy]->getObjType((ModuleObjLevel)ml);
-            if (type != NULLOBJECT && type != t_Wall)
+            if (type != NULLOBJECT /*&& type != t_Wall*/)
                 res = false;
         }
     }

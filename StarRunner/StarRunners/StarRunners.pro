@@ -30,7 +30,9 @@ SOURCES += main.cpp \
     objectController/mapGenarator/rooms/testroom.cpp \
     objectController/objects/floor.cpp \
     objectController/objects/door.cpp \
-    objectController/mapGenarator/module.cpp
+    objectController/mapGenarator/module.cpp \
+    objectController/objects/medbox.cpp \
+    objectController/objects/sf.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -59,4 +61,6 @@ HEADERS += \
     objectController/objects/floor.h \
     objectController/objectList.h \
     objectController/objects/door.h \
-    objectController/mapGenarator/module.h
+    objectController/mapGenarator/module.h \
+    objectController/objects/medbox.h \
+    objectController/objects/sf.h

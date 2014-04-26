@@ -1,5 +1,6 @@
 #include "room.h"
 #include "iostream"
+#include "objectController/objectcontroller.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ void room::addObject(ObjectsType obj, int x, int y)
 {
     if (x < m_width && y < m_height && y >= 0 && x >= 0)
     {
-        int key = genMapField::getFieldKey(x,y);
+        int key = ObjectController::getFieldKey(x,y);
         map<int, genMapField*>::iterator iter = m_objects->find(key);
 
         genMapField* addedObj;
@@ -46,9 +47,12 @@ void room::addObject(ObjectsType obj, int x, int y)
             break;
         case t_Wall:
         case t_Door:
+        case t_MedBox:
+        case t_SF:
             addedObj->setObjType(obj, MLEVEL_2);
+            break;
         default:
-            cout << "You try add unknown object to room";
+            cout << "You try add unknown object to room. Obj type = " <<  obj << endl;
             break;
         }
     }
@@ -65,11 +69,3 @@ void room::addObject(ObjectsType obj, int x, int y)
 genMapField class!
 Support class. It contain members, which used at module generation phase
 ****************************************************************************/
-/*************************************
-FUNC: getFieldKey(genMapField *field)
-DESC: calculate and return key for genMapField by coordinate
-*************************************/
-int genMapField::getFieldKey(int x, int y)
-{
-    return y * GENERATED_MAP_WIDTH + x;
-}

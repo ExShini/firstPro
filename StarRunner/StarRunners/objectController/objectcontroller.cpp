@@ -13,7 +13,7 @@ ObjectController::ObjectController():
 void ObjectController::init()
 {
     moduleGenerator* modGen =  new moduleGenerator();
-    Module* module = modGen->generateModule(ResidentialUnit);
+    m_module = modGen->generateModule(ResidentialUnit);
 
 
 
@@ -26,13 +26,14 @@ void ObjectController::init()
     to1->setY(10);
 
     m_player = to1;
-    m_OList->push_back(to1);
+    map<int, GObject*>* topMap = m_module->objects[MLEVEL_2];
+    (*topMap)[ObjectController::getFieldKey(to1->getX(),to1->getY())] = to1;
 
 }
 
-list<GObject*>* ObjectController::getObjectList()
+Module *ObjectController::getModule()
 {
-    return m_OList;
+    return m_module;
 }
 
 GObject* ObjectController::getPlayer()
@@ -50,5 +51,13 @@ ObjectController* ObjectController::getInstance()
     return m_instance;
 }
 
+/*************************************
+FUNC: getFieldKey(genMapField *field)
+DESC: calculate and return key for genMapField by coordinate
+*************************************/
+int ObjectController::getFieldKey(int x, int y)
+{
+    return y * GENERATED_MAP_WIDTH + x;
+}
 
 
