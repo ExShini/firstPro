@@ -1,6 +1,15 @@
 #ifndef OBJECTS_H
 #define OBJECTS_H
 
+enum Direction
+{
+    NODIR = 0,
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+};
+
 enum ObjectsType
 {
     t_BACKGROUND,

@@ -4,15 +4,6 @@
 #define GENERATED_MAP_WIDTH 100
 #define GENERATED_MAP_HEIGHT 100
 
-enum Direction
-{
-    NODIR,
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-};
-
 enum ModuleType
 {
     ResidentialUnit,

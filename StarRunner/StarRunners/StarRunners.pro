@@ -32,7 +32,8 @@ SOURCES += main.cpp \
     objectController/objects/door.cpp \
     objectController/mapGenarator/module.cpp \
     objectController/objects/medbox.cpp \
-    objectController/objects/sf.cpp
+    objectController/objects/sf.cpp \
+    render/framecontroller.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -63,4 +64,5 @@ HEADERS += \
     objectController/objects/door.h \
     objectController/mapGenarator/module.h \
     objectController/objects/medbox.h \
-    objectController/objects/sf.h
+    objectController/objects/sf.h \
+    render/framecontroller.h

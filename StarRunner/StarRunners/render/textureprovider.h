@@ -3,9 +3,9 @@
 
 #include "string"
 #include "map"
-#include "SDL2/SDL.h"
 #include "enums/textures_paths.h"
 #include "enums/objects.h"
+#include "framecontroller.h"
 
 using namespace std;
 

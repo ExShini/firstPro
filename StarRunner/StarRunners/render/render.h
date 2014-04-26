@@ -23,7 +23,7 @@ private:
 
     TextureProvider * m_textureProvider;
 
-    void drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend);
+    void drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend);
     void drawBackground();
 
     ObjectController* m_objController;

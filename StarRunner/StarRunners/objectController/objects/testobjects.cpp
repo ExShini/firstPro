@@ -2,33 +2,21 @@
 #include "enums/gui_enums.h"
 
 TestObject11::TestObject11():
-    MovableObj()
+    MovableObj(t_TestObject1)
 {
-    m_type = t_TestObject1;
-    m_texture = TextureProvider::getInstance()->getTexture(m_type);
-    SDL_QueryTexture(m_texture, NULL, NULL, &m_width, &m_height);
-    m_width = m_width DIVIDE_FS;
-    m_height = m_height DIVIDE_FS;
 }
 
 
 TestObject22::TestObject22():
-    ImmovableObj()
+    ImmovableObj(t_StationBlock)
 {
-    m_type = t_StationBlock;
-    m_texture = TextureProvider::getInstance()->getTexture(m_type);
-    SDL_QueryTexture(m_texture, NULL, NULL, &m_width, &m_height);
-    m_width = m_width DIVIDE_FS;
-    m_height = m_height DIVIDE_FS;
 }
 
 
 
 BackGround::BackGround():
-    ImmovableObj()
+    ImmovableObj(t_BACKGROUND)
 {
-    m_type = t_BACKGROUND;
-    m_texture = TextureProvider::getInstance()->getTexture(m_type);
-    SDL_QueryTexture(m_texture, NULL, NULL, &m_width, &m_height);
+    SDL_QueryTexture(m_fcontroller->getTexture(), NULL, NULL, &m_width, &m_height);
 }
 

@@ -4,8 +4,8 @@
 /************************************************************/
 // MovableObj
 /************************************************************/
-MovableObj::MovableObj():
-    GObject()
+MovableObj::MovableObj(ObjectsType type):
+    GObject(type)
 {}
 
 void MovableObj::move(int xDiff, int yDiff)
@@ -28,8 +28,8 @@ void MovableObj::move(int xDiff, int yDiff)
 /************************************************************/
 // ImmovableObj
 /************************************************************/
-ImmovableObj::ImmovableObj():
-    GObject()
+ImmovableObj::ImmovableObj(ObjectsType type):
+    GObject(type)
 {}
 
 void ImmovableObj::move(int xDiff, int yDiff)

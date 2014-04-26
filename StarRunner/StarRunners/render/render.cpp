@@ -116,7 +116,7 @@ void Render::renderScreen()
             GObject* obj = /*(GObject*)*/iter->second;
             drawSurface( (obj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
                          (obj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
-                         obj->getTexture(), m_rend);
+                         obj->getFController(), m_rend);
         }
     }
 
@@ -128,12 +128,17 @@ void Render::renderScreen()
 FUNC: drawSurface()
 DESC: draw current texture in (x,y) position
 *************************************/
-void Render::drawSurface(int x, int y, SDL_Texture *tex, SDL_Renderer *rend){
-    SDL_Rect pos;
-    pos.x = x;
-    pos.y = y;
-    SDL_QueryTexture(tex, NULL, NULL, &pos.w, &pos.h);
-    SDL_RenderCopy(rend, tex, NULL, &pos);
+void Render::drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend)
+{
+    SDL_Rect target;
+    target.x = x;
+    target.y = y;
+
+    const SDL_Rect& src = fcontroller->getSrcRect();
+
+    SDL_Texture* tex = fcontroller->getTexture();
+
+    SDL_RenderCopy(rend, tex, &src, &target);
 }
 
 void Render::drawBackground()
@@ -144,7 +149,7 @@ void Render::drawBackground()
     int y = -((( m_player->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
               * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
 
-    drawSurface( x, y, m_backGround->getTexture(), m_rend);
+    drawSurface( x, y, m_backGround->getFController(), m_rend);
 }
 
 
