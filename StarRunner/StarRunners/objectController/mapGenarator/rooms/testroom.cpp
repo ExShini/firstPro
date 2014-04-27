@@ -51,5 +51,6 @@ testRoom2::testRoom2():
 
 
     addObject(t_SF,4 ,4, DOWN);
+    addObject(t_SF,5 ,4, UP);
 
 }
