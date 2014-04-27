@@ -5,7 +5,7 @@
 class MedBox : public ImmovableObj
 {
 public:
-    MedBox();
+    MedBox(Direction dir);
 };
 
 #endif // MEDBOX_H

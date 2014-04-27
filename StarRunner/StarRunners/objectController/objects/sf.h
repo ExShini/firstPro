@@ -5,7 +5,7 @@
 class SF : public MovableObj
 {
 public:
-    SF();
+    SF(Direction dir);
 };
 
 #endif // SF_H

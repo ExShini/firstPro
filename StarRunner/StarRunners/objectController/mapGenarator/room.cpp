@@ -22,7 +22,7 @@ room::room(int width, int height)
 FUNC: addObject(genMapField* obj, int x, int y)
 DESC: add new object at room map
 *************************************/
-void room::addObject(ObjectsType obj, int x, int y)
+void room::addObject(ObjectsType obj, int x, int y, Direction dir)
 {
     if (x < m_width && y < m_height && y >= 0 && x >= 0)
     {
@@ -50,11 +50,14 @@ void room::addObject(ObjectsType obj, int x, int y)
         case t_MedBox:
         case t_SF:
             addedObj->setObjType(obj, MLEVEL_2);
+            addedObj->setObjDirect(dir, MLEVEL_2);
             break;
         default:
             cout << "You try add unknown object to room. Obj type = " <<  obj << endl;
             break;
         }
+
+
     }
     else
     {

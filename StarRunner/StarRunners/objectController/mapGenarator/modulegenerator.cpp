@@ -90,7 +90,16 @@ Module *moduleGenerator::generateModule(ModuleType moduleType)
             for (int ml = MLEVEL_0; ml < NUM_LEVELS; ml++)
             {
                 //get object by type here!
-                GObject* obj = getGObjectByType(field->getObjType((ModuleObjLevel)ml));
+
+                if (field->getObjType((ModuleObjLevel)ml) == t_MedBox)
+                {
+                    //debug
+                    int a = 11;
+                    int b = 33 + a;
+                }
+
+                GObject* obj = getGObjectByType(field->getObjType((ModuleObjLevel)ml),
+                                                field->getObjDirect((ModuleObjLevel)ml));
                 if (obj != NULL)
                 {
                     obj->setX(i);
@@ -137,7 +146,7 @@ Module *moduleGenerator::generateModule(ModuleType moduleType)
                     if (isWall)
                     {
                         field->setObjType(t_Wall, MLEVEL_0);
-                        obj = getGObjectByType(t_Wall);
+                        obj = getGObjectByType(t_Wall, NODIR);
                         obj->setX(i);
                         obj->setY(j);
                         (*(module->objects[ml]))[ObjectController::getFieldKey(i, j)] = obj;
@@ -164,7 +173,7 @@ Module *moduleGenerator::generateModule(ModuleType moduleType)
 
 
 
-GObject* moduleGenerator::getGObjectByType(ObjectsType type)
+GObject* moduleGenerator::getGObjectByType(ObjectsType type, Direction dir)
 {
     GObject* obj = NULL;
 
@@ -180,10 +189,10 @@ GObject* moduleGenerator::getGObjectByType(ObjectsType type)
         obj = new Door();
         break;
     case t_MedBox:
-        obj = new MedBox();
+        obj = new MedBox(dir);
         break;
     case t_SF:
-        obj = new SF();
+        obj = new SF(dir);
         break;
     case NULLOBJECT:
         break;
@@ -534,7 +543,12 @@ void moduleGenerator::placeRoom(room* croom, int x, int y)
                     (
                         ((genMapField*)(iter->second))->getObjType((ModuleObjLevel)ml),
                         (ModuleObjLevel)ml
-                    );
+                        );
+            m_costMap[x + cx][y + cy]->setObjDirect
+                    (
+                        ((genMapField*)(iter->second))->getObjDirect((ModuleObjLevel)ml),
+                        (ModuleObjLevel)ml
+                        );
         }
 
     }

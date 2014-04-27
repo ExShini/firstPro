@@ -19,7 +19,7 @@ class room
 public:
     room(int width, int height);
 
-    void addObject(ObjectsType obj, int x, int y);
+    void addObject(ObjectsType obj, int x, int y, Direction dir);
     map<int, genMapField*>* getObjects() { return m_objects; }
 
     int getWidth() { return m_width; }
@@ -54,7 +54,10 @@ public:
       m_cost(9999)
     {
         for(int i = 0; i < NUM_LEVELS; i++)
+        {
             m_fieldType[i] = NULLOBJECT;
+            m_direction[i] = DOWN;
+        }
     }
 
     void setParDir(Direction dir) { m_parentDirection = dir; }
@@ -65,6 +68,9 @@ public:
 
     void setObjType(ObjectsType type, ModuleObjLevel level) { m_fieldType[level] = type; }
     ObjectsType getObjType(ModuleObjLevel level) { return m_fieldType[level]; }
+
+    void setObjDirect(Direction dir, ModuleObjLevel level) { m_direction[level] = dir; }
+    Direction getObjDirect(ModuleObjLevel level) { return m_direction[level]; }
 
     void SetCost(short cost) { m_cost = cost; }
     short Cost() { return m_cost; }
@@ -77,6 +83,7 @@ protected:
     genMapField * m_parent;
     short m_cost;
     ObjectsType m_fieldType[NUM_LEVELS];
+    Direction m_direction[NUM_LEVELS];
 };
 
 #endif // ROOM_H

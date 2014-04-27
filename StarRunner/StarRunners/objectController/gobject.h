@@ -24,7 +24,7 @@ public:
 
 
 protected:
-    GObject(ObjectsType type);
+    GObject();
 
     //coordinates and sizes
     int m_x;

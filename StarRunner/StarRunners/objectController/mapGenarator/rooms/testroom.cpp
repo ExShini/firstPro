@@ -11,20 +11,20 @@ testRoom::testRoom():
 
             if (i == 0 || i == m_height - 1 || j == 0 || j == m_width - 1)
             {
-                addObject(t_Wall,j ,i);
+                addObject(t_Wall,j ,i, NODIR);
             }
             else
             {
-                addObject(t_Floor,j ,i);
+                addObject(t_Floor,j ,i, NODIR);
             }
         }
     }
 
-    addObject(t_MedBox,1 ,2);
-    addObject(t_MedBox,2 ,2);
-    addObject(t_MedBox,6 ,8);
-    addObject(t_MedBox,6 ,9);
-    addObject(t_MedBox,6 ,10);
+    addObject(t_MedBox,1 ,2, RIGHT);
+    addObject(t_MedBox,1 ,3, RIGHT);
+    addObject(t_MedBox,6 ,8, LEFT);
+    addObject(t_MedBox,6 ,9, LEFT);
+    addObject(t_MedBox,6 ,10, LEFT);
 
 
 }
@@ -37,7 +37,7 @@ testRoom2::testRoom2():
     {
         for (int j = 0; j < m_width; j++)
         {
-            addObject(t_Floor,j ,i);
+            addObject(t_Floor,j ,i, NODIR);
         }
     }
 
@@ -45,11 +45,11 @@ testRoom2::testRoom2():
     {
         for (int j = 0; j < m_height; j++)
         {
-            addObject(t_Floor,i ,j);
+            addObject(t_Floor,i ,j, NODIR);
         }
     }
 
 
-    addObject(t_SF,4 ,4);
+    addObject(t_SF,4 ,4, DOWN);
 
 }

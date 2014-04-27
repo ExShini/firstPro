@@ -135,6 +135,8 @@ void Render::drawSurface(int x, int y, FrameController* fcontroller, SDL_Rendere
     target.y = y;
 
     const SDL_Rect& src = fcontroller->getSrcRect();
+    target.h = src.h;
+    target.w = src.w;
 
     SDL_Texture* tex = fcontroller->getTexture();
 
@@ -149,7 +151,7 @@ void Render::drawBackground()
     int y = -((( m_player->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
               * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
 
-    drawSurface( x, y, m_backGround->getFController(), m_rend);
+        drawSurface( x, y, m_backGround->getFController(), m_rend);
 }
 
 

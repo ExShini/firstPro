@@ -10,7 +10,7 @@ class MovableObj: public GObject
 public:
     void move(int xDiff, int yDiff);
 protected:
-    MovableObj(ObjectsType type);
+    MovableObj();
 };
 
 /************************************************************/
@@ -21,6 +21,6 @@ class ImmovableObj: public GObject
 public:
     void move(int xDiff, int yDiff);
 protected:
-    ImmovableObj(ObjectsType type);
+    ImmovableObj();
 };
 #endif // MOVABLEOBJ_H
