@@ -6,11 +6,19 @@
 static short * randomTable = NULL;
 static short randomConter = 0;
 
+/*************************************
+FUNC: RandomGen()
+DESC: constructor
+*************************************/
 RandomGen::RandomGen()
 {
     init();
 }
 
+/*************************************
+FUNC: init()
+DESC: initialize cache-table whith random numbers
+*************************************/
 void RandomGen::init()
 {
     time_t t = time(0);   // get time now
@@ -28,6 +36,10 @@ void RandomGen::init()
     }
 }
 
+/*************************************
+FUNC: getRand()
+DESC: return some random numbers from table
+*************************************/
 short RandomGen::getRand()
 {
     short ret;
