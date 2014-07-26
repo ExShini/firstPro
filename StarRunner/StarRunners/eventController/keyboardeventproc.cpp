@@ -27,6 +27,9 @@ void KeyboardEventProc::processEvent(SDL_Event *event)
     case SDL_SCANCODE_W:
         m_objContr->getPlayer()->move(0,-1);
         break;
+    case SDL_SCANCODE_ESCAPE:
+        *m_gameStatus = false;
+        break;
     default:
         break;
     }

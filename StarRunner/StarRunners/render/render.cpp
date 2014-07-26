@@ -38,9 +38,9 @@ bool Render::init()
     m_window = SDL_CreateWindow ("Main Window",
                                  SDL_WINDOWPOS_UNDEFINED,
                                  SDL_WINDOWPOS_UNDEFINED,
-                                 0,
-                                 0,
-                                 SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN);
+                                 WIDTH_MAIN_WINDOW,
+                                 HEIGHT_MAIN_WINDOW,
+                                 SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
     m_rend = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_RenderClear(m_rend);
     SDL_RenderSetLogicalSize(m_rend, WIDTH_MAIN_WINDOW, HEIGHT_MAIN_WINDOW);
