@@ -25,6 +25,7 @@ private:
 
     void drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend);
     void drawBackground();
+    void drawObjects();
 
     ObjectController* m_objController;
     Module* m_module;

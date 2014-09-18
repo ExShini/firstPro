@@ -22,6 +22,7 @@ enum ObjectsType
     t_TestObject2,
     t_MedBox,
     t_SF,
+    t_Sector,
     NumberOfObjectTypes,
     NULLOBJECT
 };

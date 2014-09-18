@@ -15,5 +15,6 @@
 #define p_WALL "res/wall.bmp"
 #define p_MED_BOX "res/medBox.bmp"
 #define p_SF "res/sf.bmp"
+#define p_Sector "res/Ground_I.bmp"
 
 #endif // TEXTURES_PATHS_H

@@ -105,7 +105,19 @@ void Render::renderScreen()
 {
     //draw background
     drawBackground();
+    drawObjects();
 
+
+    SDL_RenderPresent(m_rend);
+}
+
+
+/*************************************
+FUNC: drawObjects()
+DESC: draw all game objects (sectors, settlers and etc)
+*************************************/
+void Render::drawObjects()
+{
     for (int level = MLEVEL_0; level < NUM_LEVELS; level++)
     {
         map<int, GObject*>::iterator iter = m_module->objects[level]->begin();
@@ -119,8 +131,6 @@ void Render::renderScreen()
                          obj->getFController(), m_rend);
         }
     }
-
-    SDL_RenderPresent(m_rend);
 }
 
 

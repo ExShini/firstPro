@@ -52,24 +52,20 @@ void EventController::HandleMoving()
     if (m_mouseProc->m_mouseXCor < W_MIN_SCKROL_AREA || m_keyProc->m_toLeft)
     {
         m_objContr->getPlayer()->move(-1,0);
-        m_keyProc->m_toLeft = false;
     }
 
     if (m_mouseProc->m_mouseXCor > W_MAX_SCKROL_AREA || m_keyProc->m_toRight)
     {
         m_objContr->getPlayer()->move(1,0);
-        m_keyProc->m_toRight = false;
     }
 
     if (m_mouseProc->m_mouseYCor > H_MAX_SCKROL_AREA || m_keyProc->m_toDown)
     {
         m_objContr->getPlayer()->move(0,1);
-        m_keyProc->m_toDown = false;
     }
 
     if (m_mouseProc->m_mouseYCor < H_MIN_SCKROL_AREA || m_keyProc->m_toUp)
     {
         m_objContr->getPlayer()->move(0,-1);
-        m_keyProc->m_toUp = false;
     }
 }

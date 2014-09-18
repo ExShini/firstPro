@@ -487,7 +487,7 @@ int moduleGenerator::getFieldCost(int x, int y, int coridorWidth)
 
 /*************************************
 FUNC: getCostByType(ObjectsType type)
-DESC: calculate and return cost by field type
+DESC: calculate and return cost of move by field type
 *************************************/
 int moduleGenerator::getCostByType(ObjectsType type)
 {

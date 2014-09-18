@@ -34,7 +34,9 @@ SOURCES += main.cpp \
     objectController/objects/medbox.cpp \
     objectController/objects/sf.cpp \
     render/framecontroller.cpp \
-    eventController/mouseeventproc.cpp
+    eventController/mouseeventproc.cpp \
+    objectController/objects/sector.cpp \
+    objectController/objects/settlement.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -68,4 +70,6 @@ HEADERS += \
     objectController/objects/sf.h \
     render/framecontroller.h \
     eventController/mouseeventproc.h \
-    enums/event_handling_enum.h
+    enums/event_handling_enum.h \
+    objectController/objects/sector.h \
+    objectController/objects/settlement.h

@@ -50,6 +50,7 @@ void TextureProvider::initTextureProvider()
     m_textures[t_Door] = loadImage(p_DOOR);
     m_textures[t_MedBox] = loadImage(p_MED_BOX);
     m_textures[t_SF] = loadImage(p_SF);
+    m_textures[t_Sector] = loadImage(p_Sector);
 }
 
 /*************************************
