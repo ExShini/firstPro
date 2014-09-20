@@ -7,22 +7,19 @@
 class FrameController
 {
 public:
-    FrameController(SDL_Texture* texture, bool rotation, bool mooveble, Direction dir = DOWN);
-    void setDirection(Direction dir);
+    FrameController(SDL_Texture* texture, bool fullTexture = false);
+    void setTextureArea(int x, int y);
     SDL_Texture* getTexture();
     SDL_Rect getSrcRect();
 
 protected:
     SDL_Texture* m_texture;
-    Direction m_direction;
-
-    bool m_rotation;
-    bool m_moveble;
+    bool m_fullTexture;
 
     SDL_Rect getFullRect();
     SDL_Rect getCurrRect();
 
-
+    SDL_Rect m_pos;
 };
 
 #endif // FRAMECONTROLLER_H

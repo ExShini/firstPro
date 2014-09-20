@@ -9,21 +9,25 @@ using namespace std;
 FUNC: FrameController(SDL_Texture* texture, bool rotation, bool mooveble, Direction dir)
 DESC: constructor
 *************************************/
-FrameController::FrameController(SDL_Texture* texture, bool rotation, bool mooveble, Direction dir):
-    m_direction(dir)
+FrameController::FrameController(SDL_Texture* texture, bool fullTexture):
+    m_fullTexture(fullTexture)
 {
     m_texture = texture;
-    m_rotation = rotation;
-    m_moveble = mooveble;
+    setTextureArea(0,0);
 }
 
 /*************************************
 FUNC: setDirection(Direction dir)
 DESC: set direction for current object
 *************************************/
-void FrameController::setDirection(Direction dir)
+void FrameController::setTextureArea(int x, int y)
 {
-    m_direction = dir;
+    m_pos.w = FIELD_SIZE;
+    m_pos.h = FIELD_SIZE;
+
+    m_pos.x = x * FIELD_SIZE;
+    m_pos.y = y * FIELD_SIZE;
+
 }
 
 /*************************************
@@ -41,14 +45,14 @@ DESC: return rect with frame position for current moment
 *************************************/
 SDL_Rect FrameController::getSrcRect()
 {
-    if (m_rotation)
+    if(m_fullTexture)
     {
-        const SDL_Rect& pos = getCurrRect();
+        const SDL_Rect& pos = getFullRect();
         return pos;
     }
     else
     {
-        const SDL_Rect& pos = getFullRect();
+        const SDL_Rect& pos = getCurrRect();
         return pos;
     }
 }
@@ -74,30 +78,5 @@ DESC: return rect with frame position for current moment
 *************************************/
 SDL_Rect FrameController::getCurrRect()
 {
-    SDL_Rect pos;
-    pos.w = FIELD_SIZE;
-    pos.h = FIELD_SIZE;
-
-    pos.x = 0;
-
-    switch (m_direction) {
-    case DOWN:
-    case NODIR:
-        pos.y = 0;
-        break;
-    case UP:
-        pos.y = FIELD_SIZE;
-        break;
-    case LEFT:
-        pos.y = FIELD_SIZE * 2;
-        break;
-    case RIGHT:
-        pos.y = FIELD_SIZE * 3;
-        break;
-    default:
-        cout << "FrameController: try to use bad direction!";
-        break;
-    }
-
-    return pos;
+    return m_pos;
 }

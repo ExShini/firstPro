@@ -20,6 +20,9 @@ public:
     void setMinerals(int value)         { m_minerals = value; }
     void setMineralWealth(int value)    { m_mineralWealth = value; }
     void setProduction(int value)       { m_production = value; }
+    void move(int xDiff, int yDiff) { return; }
+
+    void init();
 
 protected:
     int m_population;             //current number of settlers

@@ -42,14 +42,8 @@ void TextureProvider::initTextureProvider()
 {
     //initialize textures for all objects type
     m_textures[t_BACKGROUND] = loadImage(p_BACKGROUND);
-    m_textures[t_StationBlock] = loadImage(p_STATIONBLOCK);
-    m_textures[t_Wall] = loadImage(p_WALL);
     m_textures[t_TestObject1] = loadImage(p_TEST_OBJ1);
     m_textures[t_TestObject2] = loadImage(p_TEST_OBJ2);
-    m_textures[t_Floor] = loadImage(p_FLOOR);
-    m_textures[t_Door] = loadImage(p_DOOR);
-    m_textures[t_MedBox] = loadImage(p_MED_BOX);
-    m_textures[t_SF] = loadImage(p_SF);
     m_textures[t_Sector] = loadImage(p_Sector);
 }
 
@@ -72,9 +66,10 @@ SDL_Texture* TextureProvider::loadImage(std::string file)
     SDL_Texture *texture = NULL;
 
     loadedImage = SDL_LoadBMP(file.c_str());
-    loadedImage->format->Amask = 0xFF0000;
+
     if (loadedImage != NULL)
     {
+        loadedImage->format->Amask = 0xFF0000;
         texture = SDL_CreateTextureFromSurface(m_rend, loadedImage);
         SDL_FreeSurface(loadedImage);
     }
@@ -83,8 +78,10 @@ SDL_Texture* TextureProvider::loadImage(std::string file)
         std::cout << SDL_GetError() << std::endl;
     }
 
+
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
     SDL_SetTextureAlphaMod(texture, 255);
+
     return texture;
 }
 

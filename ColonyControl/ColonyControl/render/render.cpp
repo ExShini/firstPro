@@ -70,7 +70,7 @@ bool Render::init()
     //set ObjectController to render
     m_objController = ObjectController::getInstance();
     m_objController->init();
-    m_module = m_objController->getModule();
+    m_plMap = m_objController->getPlanetMap();
 
     //set backGround object to render
     m_backGround = m_objController->getBackGround();
@@ -105,6 +105,7 @@ void Render::renderScreen()
 {
     //draw background
     drawBackground();
+    //draw objects
     drawObjects();
 
 
@@ -120,8 +121,8 @@ void Render::drawObjects()
 {
     for (int level = MLEVEL_0; level < NUM_LEVELS; level++)
     {
-        map<int, GObject*>::iterator iter = m_module->objects[level]->begin();
-        map<int, GObject*>::iterator end = m_module->objects[level]->end();
+        map<int, GObject*>::iterator iter = m_plMap->objects[level]->begin();
+        map<int, GObject*>::iterator end = m_plMap->objects[level]->end();
 
         for (; iter != end; iter++)
         {
@@ -153,6 +154,10 @@ void Render::drawSurface(int x, int y, FrameController* fcontroller, SDL_Rendere
     SDL_RenderCopy(rend, tex, &src, &target);
 }
 
+/*************************************
+FUNC: drawBackground()
+DESC: draw background picture
+*************************************/
 void Render::drawBackground()
 {
     int x = -((( m_player->getX() M_ACCURACY_FACTOR) PART_OF_MAP_W )

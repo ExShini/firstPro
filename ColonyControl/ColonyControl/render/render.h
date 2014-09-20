@@ -28,7 +28,7 @@ private:
     void drawObjects();
 
     ObjectController* m_objController;
-    Module* m_module;
+    PlanetMap* m_plMap;
 
 
     //background data:

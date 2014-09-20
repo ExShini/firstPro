@@ -5,7 +5,7 @@
 class TestObject11: public MovableObj
 {
 public:
-    TestObject11(Direction dir = DOWN);
+    TestObject11();
 
 };
 

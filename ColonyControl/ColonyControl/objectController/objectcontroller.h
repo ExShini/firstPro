@@ -2,7 +2,7 @@
 #define OBJECTCONTROLLER_H
 
 #include "gobject.h"
-#include "objectController/mapGenarator/module.h"
+#include "objectController/mapGenarator/planetmap.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class ObjectController
 {
 public:
     static ObjectController* getInstance();
-    Module* getModule();
+    PlanetMap* getPlanetMap();
     GObject* getPlayer();
     GObject* getBackGround();
     void init();
@@ -20,7 +20,7 @@ public:
 protected:
     ObjectController();
     static ObjectController* m_instance;
-    Module* m_module;
+    PlanetMap* m_plMap;
 
     GObject * m_player;
     GObject * m_backGround;

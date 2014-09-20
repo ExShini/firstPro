@@ -7,7 +7,7 @@ QT       += core
 
 QT       -= gui
 
-TARGET = StarRunners
+TARGET = ColonyControll
 CONFIG   += console
 
 TEMPLATE = app
@@ -22,21 +22,15 @@ SOURCES += main.cpp \
     eventController/eventcontroller.cpp \
     eventController/keyboardeventproc.cpp \
     objectController/movableobj.cpp \
-    objectController/mapGenarator/room.cpp \
-    objectController/mapGenarator/modulegenerator.cpp \
     objectController/objects/testobjects.cpp \
-    objectController/objects/wall.cpp \
     randomgen.cpp \
-    objectController/mapGenarator/rooms/testroom.cpp \
-    objectController/objects/floor.cpp \
-    objectController/objects/door.cpp \
     objectController/mapGenarator/module.cpp \
-    objectController/objects/medbox.cpp \
-    objectController/objects/sf.cpp \
     render/framecontroller.cpp \
     eventController/mouseeventproc.cpp \
     objectController/objects/sector.cpp \
-    objectController/objects/settlement.cpp
+    objectController/objects/settlement.cpp \
+    objectController/mapGenarator/planetmap.cpp \
+    objectController/mapGenarator/mapgenerator.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -55,21 +49,15 @@ HEADERS += \
     eventController/eventcontroller.h \
     eventController/keyboardeventproc.h \
     objectController/movableobj.h \
-    objectController/mapGenarator/room.h \
-    objectController/mapGenarator/modulegenerator.h \
     objectController/objects/testobjects.h \
-    objectController/objects/wall.h \
-    enums/moduleGeneratorSattings.h \
     randomgen.h \
-    objectController/mapGenarator/rooms/testroom.h \
-    objectController/objects/floor.h \
     objectController/objectList.h \
-    objectController/objects/door.h \
     objectController/mapGenarator/module.h \
-    objectController/objects/medbox.h \
-    objectController/objects/sf.h \
     render/framecontroller.h \
     eventController/mouseeventproc.h \
     enums/event_handling_enum.h \
     objectController/objects/sector.h \
-    objectController/objects/settlement.h
+    objectController/objects/settlement.h \
+    objectController/mapGenarator/planetmap.h \
+    objectController/mapGenarator/mapgenerator.h \
+    enums/mapGeneratorSattings.h

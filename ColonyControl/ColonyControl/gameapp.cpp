@@ -1,3 +1,5 @@
+#include "iostream"
+
 #include "gameapp.h"
 #include "SDL2/SDL.h"
 #include "stdio.h"
@@ -33,7 +35,9 @@ DESC: main game func - contain all game's main calls
 *************************************/
 void GameApp::startGame()
 {
+    cout << "Try initialize game" << endl;
     initialize();
+    cout << "Start main Game cycle" << endl;
     while( m_gameStatus )
     {
         eventHandler();

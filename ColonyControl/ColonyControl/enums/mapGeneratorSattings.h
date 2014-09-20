@@ -1,0 +1,15 @@
+#ifndef MODULEGENERATORSATTINGS_H
+#define MODULEGENERATORSATTINGS_H
+
+#define GENERATED_MAP_WIDTH 128
+#define GENERATED_MAP_HEIGHT 128
+
+
+enum PlanetType
+{
+    Base,
+    NoType
+};
+
+
+#endif // MODULEGENERATORSATTINGS_H

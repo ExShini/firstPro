@@ -1,21 +1,30 @@
+#include "iostream"
+
 #include "objectcontroller.h"
 #include"objects/testobjects.h"
-#include "objects/wall.h"
-#include "mapGenarator/modulegenerator.h"
+#include "mapGenarator/mapgenerator.h"
+
+using namespace std;
 
 ObjectController* ObjectController::m_instance = new ObjectController();
 
+/*************************************
+FUNC: ObjectController()
+DESC: constructor
+*************************************/
 ObjectController::ObjectController():
     m_player(NULL)
 {
 }
 
+/*************************************
+FUNC: init()
+DESC: initialize all start objects and over required for ObjectController
+*************************************/
 void ObjectController::init()
 {
-    moduleGenerator* modGen =  new moduleGenerator();
-    m_module = modGen->generateModule(ResidentialUnit);
-
-
+    MapGenerator* mapGen = new MapGenerator();
+    m_plMap = mapGen->generateMap(Base);
 
     m_backGround = new BackGround();
     m_backGround->setX(0);
@@ -26,26 +35,42 @@ void ObjectController::init()
     to1->setY(10);
 
     m_player = to1;
-    map<int, GObject*>* topMap = m_module->objects[MLEVEL_2];
+    map<int, GObject*>* topMap = m_plMap->objects[MLEVEL_2];
     (*topMap)[ObjectController::getFieldKey(to1->getX(),to1->getY())] = to1;
 
 }
 
-Module *ObjectController::getModule()
+/*************************************
+FUNC: getPlanetMap()
+DESC: return PlanetMap object
+*************************************/
+PlanetMap *ObjectController::getPlanetMap()
 {
-    return m_module;
+    return m_plMap;
 }
 
+/*************************************
+FUNC: getPlayer()
+DESC: return player (camera) object
+*************************************/
 GObject* ObjectController::getPlayer()
 {
     return m_player;
 }
 
+/*************************************
+FUNC: getBackGround()
+DESC: return background object
+*************************************/
 GObject* ObjectController::getBackGround()
 {
     return m_backGround;
 }
 
+/*************************************
+FUNC: getInstance()
+DESC: return instance of ObjectController
+*************************************/
 ObjectController* ObjectController::getInstance()
 {
     return m_instance;
