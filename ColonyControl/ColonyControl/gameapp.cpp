@@ -1,8 +1,10 @@
-#include "iostream"
-
 #include "gameapp.h"
-#include "SDL2/SDL.h"
+
+#include "iostream"
 #include "stdio.h"
+#include "SDL2/SDL.h"
+
+#include "TimeManager/timeguard.h"
 
 using namespace std;
 
@@ -37,9 +39,12 @@ void GameApp::startGame()
 {
     cout << "Try initialize game" << endl;
     initialize();
+    TimeGuard* timeGuard = TimeGuard::getInstance();
+    timeGuard->start();
     cout << "Start main Game cycle" << endl;
     while( m_gameStatus )
     {
+        timeGuard->checkTime();
         eventHandler();
         gameProcessing();
         rendring();
@@ -60,6 +65,7 @@ void GameApp::initialize()
     }
 
     m_gameStatus &= m_render->init();
+
 }
 
 /*************************************

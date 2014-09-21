@@ -2,17 +2,10 @@
 #define TESTOBJECTS_H
 #include "../movableobj.h"
 
-class TestObject11: public MovableObj
+class CameraObject: public MovableObj
 {
 public:
-    TestObject11();
-
-};
-
-class TestObject22: public ImmovableObj
-{
-public:
-    TestObject22();
+    CameraObject();
 
 };
 

@@ -1,7 +1,7 @@
 #include "iostream"
 
 #include "objectcontroller.h"
-#include"objects/testobjects.h"
+#include "objectList.h"
 #include "mapGenarator/mapgenerator.h"
 
 using namespace std;
@@ -30,14 +30,20 @@ void ObjectController::init()
     m_backGround->setX(0);
     m_backGround->setY(0);
 
-    TestObject11* to1 = new TestObject11();
+    CameraObject* to1 = new CameraObject();
     to1->setX(10);
     to1->setY(10);
+
+    Settlement* set = new Settlement();
+    set->setX(10);
+    set->setY(10);
 
     m_player = to1;
     map<int, GObject*>* topMap = m_plMap->objects[MLEVEL_2];
     (*topMap)[ObjectController::getFieldKey(to1->getX(),to1->getY())] = to1;
 
+    topMap = m_plMap->objects[MLEVEL_1];
+    (*topMap)[ObjectController::getFieldKey(set->getX(),set->getY())] = set;
 }
 
 /*************************************
@@ -82,7 +88,7 @@ DESC: calculate and return key for genMapField by coordinate
 *************************************/
 int ObjectController::getFieldKey(int x, int y)
 {
-    return y * GENERATED_MAP_WIDTH + x;
+    return y * MAP_WIDTH + x;
 }
 
 

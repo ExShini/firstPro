@@ -30,10 +30,13 @@ SOURCES += main.cpp \
     objectController/objects/sector.cpp \
     objectController/objects/settlement.cpp \
     objectController/mapGenarator/planetmap.cpp \
-    objectController/mapGenarator/mapgenerator.cpp
+    objectController/mapGenarator/mapgenerator.cpp \
+    TimeManager/timeguard.cpp \
+    TimeManager/timeevent.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
+unix:!macx:!symbian: LIBS += -lSDL2_image
 
 HEADERS += \
     render/render.h \
@@ -60,4 +63,6 @@ HEADERS += \
     objectController/objects/settlement.h \
     objectController/mapGenarator/planetmap.h \
     objectController/mapGenarator/mapgenerator.h \
-    enums/mapGeneratorSattings.h
+    enums/mapGeneratorSattings.h \
+    TimeManager/timeguard.h \
+    TimeManager/timeevent.h

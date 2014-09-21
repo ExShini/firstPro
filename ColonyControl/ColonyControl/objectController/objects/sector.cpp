@@ -5,13 +5,7 @@
 FUNC: Sector()
 DESC: constructor
 *************************************/
-Sector::Sector():
-    m_population(0),
-    m_food(0),
-    m_fertility(0),
-    m_minerals(0),
-    m_mineralWealth(0),
-    m_production(0)
+Sector::Sector()
 {
     m_type = t_Sector;
 }

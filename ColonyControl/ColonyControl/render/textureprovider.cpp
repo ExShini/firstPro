@@ -1,5 +1,5 @@
 #include "textureprovider.h"
-
+#include "SDL2/SDL_image.h"
 #include "iostream"
 
 TextureProvider * TextureProvider::m_instance = new TextureProvider();
@@ -42,9 +42,9 @@ void TextureProvider::initTextureProvider()
 {
     //initialize textures for all objects type
     m_textures[t_BACKGROUND] = loadImage(p_BACKGROUND);
-    m_textures[t_TestObject1] = loadImage(p_TEST_OBJ1);
-    m_textures[t_TestObject2] = loadImage(p_TEST_OBJ2);
+    m_textures[t_CameraObject] = loadImage(p_TEST_OBJ1);
     m_textures[t_Sector] = loadImage(p_Sector);
+    m_textures[t_HumanSettlers] = loadImage(p_HumanSettlers);
 }
 
 /*************************************
@@ -62,22 +62,15 @@ DESC: prepare texture from bmp-file where "file" - local adress
 *************************************/
 SDL_Texture* TextureProvider::loadImage(std::string file)
 {
-    SDL_Surface *loadedImage = NULL;
+    //SDL_Surface *loadedImage = NULL;
     SDL_Texture *texture = NULL;
 
-    loadedImage = SDL_LoadBMP(file.c_str());
+    texture = IMG_LoadTexture(m_rend, file.c_str());
 
-    if (loadedImage != NULL)
-    {
-        loadedImage->format->Amask = 0xFF0000;
-        texture = SDL_CreateTextureFromSurface(m_rend, loadedImage);
-        SDL_FreeSurface(loadedImage);
-    }
-    else
+    if(texture == NULL)
     {
         std::cout << SDL_GetError() << std::endl;
     }
-
 
     SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
     SDL_SetTextureAlphaMod(texture, 255);

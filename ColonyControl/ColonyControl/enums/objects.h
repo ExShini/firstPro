@@ -13,16 +13,9 @@ enum Direction
 enum ObjectsType
 {
     t_BACKGROUND,
-    t_Floor,
-    t_StationBlock,
-    t_Wall,
-    t_ArmoredWall,
-    t_Door,
-    t_TestObject1,
-    t_TestObject2,
-    t_MedBox,
-    t_SF,
+    t_CameraObject,
     t_Sector,
+    t_HumanSettlers,
     NumberOfObjectTypes,
     NULLOBJECT
 };
