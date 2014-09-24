@@ -4,6 +4,6 @@ PlanetMap::PlanetMap()
 {
     for (int ml = MLEVEL_0; ml < NUM_LEVELS; ml++)
     {
-        objects[(ModuleObjLevel)ml] = new map<int,GObject*>();
+        objects[ml] = new Layer();
     }
 }

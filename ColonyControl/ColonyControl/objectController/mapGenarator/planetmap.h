@@ -4,11 +4,28 @@
 
 #include "objectController/gobject.h"
 
+class Layer
+{
+public:
+	Layer()
+	{
+		for(int i = 0; i < MAP_WIDTH; i ++)
+		{
+			for(int j = 0; j < MAP_HEIGHT; j++)
+			{
+				lMap[i][j] = NULL;
+			}
+		}
+	}
+	
+	GObject* lMap[MAP_WIDTH][MAP_HEIGHT];
+}
+
 class PlanetMap
 {
 public:
     PlanetMap();
-    map<int,GObject*>* objects[NUM_LEVELS];
+    Layer* objects[NUM_LEVELS];
 };
 
 #endif // PLANETMAP_H

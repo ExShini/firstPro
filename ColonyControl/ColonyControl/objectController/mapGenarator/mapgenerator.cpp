@@ -31,7 +31,7 @@ PlanetMap* MapGenerator::generateMap(PlanetType planetType)
     PlanetMap* plMap = new PlanetMap();
     int debugCounter = 0;
 
-
+	// Поправить!!!
     for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
@@ -40,7 +40,7 @@ PlanetMap* MapGenerator::generateMap(PlanetType planetType)
             GObject* obj = new Sector();
             obj->setX(i);
             obj->setY(j);
-            (*(plMap->objects[MLEVEL_0]))[ObjectController::getFieldKey(i, j)] = obj;
+            (*(plMap->objects[MLEVEL_0]))[i][j] = obj;
         }
     }
 
@@ -48,14 +48,16 @@ PlanetMap* MapGenerator::generateMap(PlanetType planetType)
 
 
     //init all sectors
-    map<int, GObject*>::iterator iter = plMap->objects[MLEVEL_0]->begin();
-    map<int, GObject*>::iterator end = plMap->objects[MLEVEL_0]->end();
-
-    for (; iter != end; iter++)
+	// Поправить!!!
+	for (int i = 0; i < GENERATED_MAP_WIDTH; i++)
     {
-        Sector* obj = (Sector*)iter->second;
-        obj->init();
+        for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
+        {
+			Sector obj = (*(plMap->objects[MLEVEL_0]))[i][j];
+            obj->init();
+        }
     }
+	
 
     return plMap;
 }
