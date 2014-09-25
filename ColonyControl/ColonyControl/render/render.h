@@ -26,6 +26,7 @@ private:
     void drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend);
     void drawBackground();
     void drawObjects();
+    void checkCordinats(int* x, int* y, int* w, int* h);
 
     ObjectController* m_objController;
     PlanetMap* m_plMap;
@@ -37,6 +38,8 @@ private:
         m_fieldGapX, m_fieldGapY;
     GObject* m_backGround;
     GObject* m_player;
+
+    int m_widthInFields, m_heightInFields;
 };
 
 

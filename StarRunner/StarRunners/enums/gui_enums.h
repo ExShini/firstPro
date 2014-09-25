@@ -8,8 +8,8 @@
 #define X_COR_MAIN_WINDOW 100
 #define Y_COR_MAIN_WINDOW 100
 
-#define WIDTH_MAIN_WINDOW 1024
-#define HEIGHT_MAIN_WINDOW 600
+#define WIDTH_MAIN_WINDOW 640
+#define HEIGHT_MAIN_WINDOW 400
 
 //Field sizes
 #define FIELD_SIZE 32 // !WARNING! FIELD_SIZE and MULTIPLY_FS and DIVIDE_FS should be synchronized

@@ -24,7 +24,6 @@ SOURCES += main.cpp \
     objectController/movableobj.cpp \
     objectController/objects/testobjects.cpp \
     randomgen.cpp \
-    objectController/mapGenarator/module.cpp \
     render/framecontroller.cpp \
     eventController/mouseeventproc.cpp \
     objectController/objects/sector.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
     objectController/objects/testobjects.h \
     randomgen.h \
     objectController/objectList.h \
-    objectController/mapGenarator/module.h \
     render/framecontroller.h \
     eventController/mouseeventproc.h \
     enums/event_handling_enum.h \

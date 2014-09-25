@@ -4,6 +4,8 @@
 
 #include "stdio.h"
 
+#include "iostream"
+using namespace std;
 
 
 /*************************************
@@ -16,6 +18,8 @@ Render::Render():
     m_camera(NULL)
 {
     m_textureProvider = TextureProvider::getInstance();
+    m_widthInFields = WIDTH_MAIN_WINDOW / FIELD_SIZE;
+    m_heightInFields = HEIGHT_MAIN_WINDOW / FIELD_SIZE;
 }
 
 /*************************************
@@ -119,21 +123,64 @@ DESC: draw all game objects (sectors, settlers and etc)
 *************************************/
 void Render::drawObjects()
 {
+    int xcor, ycor, w, h;
+
+    xcor = m_player->getX() - (m_widthInFields >> 1) - 1;
+    ycor = m_player->getY() - (m_heightInFields >> 1) - 1;
+    w = xcor + m_widthInFields + 2;
+    h = ycor + m_heightInFields + 2;
+
+    //cout << xcor << " " << ycor << " " << w << " " << h << endl;
+    checkCordinats(&xcor, &ycor, &w, &h);
+    //cout << xcor << " " << ycor << " " << w << " " << h << endl;
+
     for (int level = MLEVEL_0; level < NUM_LEVELS; level++)
     {
-        map<int, GObject*>::iterator iter = m_plMap->objects[level]->begin();
-        map<int, GObject*>::iterator end = m_plMap->objects[level]->end();
 
-        for (; iter != end; iter++)
+        Layer* curLayer = m_plMap->objects[level];
+
+        for (int i = xcor; i < w; i++)
         {
-            GObject* obj = /*(GObject*)*/iter->second;
-            drawSurface( (obj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
-                         (obj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
-                         obj->getFController(), m_rend);
+            for (int j = ycor; j < h; j++)
+            {
+                GObject* obj = curLayer->lMap[i][j];
+                if (obj == NULL)
+                    continue;
+
+                drawSurface( (obj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
+                             (obj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
+                             obj->getFController(), m_rend);
+            }
         }
     }
 }
 
+/*************************************
+FUNC: checkCordinats()
+DESC: check field coordinate for drawing
+*************************************/
+void Render::checkCordinats(int *x, int *y, int *w, int *h)
+{
+    if(*x < 0)
+    {
+        *x = 0;
+    }
+
+    if(*y < 0)
+    {
+        *y = 0;
+    }
+
+    if(*w > MAP_WIDTH)
+    {
+        *w = MAP_WIDTH;
+    }
+
+    if(*h > MAP_HEIGHT)
+    {
+        *h = MAP_HEIGHT;
+    }
+}
 
 /*************************************
 FUNC: drawSurface()

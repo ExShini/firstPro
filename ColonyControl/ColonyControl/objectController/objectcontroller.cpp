@@ -39,11 +39,12 @@ void ObjectController::init()
     set->setY(10);
 
     m_player = to1;
-    map<int, GObject*>* topMap = m_plMap->objects[MLEVEL_2];
-    (*topMap)[ObjectController::getFieldKey(to1->getX(),to1->getY())] = to1;
+    Layer* topMap = m_plMap->objects[MLEVEL_2];
+    topMap->lMap[to1->getX()][to1->getY()] = to1;
+
 
     topMap = m_plMap->objects[MLEVEL_1];
-    (*topMap)[ObjectController::getFieldKey(set->getX(),set->getY())] = set;
+    topMap->lMap[set->getX()][set->getY()] = set;
 }
 
 /*************************************

@@ -40,7 +40,7 @@ PlanetMap* MapGenerator::generateMap(PlanetType planetType)
             GObject* obj = new Sector();
             obj->setX(i);
             obj->setY(j);
-            (*(plMap->objects[MLEVEL_0]))[i][j] = obj;
+            plMap->objects[MLEVEL_0]->lMap[i][j] = obj;
         }
     }
 
@@ -53,7 +53,7 @@ PlanetMap* MapGenerator::generateMap(PlanetType planetType)
     {
         for (int j = 0; j < GENERATED_MAP_HEIGHT; j++)
         {
-			Sector obj = (*(plMap->objects[MLEVEL_0]))[i][j];
+            Sector* obj = (Sector*) plMap->objects[MLEVEL_0]->lMap[i][j];
             obj->init();
         }
     }

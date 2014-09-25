@@ -20,7 +20,7 @@ void Sector::init()
     m_fcontroller = new FrameController(
                 TextureProvider::getInstance()->getTexture(m_type));
 
-    short x = 2, y;
+    short x = 1, y;
     y = RandomGen::getRand() % 4;
 
     m_fcontroller->setTextureArea(x, y);

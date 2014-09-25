@@ -19,7 +19,8 @@ public:
 	}
 	
 	GObject* lMap[MAP_WIDTH][MAP_HEIGHT];
-}
+};
+
 
 class PlanetMap
 {
