@@ -1,7 +1,7 @@
 #include "iostream"
 
 #include "objectcontroller.h"
-#include "objectList.h"
+
 #include "mapGenarator/mapgenerator.h"
 
 using namespace std;
@@ -13,7 +13,7 @@ FUNC: ObjectController()
 DESC: constructor
 *************************************/
 ObjectController::ObjectController():
-    m_player(NULL)
+    m_cameraObj(NULL)
 {
 }
 
@@ -26,6 +26,8 @@ void ObjectController::init()
     MapGenerator* mapGen = new MapGenerator();
     m_plMap = mapGen->generateMap(Base);
 
+    m_gameProc = GameProcessor::getInstance();
+
     m_backGround = new BackGround();
     m_backGround->setX(0);
     m_backGround->setY(0);
@@ -33,18 +35,13 @@ void ObjectController::init()
     CameraObject* to1 = new CameraObject();
     to1->setX(10);
     to1->setY(10);
+    m_cameraObj = to1;
 
-    Settlement* set = new Settlement();
-    set->setX(10);
-    set->setY(10);
+    addNewSettlement(10, 10, 500);
 
-    m_player = to1;
-    Layer* topMap = m_plMap->objects[MLEVEL_2];
-    topMap->lMap[to1->getX()][to1->getY()] = to1;
-
-
-    topMap = m_plMap->objects[MLEVEL_1];
-    topMap->lMap[set->getX()][set->getY()] = set;
+    //add to1 object to drawing camera object
+    //Layer* topMap = m_plMap->objects[MLEVEL_2];
+    //topMap->lMap[to1->getX()][to1->getY()] = to1;
 }
 
 /*************************************
@@ -57,12 +54,12 @@ PlanetMap *ObjectController::getPlanetMap()
 }
 
 /*************************************
-FUNC: getPlayer()
+FUNC: getCamera()
 DESC: return player (camera) object
 *************************************/
-GObject* ObjectController::getPlayer()
+GObject* ObjectController::getCamera()
 {
-    return m_player;
+    return m_cameraObj;
 }
 
 /*************************************
@@ -84,12 +81,24 @@ ObjectController* ObjectController::getInstance()
 }
 
 /*************************************
-FUNC: getFieldKey(genMapField *field)
-DESC: calculate and return key for genMapField by coordinate
+FUNC: addNewSettlement(int x, int y, int settlers)
+DESC: add new settlement to game map (in x,y corr) with settlers
 *************************************/
-int ObjectController::getFieldKey(int x, int y)
+bool ObjectController::addNewSettlement(int x, int y, int settlers)
 {
-    return y * MAP_WIDTH + x;
+    //Check area for new settlement. If it already contain settlement return false.
+    if (m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] != NULL)
+        return false;
+
+    //take sector and create new settelment
+
+    Sector* sector = (Sector*)m_plMap->objects[SECTOR_LEVEL]->lMap[x][y];
+    Settlement* settelment = new Settlement(sector);
+    settelment->setPopulation(settlers);
+
+    //set new sector to game map and processMap
+    m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] = settelment;
+    m_gameProc->addSettlementToProcess(settelment);
+
+    return true;
 }
-
-

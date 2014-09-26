@@ -41,31 +41,33 @@ void EventController::processEvent()
         }
     }
 
-    HandleMoving();
+    HandleCameraMoving();
 }
 
 
 
-void EventController::HandleMoving()
+void EventController::HandleCameraMoving()
 {
     //check - should we move camera?
+    CameraObject* camera = (CameraObject*)m_objContr->getCamera();
+
     if (m_mouseProc->m_mouseXCor < W_MIN_SCKROL_AREA || m_keyProc->m_toLeft)
     {
-        m_objContr->getPlayer()->move(-1,0);
+        camera->move(-1,0);
     }
 
     if (m_mouseProc->m_mouseXCor > W_MAX_SCKROL_AREA || m_keyProc->m_toRight)
     {
-        m_objContr->getPlayer()->move(1,0);
+        camera->move(1,0);
     }
 
     if (m_mouseProc->m_mouseYCor > H_MAX_SCKROL_AREA || m_keyProc->m_toDown)
     {
-        m_objContr->getPlayer()->move(0,1);
+        camera->move(0,1);
     }
 
     if (m_mouseProc->m_mouseYCor < H_MIN_SCKROL_AREA || m_keyProc->m_toUp)
     {
-        m_objContr->getPlayer()->move(0,-1);
+        camera->move(0,-1);
     }
 }

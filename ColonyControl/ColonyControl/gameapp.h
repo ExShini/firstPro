@@ -4,6 +4,7 @@
 
 #include "render/render.h"
 #include "eventController/eventcontroller.h"
+#include "gameProcessor/gameprocessor.h"
 
 
 
@@ -21,6 +22,7 @@ private:
     short m_gameStatus;
     Render * m_render;
     EventController * m_evController;
+    GameProcessor * m_gameProcessor;
 
 
     // main handlers

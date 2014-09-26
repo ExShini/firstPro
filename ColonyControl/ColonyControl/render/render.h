@@ -37,7 +37,7 @@ private:
     int m_graphFWidth, m_graphFHeight,
         m_fieldGapX, m_fieldGapY;
     GObject* m_backGround;
-    GObject* m_player;
+    GObject* m_cameraObj;
 
     int m_widthInFields, m_heightInFields;
 };

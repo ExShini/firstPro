@@ -13,7 +13,6 @@ public:
     void setFertility(int value)        { m_fertility = value; }
     void setMineralWealth(int value)    { m_mineralWealth = value; }
 
-    void move(int xDiff, int yDiff) { return; }
     void init();
 
 protected:

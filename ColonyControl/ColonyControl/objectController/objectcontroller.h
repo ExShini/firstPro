@@ -3,6 +3,8 @@
 
 #include "gobject.h"
 #include "objectController/mapGenarator/planetmap.h"
+#include "objectList.h"
+#include "gameProcessor/gameprocessor.h"
 
 using namespace std;
 
@@ -11,19 +13,22 @@ class ObjectController
 public:
     static ObjectController* getInstance();
     PlanetMap* getPlanetMap();
-    GObject* getPlayer();
+    GObject* getCamera();
     GObject* getBackGround();
     void init();
 
-    static int getFieldKey(int x, int y);
+    bool addNewSettlement(int x, int y, int settlers);
 
 protected:
     ObjectController();
     static ObjectController* m_instance;
     PlanetMap* m_plMap;
 
-    GObject * m_player;
+    GObject * m_cameraObj;
     GObject * m_backGround;
+
+    GameProcessor* m_gameProc;
+
 };
 
 #endif // OBJECTCONTROLLER_H

@@ -31,7 +31,8 @@ SOURCES += main.cpp \
     objectController/mapGenarator/planetmap.cpp \
     objectController/mapGenarator/mapgenerator.cpp \
     TimeManager/timeguard.cpp \
-    TimeManager/timeevent.cpp
+    TimeManager/timeevent.cpp \
+    gameProcessor/gameprocessor.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -63,4 +64,6 @@ HEADERS += \
     objectController/mapGenarator/mapgenerator.h \
     enums/mapGeneratorSattings.h \
     TimeManager/timeguard.h \
-    TimeManager/timeevent.h
+    TimeManager/timeevent.h \
+    gameProcessor/gameprocessor.h \
+    enums/gameProcessingSettings.h

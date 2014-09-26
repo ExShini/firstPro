@@ -11,7 +11,7 @@ public:
     void processEvent();
 
 protected:
-    void HandleMoving();
+    void HandleCameraMoving();
 
     short * m_gameStatus;
     KeyboardEventProc * m_keyProc;

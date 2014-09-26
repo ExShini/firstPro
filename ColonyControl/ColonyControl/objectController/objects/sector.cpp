@@ -8,6 +8,8 @@ DESC: constructor
 Sector::Sector()
 {
     m_type = t_Sector;
+
+    m_fertility = 1500; //test
 }
 
 

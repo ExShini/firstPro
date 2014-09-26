@@ -1,11 +1,12 @@
 #ifndef SETTLEMENT_H
 #define SETTLEMENT_H
 #include "objectController/gobject.h"
+#include "sector.h"
 
 class Settlement: public GObject
 {
 public:
-    Settlement();
+    Settlement(Sector* sector);
 
 
     int getPopulation()         { return m_population; }
@@ -17,7 +18,11 @@ public:
     void setMinerals(int value)         { m_minerals = value; }
     void setProduction(int value)       { m_production = value; }
 
-    void move(int xDiff, int yDiff) { return; }
+    void process();
+    int sendColonists();
+    void inviteColonists(int colonists);
+
+    bool readyToMove;
 
 protected:
 
@@ -27,6 +32,11 @@ protected:
 
     int m_minerals;               //mineral storage
     int m_production;             //production storage
+
+    int m_colonists;
+    int m_moveDesire;
+
+    Sector* m_sector;
 
     //militaryPower, Energy and etc.
 };

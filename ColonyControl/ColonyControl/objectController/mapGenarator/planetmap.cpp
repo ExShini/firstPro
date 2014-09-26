@@ -2,7 +2,7 @@
 
 PlanetMap::PlanetMap()
 {
-    for (int ml = MLEVEL_0; ml < NUM_LEVELS; ml++)
+    for (int ml = SECTOR_LEVEL; ml < NUM_LEVELS; ml++)
     {
         objects[ml] = new Layer();
     }

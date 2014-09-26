@@ -60,12 +60,15 @@ int TimeGuard::addEvent(Uint32 timePoint)
 FUNC: checkEvent()
 DESC: Check event with eventID and return true if time of this event has come
 *************************************/
-bool TimeGuard::checkEvent(int eventID)
+bool TimeGuard::checkEvent(int eventID, bool realizeEv)
 {
     TimeEvent* ev = (*m_eventList)[eventID];
     //check status
     if (ev->state == READY)
     {
+        if(realizeEv)
+            ev->state = COMPLITE;
+
         return true;
     }
     //else - return false

@@ -86,8 +86,8 @@ bool Render::init()
     m_fieldGapY = HEIGHT_MAIN_WINDOW / 2;
 
     //init camera
-    m_player = m_objController->getPlayer();
-    m_camera = new Camera(m_player, m_fieldGapX, m_fieldGapY);
+    m_cameraObj = m_objController->getCamera();
+    m_camera = new Camera(m_cameraObj, m_fieldGapX, m_fieldGapY);
 
     //check status
     if (m_window && m_rend)
@@ -125,8 +125,8 @@ void Render::drawObjects()
 {
     int xcor, ycor, w, h;
 
-    xcor = m_player->getX() - (m_widthInFields >> 1) - 1;
-    ycor = m_player->getY() - (m_heightInFields >> 1) - 1;
+    xcor = m_cameraObj->getX() - (m_widthInFields >> 1) - 1;
+    ycor = m_cameraObj->getY() - (m_heightInFields >> 1) - 1;
     w = xcor + m_widthInFields + 2;
     h = ycor + m_heightInFields + 2;
 
@@ -134,7 +134,7 @@ void Render::drawObjects()
     checkCordinats(&xcor, &ycor, &w, &h);
     //cout << xcor << " " << ycor << " " << w << " " << h << endl;
 
-    for (int level = MLEVEL_0; level < NUM_LEVELS; level++)
+    for (int level = SECTOR_LEVEL; level < NUM_LEVELS; level++)
     {
 
         Layer* curLayer = m_plMap->objects[level];
@@ -207,10 +207,10 @@ DESC: draw background picture
 *************************************/
 void Render::drawBackground()
 {
-    int x = -((( m_player->getX() M_ACCURACY_FACTOR) PART_OF_MAP_W )
+    int x = -((( m_cameraObj->getX() M_ACCURACY_FACTOR) PART_OF_MAP_W )
               * ( m_backGround->getW() - WIDTH_MAIN_WINDOW ) ) D_ACCURACY_FACTOR;
 
-    int y = -((( m_player->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
+    int y = -((( m_cameraObj->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
               * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
 
         drawSurface( x, y, m_backGround->getFController(), m_rend);

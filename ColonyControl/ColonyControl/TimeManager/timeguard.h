@@ -18,7 +18,7 @@ public:
     void checkTime();
 
     int addEvent(Uint32 timePoint);
-    bool checkEvent(int eventID);
+    bool checkEvent(int eventID, bool realizeEv);
     void realizeEvent(int eventID);
 
 protected:
