@@ -10,6 +10,7 @@ Sector::Sector()
     m_type = t_Sector;
 
     m_fertility = 1500; //test
+    m_applicable = true;
 }
 
 
@@ -28,4 +29,10 @@ void Sector::init()
     m_fcontroller->setTextureArea(x, y);
     m_width = 1;
     m_height = 1;
+}
+
+
+bool Sector::itApplicable()
+{
+    return m_applicable;
 }

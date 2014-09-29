@@ -18,6 +18,7 @@ public:
     void init();
 
     bool addNewSettlement(int x, int y, int settlers);
+    bool checkAreaApplicable(int x, int y);
 
 protected:
     ObjectController();

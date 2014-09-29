@@ -38,6 +38,9 @@ void ObjectController::init()
     m_cameraObj = to1;
 
     addNewSettlement(10, 10, 500);
+    addNewSettlement(60, 60, 500);
+    addNewSettlement(10, 60, 500);
+    addNewSettlement(60, 10, 500);
 
     //add to1 object to drawing camera object
     //Layer* topMap = m_plMap->objects[MLEVEL_2];
@@ -101,4 +104,20 @@ bool ObjectController::addNewSettlement(int x, int y, int settlers)
     m_gameProc->addSettlementToProcess(settelment);
 
     return true;
+}
+
+/*************************************
+FUNC: checkAreaApplicable(int x, int y)
+DESC: check this opportunity for use this area
+*************************************/
+bool ObjectController::checkAreaApplicable(int x, int y)
+{
+    if (x >= 0 && x < MAP_WIDTH && y >= 0 && y < MAP_HEIGHT)
+    {
+        Sector* sector = (Sector*)m_plMap->objects[SECTOR_LEVEL]->lMap[x][y];
+        if (sector != NULL)
+            return sector->itApplicable();
+    }
+
+    return false;
 }

@@ -103,8 +103,8 @@ DESC: find point for colonists moving
 *************************************/
 void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
 {
-    bool aplyble = false;
-    while (!aplyble)
+    bool applicable = false;
+    while (!applicable)
     {
         int direction = RandomGen::getRand() % NUMBER_OF_DIRECTIONS;
 
@@ -115,7 +115,7 @@ void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
             {
                 *x = set->getX();
                 *y = set->getY() - 1;
-                aplyble = true;
+                applicable = m_objController->checkAreaApplicable(*x, *y);
             }
             break;
         case LEFT:
@@ -123,7 +123,7 @@ void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
             {
                 *x = set->getX() - 1;
                 *y = set->getY();
-                aplyble = true;
+                applicable = m_objController->checkAreaApplicable(*x, *y);
             }
             break;
         case DOWN:
@@ -131,7 +131,7 @@ void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
             {
                 *x = set->getX();
                 *y = set->getY() + 1;
-                aplyble = true;
+                applicable = m_objController->checkAreaApplicable(*x, *y);
             }
             break;
         case RIGHT:
@@ -139,7 +139,7 @@ void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
             {
                 *x = set->getX() + 1;
                 *y = set->getY();
-                aplyble = true;
+                applicable = m_objController->checkAreaApplicable(*x, *y);
             }
             break;
         }

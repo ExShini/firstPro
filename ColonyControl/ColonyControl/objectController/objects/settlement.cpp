@@ -63,8 +63,10 @@ void Settlement::process()
         m_population -= HUMAN_POPULATION_DEMAGE(excess);
     }
 
+    /*
     cout << "Sector "<< m_x << ":" << m_y << " \tPopulation: " << m_population << "+" << growth
          << " \tFood: " << m_food << " +" << produceFood << endl;
+    */
 }
 
 
