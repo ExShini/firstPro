@@ -13,6 +13,7 @@ public:
     virtual int getY() { return m_y; }
     virtual int getH() { return m_height; }
     virtual int getW() { return m_width; }
+    virtual ObjectsType getType() { return m_type; }
 
 
     virtual void setX(int x) { m_x = x;}

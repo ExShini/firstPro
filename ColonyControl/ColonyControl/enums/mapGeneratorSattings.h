@@ -4,10 +4,15 @@
 #define GENERATED_MAP_WIDTH 128
 #define GENERATED_MAP_HEIGHT 128
 
+#define LAVA_PLANET_NUMBER_OF_MOUNT 500
+#define LAVA_PLANET_MOUNT_LINGHT 7
+
+#define LAVA_PLANET_NUMBER_OF_LAVA_LAKES 200
+#define LAVA_PLANET_LAVA_LAKES_LINGHT 4
 
 enum PlanetType
 {
-    Base,
+    LavaPlanet,
     NoType
 };
 

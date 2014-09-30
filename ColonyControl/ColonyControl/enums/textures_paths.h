@@ -8,7 +8,9 @@
 // RES paths:
 #define p_BACKGROUND "res/galaxy.bmp"
 #define p_TEST_OBJ1 "res/testObj1.bmp"
-#define p_Sector "res/Ground_II.bmp"
+#define p_Sector "res/Ground_III.xcf"
 #define p_HumanSettlers "res/humanSettler.xcf"
+#define p_LavaMount "res/LavaMount.xcf"
+#define p_Lava "res/Lava.xcf"
 
 #endif // TEXTURES_PATHS_H

@@ -12,8 +12,8 @@
 #define HEIGHT_MAIN_WINDOW 640
 
 //Field sizes
-#define FIELD_SIZE 32 // !WARNING! FIELD_SIZE and MULTIPLY_FS and DIVIDE_FS should be synchronized
-#define MULTIPLY_FS << 5   // !WARNING! FIELD_SIZE and MULTIPLY_FS should be synchronized
-#define DIVIDE_FS >> 5     // !WARNING! FIELD_SIZE and DIVIDE_FS should be synchronized
+#define FIELD_SIZE 64 // !WARNING! FIELD_SIZE and MULTIPLY_FS and DIVIDE_FS should be synchronized
+#define MULTIPLY_FS << 6   // !WARNING! FIELD_SIZE and MULTIPLY_FS should be synchronized
+#define DIVIDE_FS >> 6     // !WARNING! FIELD_SIZE and DIVIDE_FS should be synchronized
 
 #endif //GUI_EMUNS

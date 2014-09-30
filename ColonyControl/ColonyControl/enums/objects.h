@@ -7,7 +7,8 @@ enum Direction
     DOWN,
     LEFT,
     RIGHT,
-    NUMBER_OF_DIRECTIONS = 4
+    NUMBER_OF_DIRECTIONS = 4,
+    NO_DIR
 };
 
 enum ObjectsType
@@ -16,6 +17,8 @@ enum ObjectsType
     t_CameraObject,
     t_Sector,
     t_HumanSettlers,
+    t_LavaMount,
+    t_Lava,
     NumberOfObjectTypes,
     NULLOBJECT
 };

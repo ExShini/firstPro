@@ -24,7 +24,7 @@ DESC: initialize all start objects and over required for ObjectController
 void ObjectController::init()
 {
     MapGenerator* mapGen = new MapGenerator();
-    m_plMap = mapGen->generateMap(Base);
+    m_plMap = mapGen->generateMap(LavaPlanet);
 
     m_gameProc = GameProcessor::getInstance();
 

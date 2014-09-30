@@ -1,0 +1,18 @@
+#include "lavamount.h"
+#include "randomgen.h"
+
+LavaMount::LavaMount()
+{
+    m_type = t_LavaMount;
+    m_applicable = false;
+
+    m_fcontroller = new FrameController(
+                TextureProvider::getInstance()->getTexture(m_type));
+
+    short x = 0, y;
+    y = RandomGen::getRand() % 4;
+
+    m_fcontroller->setTextureArea(x, y);
+    m_width = 1;
+    m_height = 1;
+}

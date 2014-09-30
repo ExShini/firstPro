@@ -24,6 +24,10 @@ protected:
 
     RandomGen* m_randGen;
 
+
+    void GenerateMounts(PlanetMap* plMap);
+    void GenerateLakes(PlanetMap* plMap);
+
 };
 
 #endif // MAPGENERATOR_H

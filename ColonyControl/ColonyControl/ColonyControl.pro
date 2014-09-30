@@ -32,7 +32,9 @@ SOURCES += main.cpp \
     objectController/mapGenarator/mapgenerator.cpp \
     TimeManager/timeguard.cpp \
     TimeManager/timeevent.cpp \
-    gameProcessor/gameprocessor.cpp
+    gameProcessor/gameprocessor.cpp \
+    objectController/objects/lavamount.cpp \
+    objectController/objects/lava.cpp
 
 
 unix:!macx:!symbian: LIBS += -lSDL2
@@ -66,4 +68,6 @@ HEADERS += \
     TimeManager/timeguard.h \
     TimeManager/timeevent.h \
     gameProcessor/gameprocessor.h \
-    enums/gameProcessingSettings.h
+    enums/gameProcessingSettings.h \
+    objectController/objects/lavamount.h \
+    objectController/objects/lava.h
