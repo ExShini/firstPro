@@ -96,6 +96,9 @@ bool ObjectController::addNewSettlement(int x, int y, int settlers)
     //take sector and create new settelment
 
     Sector* sector = (Sector*)m_plMap->objects[SECTOR_LEVEL]->lMap[x][y];
+    if (!sector->itApplicable())
+        return false;
+
     Settlement* settelment = new Settlement(sector);
     settelment->setPopulation(settlers);
 

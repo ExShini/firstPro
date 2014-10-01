@@ -21,7 +21,6 @@ public:
     virtual void setH(int height) { m_height = height;}
     virtual void setW(int width) { m_width = width;}
 
-//    virtual void move(int xDiff, int yDiff) = 0;
 
 
 protected:
