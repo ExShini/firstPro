@@ -34,7 +34,7 @@ short RandomGen::getRand()
 
     ret = randomTable[randomConter];
     randomConter++;
-    if (randomConter > RAND_BUFF_LENGTH)
+    if (randomConter >= RAND_BUFF_LENGTH)
     {
         randomConter = 0;
     }

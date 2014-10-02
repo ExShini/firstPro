@@ -1,5 +1,6 @@
 #include "sector.h"
 #include "randomgen.h"
+#include "enums/mapGeneratorSattings.h"
 
 /*************************************
 FUNC: Sector()
@@ -8,9 +9,13 @@ DESC: constructor
 Sector::Sector()
 {
     m_type = t_Sector;
-
-    m_fertility = 1500; //test
     m_applicable = true;
+
+    int fertilityDiff = LAVA_PLANET_DEFAULT_MAX_OF_FERTILITY - LAVA_PLANET_DEFAULT_MIN_OF_FERTILITY;
+    m_fertility = LAVA_PLANET_DEFAULT_MIN_OF_FERTILITY + (RandomGen::getRand() % fertilityDiff);
+
+    int mineralDiff = LAVA_PLANET_DEFAULT_MAX_OF_MINERAL - LAVA_PLANET_DEFAULT_MIN_OF_MINERAL;
+    m_mineralWealth = LAVA_PLANET_DEFAULT_MIN_OF_MINERAL + (RandomGen::getRand() % mineralDiff);
 }
 
 
@@ -23,12 +28,20 @@ void Sector::init()
     m_fcontroller = new FrameController(
                 TextureProvider::getInstance()->getTexture(m_type));
 
-    short x = 0, y;
+    short x = 1, y;
     y = RandomGen::getRand() % 4;
+
+    if (m_fertility > LAVA_PLANET_DEFAULT_MAX_OF_FERTILITY)
+        x = 0;
+
+    if (m_mineralWealth > LAVA_PLANET_DEFAULT_MAX_OF_MINERAL)
+        x = 2;
 
     m_fcontroller->setTextureArea(x, y);
     m_width = 1;
     m_height = 1;
+
+
 }
 
 

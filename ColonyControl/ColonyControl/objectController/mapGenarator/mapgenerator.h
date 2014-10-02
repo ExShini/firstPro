@@ -7,6 +7,7 @@
 #include "objectController/gobject.h"
 #include "planetmap.h"
 #include "enums/mapGeneratorSattings.h"
+#include "objectController/objectList.h"
 
 
 class MapGenerator
@@ -25,9 +26,14 @@ protected:
     RandomGen* m_randGen;
 
 
+    void GenerateFertility(PlanetMap* plMap);
+    void GenerateMinerals(PlanetMap* plMap);
     void GenerateMounts(PlanetMap* plMap);
     void GenerateLakes(PlanetMap* plMap);
 
+    void TryAddNewCandSector(vector<Sector*>& fields, vector<Sector*>& candidates, Sector* sec, PlanetMap *PlMap);
+    bool Contains(vector<Sector*>& fields, Sector* sec);
+    bool checkNewDir(int newD, int oldD);
 };
 
 #endif // MAPGENERATOR_H
