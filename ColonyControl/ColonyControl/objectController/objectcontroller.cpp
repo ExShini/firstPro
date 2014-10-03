@@ -37,10 +37,10 @@ void ObjectController::init()
     to1->setY(10);
     m_cameraObj = to1;
 
-    addNewSettlement(10, 10, 500);
-    addNewSettlement(60, 60, 500);
-    addNewSettlement(10, 60, 500);
-    addNewSettlement(60, 10, 500);
+    addNewSettlement(10, 10, 1500);
+//    addNewSettlement(60, 60, 500);
+//    addNewSettlement(10, 60, 500);
+//    addNewSettlement(60, 10, 500);
 
     //add to1 object to drawing camera object
     //Layer* topMap = m_plMap->objects[MLEVEL_2];
