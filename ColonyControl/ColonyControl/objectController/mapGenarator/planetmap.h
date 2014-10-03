@@ -2,7 +2,13 @@
 #define PLANETMAP_H
 #include "map"
 
+#ifdef WIN32
+#include "../../objectController/gobject.h"
+#else
 #include "objectController/gobject.h"
+#endif
+
+
 
 class Layer
 {

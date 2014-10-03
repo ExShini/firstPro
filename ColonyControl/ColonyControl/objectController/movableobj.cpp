@@ -1,5 +1,11 @@
 #include "movableobj.h"
+
+
+#ifdef WIN32
+#include "../enums/objects.h"
+#else
 #include "enums/objects.h"
+#endif
 
 /************************************************************/
 // MovableObj

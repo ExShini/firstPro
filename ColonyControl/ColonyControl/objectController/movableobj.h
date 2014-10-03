@@ -1,6 +1,13 @@
 #ifndef MOVABLEOBJ_H
 #define MOVABLEOBJ_H
+
+#ifdef WIN32
+#include "../objectController/gobject.h"
+#else
 #include "objectController/gobject.h"
+#endif
+
+
 
 /************************************************************/
 // All movable object should be inherited from MovableObj class

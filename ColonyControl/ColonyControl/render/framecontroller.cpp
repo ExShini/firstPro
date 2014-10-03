@@ -1,7 +1,13 @@
 #include "iostream"
 
 #include "framecontroller.h"
+
+#ifdef WIN32
+#include "../enums/gui_enums.h"
+#else
 #include "enums/gui_enums.h"
+#endif
+
 
 using namespace std;
 

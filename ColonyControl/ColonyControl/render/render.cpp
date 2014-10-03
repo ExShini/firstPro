@@ -1,5 +1,12 @@
 #include "render.h"
+
+#ifdef WIN32
+#include "../enums/enums.h"
+#include "../ColonyControlWin/stdafx.h"
+#else
 #include "enums/enums.h"
+#endif
+
 #include "textureprovider.h"
 
 #include "stdio.h"

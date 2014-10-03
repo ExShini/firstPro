@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5FB5F38E-6F13-460B-8A3B-D6432D3324D8}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>ColonyControlWin</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>F:\REPs\SDL\VC\SDL2_image-2.0.0\include;F:\REPs\SDL\VC\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\REPs\SDL\VC\SDL2_image-2.0.0\lib\x64;F:\REPs\SDL\VC\SDL2-2.0.3\lib\x64;$(LibraryPath)</LibraryPath>
+    <ExecutablePath>F:\REPs\SDL\VC\SDL2_image-2.0.0\lib\x64;F:\REPs\SDL\VC\SDL2-2.0.3\lib\x64;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\include;F:\REPs\SDL\VC\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\lib\x86;F:\REPs\SDL\VC\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\include;F:\REPs\SDL\VC\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\lib\x86;F:\REPs\SDL\VC\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\enums\enums.h" />
+    <ClInclude Include="..\enums\event_handling_enum.h" />
+    <ClInclude Include="..\enums\gameProcessingSettings.h" />
+    <ClInclude Include="..\enums\gui_enums.h" />
+    <ClInclude Include="..\enums\mapGeneratorSattings.h" />
+    <ClInclude Include="..\enums\objects.h" />
+    <ClInclude Include="..\enums\random_enums.h" />
+    <ClInclude Include="..\enums\textures_paths.h" />
+    <ClInclude Include="..\eventController\eventcontroller.h" />
+    <ClInclude Include="..\eventController\keyboardeventproc.h" />
+    <ClInclude Include="..\eventController\mouseeventproc.h" />
+    <ClInclude Include="..\gameapp.h" />
+    <ClInclude Include="..\gameProcessor\gameprocessor.h" />
+    <ClInclude Include="..\objectController\gobject.h" />
+    <ClInclude Include="..\objectController\mapGenarator\mapgenerator.h" />
+    <ClInclude Include="..\objectController\mapGenarator\planetmap.h" />
+    <ClInclude Include="..\objectController\movableobj.h" />
+    <ClInclude Include="..\objectController\objectcontroller.h" />
+    <ClInclude Include="..\objectController\objectList.h" />
+    <ClInclude Include="..\objectController\objects\lava.h" />
+    <ClInclude Include="..\objectController\objects\lavamount.h" />
+    <ClInclude Include="..\objectController\objects\sector.h" />
+    <ClInclude Include="..\objectController\objects\settlement.h" />
+    <ClInclude Include="..\objectController\objects\testobjects.h" />
+    <ClInclude Include="..\render\framecontroller.h" />
+    <ClInclude Include="..\render\render.h" />
+    <ClInclude Include="..\render\textureprovider.h" />
+    <ClInclude Include="..\TimeManager\timeevent.h" />
+    <ClInclude Include="..\TimeManager\timeguard.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\eventController\eventcontroller.cpp" />
+    <ClCompile Include="..\eventController\keyboardeventproc.cpp" />
+    <ClCompile Include="..\eventController\mouseeventproc.cpp" />
+    <ClCompile Include="..\gameapp.cpp" />
+    <ClCompile Include="..\gameProcessor\gameprocessor.cpp" />
+    <ClCompile Include="..\objectController\gobject.cpp" />
+    <ClCompile Include="..\objectController\mapGenarator\mapgenerator.cpp" />
+    <ClCompile Include="..\objectController\mapGenarator\planetmap.cpp" />
+    <ClCompile Include="..\objectController\movableobj.cpp" />
+    <ClCompile Include="..\objectController\objectcontroller.cpp" />
+    <ClCompile Include="..\objectController\objects\lava.cpp" />
+    <ClCompile Include="..\objectController\objects\lavamount.cpp" />
+    <ClCompile Include="..\objectController\objects\sector.cpp" />
+    <ClCompile Include="..\objectController\objects\settlement.cpp" />
+    <ClCompile Include="..\objectController\objects\testobjects.cpp" />
+    <ClCompile Include="..\randomgen.cpp" />
+    <ClCompile Include="..\render\framecontroller.cpp" />
+    <ClCompile Include="..\render\render.cpp" />
+    <ClCompile Include="..\render\textureprovider.cpp" />
+    <ClCompile Include="..\TimeManager\timeevent.cpp" />
+    <ClCompile Include="..\TimeManager\timeguard.cpp" />
+    <ClCompile Include="ColonyControlWin.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,5 +1,11 @@
 #include "mouseeventproc.h"
+
+
+#ifdef WIN32
+#include "../enums/gui_enums.h"
+#else
 #include "enums/gui_enums.h"
+#endif
 
 MouseEventProc::MouseEventProc():
     m_mouseXCor(0),

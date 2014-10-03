@@ -4,7 +4,7 @@
 TimeGuard* TimeGuard::m_instance = new TimeGuard();
 
 //debug members
-static int count = 0;
+static int secCount = 0;
 static int curcount = 0;
 
 
@@ -112,8 +112,8 @@ DESC: Reset status for all complite events
 void TimeGuard::resetEventSatus()
 {
     //debug
-    count++;
-    cout << "TimeGuard " << count << "sec. FPS: " << curcount << endl;
+    secCount++;
+    cout << "TimeGuard " << secCount << "sec. FPS: " << curcount << endl;
     curcount = 0;
 
 

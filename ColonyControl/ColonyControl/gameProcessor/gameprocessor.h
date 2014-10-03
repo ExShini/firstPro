@@ -1,7 +1,15 @@
 #ifndef GAMEPROCESSOR_H
 #define GAMEPROCESSOR_H
+
+#ifdef WIN32
+#include "../objectController/objectList.h"
+#include "../TimeManager/timeguard.h"
+#else
 #include "objectController/objectList.h"
 #include "TimeManager/timeguard.h"
+#endif
+
+
 
 class ObjectController;
 

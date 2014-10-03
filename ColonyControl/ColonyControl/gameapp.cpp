@@ -2,9 +2,14 @@
 
 #include "iostream"
 #include "stdio.h"
-#include "SDL2/SDL.h"
 
 #include "TimeManager/timeguard.h"
+
+#ifdef WIN32
+#include "SDL.h"
+#else
+#include "SDL2/SDL.h"
+#endif
 
 using namespace std;
 

@@ -3,11 +3,19 @@
 #include "list"
 #include "vector"
 
+
+#include "planetmap.h"
+
+
+#ifdef WIN32
+#include "../../randomgen.h"
+#include "../../objectController/gobject.h"
+#include "../../enums/mapGeneratorSattings.h"
+#else
 #include "randomgen.h"
 #include "objectController/gobject.h"
-#include "planetmap.h"
 #include "enums/mapGeneratorSattings.h"
-
+#endif
 
 class MapGenerator
 {

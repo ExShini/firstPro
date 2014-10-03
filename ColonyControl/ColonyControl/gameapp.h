@@ -1,6 +1,11 @@
 #ifndef GAMEAPP_H
 #define GAMEAPP_H
-#include "SDL2/SDL.h"
+
+#ifdef WIN32
+#include"SDL.h"
+#else
+#include"SDL2/SDL.h"
+#endif
 
 #include "render/render.h"
 #include "eventController/eventcontroller.h"

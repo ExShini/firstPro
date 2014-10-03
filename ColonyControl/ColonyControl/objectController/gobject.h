@@ -1,6 +1,12 @@
 #ifndef GOBJECT_H
 #define GOBJECT_H
+
+#ifdef WIN32
+#include "../render/textureprovider.h"
+#else
 #include "render/textureprovider.h"
+#endif
+
 
 class GObject
 {

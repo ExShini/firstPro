@@ -1,6 +1,12 @@
 #ifndef SECTOR_H
 #define SECTOR_H
+
+#ifdef WIN32
+#include "../../objectController/gobject.h"
+#else
 #include "objectController/gobject.h"
+#endif
+
 
 class Sector: public GObject
 {

@@ -1,6 +1,13 @@
 #ifndef EVENTCONTROLLER_H
 #define EVENTCONTROLLER_H
-#include "SDL2/SDL.h"
+
+#ifdef WIN32
+#include"SDL.h"
+#include "../ColonyControlWin/stdafx.h"
+#else
+#include"SDL2/SDL.h"
+#endif
+
 #include "keyboardeventproc.h"
 #include "mouseeventproc.h"
 

@@ -1,9 +1,17 @@
 #ifndef RENDER_H
 #define RENDER_H
 
+#ifdef WIN32
+#include"SDL.h"
+#include "../ColonyControlWin/stdafx.h"
+#include "../objectController/objectcontroller.h"
+#else
 #include"SDL2/SDL.h"
-#include "iostream"
 #include "objectController/objectcontroller.h"
+#endif
+
+#include "iostream"
+
 
 class Camera;
 

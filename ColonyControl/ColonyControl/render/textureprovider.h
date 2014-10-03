@@ -3,9 +3,16 @@
 
 #include "string"
 #include "map"
+#include "framecontroller.h"
+
+#ifdef WIN32
+#include "../enums/textures_paths.h"
+#include "../enums/objects.h"
+#include "../ColonyControlWin/stdafx.h"
+#else
 #include "enums/textures_paths.h"
 #include "enums/objects.h"
-#include "framecontroller.h"
+#endif
 
 using namespace std;
 

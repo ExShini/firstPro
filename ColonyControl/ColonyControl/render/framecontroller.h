@@ -1,7 +1,15 @@
 #ifndef FRAMECONTROLLER_H
 #define FRAMECONTROLLER_H
-#include "SDL2/SDL.h"
+
+#ifdef WIN32
+#include"SDL.h"
+#include "../ColonyControlWin/stdafx.h"
+#include "../enums/objects.h"
+#else
+#include"SDL2/SDL.h"
 #include "enums/objects.h"
+#endif
+
 
 
 class FrameController

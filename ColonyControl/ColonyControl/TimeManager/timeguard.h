@@ -2,8 +2,13 @@
 #define TIMEGUARD_H
 #define SEC1 1000
 
-
+#ifdef WIN32
+#include"SDL.h"
+#include "../ColonyControlWin/stdafx.h"
+#else
 #include"SDL2/SDL.h"
+#endif
+
 #include "vector"
 
 #include "timeevent.h"

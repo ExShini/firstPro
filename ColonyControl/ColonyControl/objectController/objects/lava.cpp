@@ -1,5 +1,9 @@
 #include "lava.h"
+#ifdef WIN32
+#include "../../randomgen.h"
+#else
 #include "randomgen.h"
+#endif
 
 Lava::Lava()
 {

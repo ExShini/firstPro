@@ -1,10 +1,19 @@
 #ifndef OBJECTCONTROLLER_H
 #define OBJECTCONTROLLER_H
 
+#ifdef WIN32
+#include "gobject.h"
+#include "mapGenarator/planetmap.h"
+#include "objectList.h"
+#include "../gameProcessor/gameprocessor.h"
+#else
 #include "gobject.h"
 #include "objectController/mapGenarator/planetmap.h"
 #include "objectList.h"
 #include "gameProcessor/gameprocessor.h"
+#endif
+
+
 
 using namespace std;
 

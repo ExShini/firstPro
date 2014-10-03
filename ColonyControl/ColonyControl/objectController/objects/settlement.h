@@ -1,6 +1,12 @@
 #ifndef SETTLEMENT_H
 #define SETTLEMENT_H
+
+#ifdef WIN32
+#include "../../objectController/gobject.h"
+#else
 #include "objectController/gobject.h"
+#endif
+
 #include "sector.h"
 
 class Settlement: public GObject

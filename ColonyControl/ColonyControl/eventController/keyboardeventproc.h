@@ -1,7 +1,15 @@
 #ifndef KEYBOARDEVENTPROC_H
 #define KEYBOARDEVENTPROC_H
-#include "SDL2/SDL.h"
+
+#ifdef WIN32
+#include"SDL.h"
+#include "../objectController/objectcontroller.h"
+#else
+#include"SDL2/SDL.h"
 #include "objectController/objectcontroller.h"
+#endif
+
+
 
 class KeyboardEventProc
 {

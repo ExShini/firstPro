@@ -1,6 +1,12 @@
 #include "eventcontroller.h"
 #include "iostream"
+
+
+#ifdef WIN32
+#include "../enums/event_handling_enum.h"
+#else
 #include "enums/event_handling_enum.h"
+#endif
 
 using namespace std;
 

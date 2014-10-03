@@ -1,5 +1,11 @@
 #include "testobjects.h"
+
+#ifdef WIN32
+#include "../../enums/gui_enums.h"
+#else
 #include "enums/gui_enums.h"
+#endif
+
 
 CameraObject::CameraObject():
     MovableObj()

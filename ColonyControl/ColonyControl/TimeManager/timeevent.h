@@ -1,6 +1,12 @@
 #ifndef TIMEEVENT_H
 #define TIMEEVENT_H
+
+#ifdef WIN32
+#include"SDL.h"
+#include "../ColonyControlWin/stdafx.h"
+#else
 #include"SDL2/SDL.h"
+#endif
 
 class TimeEvent
 {

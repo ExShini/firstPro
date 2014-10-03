@@ -40,6 +40,10 @@ SOURCES += main.cpp \
 unix:!macx:!symbian: LIBS += -lSDL2
 unix:!macx:!symbian: LIBS += -lSDL2_image
 
+LIBS += -lSDL2
+LIBS += -lSDL2_image
+INCLUDEPATH += C:\MinGW\include
+
 HEADERS += \
     render/render.h \
     enums/enums.h \

@@ -1,5 +1,11 @@
 #include "sector.h"
+
+
+#ifdef WIN32
+#include "../../randomgen.h"
+#else
 #include "randomgen.h"
+#endif
 
 /*************************************
 FUNC: Sector()

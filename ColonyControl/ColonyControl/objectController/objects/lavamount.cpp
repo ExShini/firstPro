@@ -1,5 +1,10 @@
 #include "lavamount.h"
+
+#ifdef WIN32
+#include "../../randomgen.h"
+#else
 #include "randomgen.h"
+#endif
 
 LavaMount::LavaMount()
 {

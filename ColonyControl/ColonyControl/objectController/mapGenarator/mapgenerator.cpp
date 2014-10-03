@@ -1,7 +1,12 @@
 #include "mapgenerator.h"
 
+#ifdef WIN32
+#include "../../objectController/objectList.h"
+#include "../../objectController/objectcontroller.h"
+#else
 #include "objectController/objectList.h"
 #include "objectController/objectcontroller.h"
+#endif
 
 
 /*************************************

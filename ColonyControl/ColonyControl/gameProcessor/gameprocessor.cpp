@@ -1,6 +1,13 @@
 #include "gameprocessor.h"
+
+
+#ifdef WIN32
+#include "../objectController/objectcontroller.h"
+#include "../randomgen.h"
+#else
 #include "objectController/objectcontroller.h"
 #include "randomgen.h"
+#endif
 
 GameProcessor* GameProcessor::m_instance = new GameProcessor();
 

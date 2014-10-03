@@ -3,6 +3,12 @@
 #include <stdlib.h>
 #include "enums/random_enums.h"
 
+#ifdef WIN32
+#include"SDL.h"
+#else
+#include"SDL2/SDL.h"
+#endif
+
 static short * randomTable = NULL;
 static short randomConter = 0;
 
@@ -13,10 +19,9 @@ RandomGen::RandomGen()
 
 void RandomGen::init()
 {
-    time_t t = time(0);   // get time now
-    struct tm * now = localtime( & t );
 
-    short shift = now->tm_year + now->tm_mon + now->tm_mday + now->tm_hour + now->tm_min + now->tm_sec;
+	int tiks = SDL_GetTicks();
+	short shift = tiks % MAX_RAND_NUM;
 
     randomTable = (short*) (malloc(sizeof(short) * RAND_BUFF_LENGTH));
     if ( randomTable != NULL )
