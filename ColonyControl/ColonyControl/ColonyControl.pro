@@ -34,15 +34,14 @@ SOURCES += main.cpp \
     TimeManager/timeevent.cpp \
     gameProcessor/gameprocessor.cpp \
     objectController/objects/lavamount.cpp \
-    objectController/objects/lava.cpp
+    objectController/objects/lava.cpp \
+    gameProcessor/unitcontroller.cpp \
+    gameProcessor/unit.cpp \
+    gameProcessor/Units/humancolonists.cpp
 
-
-unix:!macx:!symbian: LIBS += -lSDL2
-unix:!macx:!symbian: LIBS += -lSDL2_image
 
 LIBS += -lSDL2
 LIBS += -lSDL2_image
-INCLUDEPATH += C:\MinGW\include
 
 HEADERS += \
     render/render.h \
@@ -74,4 +73,7 @@ HEADERS += \
     gameProcessor/gameprocessor.h \
     enums/gameProcessingSettings.h \
     objectController/objects/lavamount.h \
-    objectController/objects/lava.h
+    objectController/objects/lava.h \
+    gameProcessor/unitcontroller.h \
+    gameProcessor/unit.h \
+    gameProcessor/Units/humancolonists.h

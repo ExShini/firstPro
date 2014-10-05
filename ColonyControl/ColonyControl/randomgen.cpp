@@ -20,8 +20,10 @@ RandomGen::RandomGen()
 void RandomGen::init()
 {
 
-	int tiks = SDL_GetTicks();
-	short shift = tiks % MAX_RAND_NUM;
+    time_t td;
+    td = time(NULL);
+
+    short shift = td % MAX_RAND_NUM;
 
     randomTable = (short*) (malloc(sizeof(short) * RAND_BUFF_LENGTH));
     if ( randomTable != NULL )

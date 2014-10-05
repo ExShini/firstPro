@@ -37,10 +37,10 @@ TimeGuard* TimeGuard::getInstance()
 }
 
 /*************************************
-FUNC: start()
-DESC: Start time counting
+FUNC: iter()
+DESC: iter time counting
 *************************************/
-void TimeGuard::start()
+void TimeGuard::iter()
 {
     m_lastTime = SDL_GetTicks();
 }

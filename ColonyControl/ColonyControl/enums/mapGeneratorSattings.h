@@ -5,7 +5,7 @@
 #define GENERATED_MAP_HEIGHT 128
 
 //Mounts section
-#define LAVA_PLANET_NUMBER_OF_MOUNT 450
+#define LAVA_PLANET_NUMBER_OF_MOUNT 400
 #define LAVA_PLANET_MOUNT_LINGHT 7
 
 //Lakes section

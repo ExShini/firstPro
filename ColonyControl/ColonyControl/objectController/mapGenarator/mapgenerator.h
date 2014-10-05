@@ -11,10 +11,12 @@
 #include "../../randomgen.h"
 #include "../../objectController/gobject.h"
 #include "../../enums/mapGeneratorSattings.h"
+#include "objectList.h"
 #else
 #include "randomgen.h"
 #include "objectController/gobject.h"
 #include "enums/mapGeneratorSattings.h"
+#include "objectController/objectList.h"
 #endif
 
 class MapGenerator

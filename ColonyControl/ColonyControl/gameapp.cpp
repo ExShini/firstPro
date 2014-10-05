@@ -38,16 +38,16 @@ GameApp::~GameApp()
 }
 
 /*************************************
-FUNC: startGame()
+FUNC: iterGame()
 DESC: main game func - contain all game's main calls
 *************************************/
-void GameApp::startGame()
+void GameApp::iterGame()
 {
     cout << "Try initialize game" << endl;
     initialize();
     TimeGuard* timeGuard = TimeGuard::getInstance();
-    timeGuard->start();
-    cout << "Start main Game cycle" << endl;
+    timeGuard->iter();
+    cout << "iter main Game cycle" << endl;
     while( m_gameStatus )
     {
         timeGuard->checkTime();

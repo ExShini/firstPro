@@ -3,8 +3,10 @@
 
 #ifdef WIN32
 #include "../../randomgen.h"
+#include "../../enums/mapGeneratorSattings.h"
 #else
 #include "randomgen.h"
+#include "enums/mapGeneratorSattings.h"
 #endif
 
 /*************************************

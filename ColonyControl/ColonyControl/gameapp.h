@@ -18,7 +18,7 @@ class GameApp
 {
 public:
     GameApp();
-    void startGame();
+    void iterGame();
     ~GameApp();
 
 private:
