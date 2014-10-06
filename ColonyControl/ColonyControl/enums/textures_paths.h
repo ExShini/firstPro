@@ -12,5 +12,6 @@
 #define p_HumanSettlers "res/humanSettler.xcf"
 #define p_LavaMount "res/LavaMount.xcf"
 #define p_Lava "res/Lava.xcf"
+#define p_HumanFighter "res/HumanFighter.xcf"
 
 #endif // TEXTURES_PATHS_H

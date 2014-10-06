@@ -83,6 +83,9 @@ bool Render::init()
     m_objController->init();
     m_plMap = m_objController->getPlanetMap();
 
+    //set UnitController to render
+    m_unitController =  UnitController::getInstance();
+
     //set backGround object to render
     m_backGround = m_objController->getBackGround();
 
@@ -118,6 +121,9 @@ void Render::renderScreen()
     drawBackground();
     //draw objects
     drawObjects();
+    //draw all units
+    drawUnits();
+
 
 
     SDL_RenderPresent(m_rend);
@@ -137,9 +143,7 @@ void Render::drawObjects()
     w = xcor + m_widthInFields + 2;
     h = ycor + m_heightInFields + 2;
 
-    //cout << xcor << " " << ycor << " " << w << " " << h << endl;
     checkCordinats(&xcor, &ycor, &w, &h);
-    //cout << xcor << " " << ycor << " " << w << " " << h << endl;
 
     for (int level = SECTOR_LEVEL; level < NUM_LEVELS; level++)
     {
@@ -160,6 +164,29 @@ void Render::drawObjects()
             }
         }
     }
+}
+
+
+/*************************************
+FUNC: drawUnits()
+DESC: draw all units
+*************************************/
+void Render::drawUnits()
+{
+    list<Unit*>* units = m_unitController->getUnitList();
+
+    list<Unit*>::iterator iterator = units->begin();
+    list<Unit*>::iterator end = units->end();
+
+    for(; iterator != end; iterator++)
+    {
+        Unit* unit = (Unit*)(*iterator);
+        drawSurfaceEx( unit->getX() - m_camera->x() + m_fieldGapX,
+                       unit->getY() - m_camera->y() + m_fieldGapY,
+                       unit->getAngle(),
+                       unit->getFrameController(), m_rend);
+    }
+
 }
 
 /*************************************
@@ -206,6 +233,25 @@ void Render::drawSurface(int x, int y, FrameController* fcontroller, SDL_Rendere
     SDL_Texture* tex = fcontroller->getTexture();
 
     SDL_RenderCopy(rend, tex, &src, &target);
+}
+
+/*************************************
+FUNC: drawSurface()
+DESC: draw current texture in (x,y) position
+*************************************/
+void Render::drawSurfaceEx(int x, int y, int angle, FrameController* fcontroller, SDL_Renderer* rend)
+{
+    SDL_Rect target;
+    target.x = x;
+    target.y = y;
+
+    const SDL_Rect& src = fcontroller->getSrcRect();
+    target.h = src.h;
+    target.w = src.w;
+
+    SDL_Texture* tex = fcontroller->getTexture();
+
+    SDL_RenderCopyEx(rend, tex, &src, &target, angle, NULL, SDL_FLIP_NONE);
 }
 
 /*************************************

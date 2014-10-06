@@ -10,7 +10,7 @@
 #include "render/render.h"
 #include "eventController/eventcontroller.h"
 #include "gameProcessor/gameprocessor.h"
-
+#include "gameProcessor/unitcontroller.h"
 
 
 
@@ -18,7 +18,7 @@ class GameApp
 {
 public:
     GameApp();
-    void iterGame();
+    void StartGame();
     ~GameApp();
 
 private:
@@ -28,6 +28,7 @@ private:
     Render * m_render;
     EventController * m_evController;
     GameProcessor * m_gameProcessor;
+    UnitController* m_unitController;
 
 
     // main handlers

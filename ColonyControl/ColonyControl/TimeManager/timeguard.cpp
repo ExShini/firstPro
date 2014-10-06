@@ -40,7 +40,7 @@ TimeGuard* TimeGuard::getInstance()
 FUNC: iter()
 DESC: iter time counting
 *************************************/
-void TimeGuard::iter()
+void TimeGuard::Start()
 {
     m_lastTime = SDL_GetTicks();
 }

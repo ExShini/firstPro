@@ -5,6 +5,7 @@
 
 #include "TimeManager/timeguard.h"
 
+
 #ifdef WIN32
 #include "SDL.h"
 #else
@@ -25,6 +26,7 @@ GameApp::GameApp():
     m_render = new Render();
     m_evController = new EventController(&m_gameStatus);
     m_gameProcessor = GameProcessor::getInstance();
+    m_unitController = UnitController::getInstance();
 }
 
 /*************************************
@@ -38,15 +40,15 @@ GameApp::~GameApp()
 }
 
 /*************************************
-FUNC: iterGame()
+FUNC: StartGame()
 DESC: main game func - contain all game's main calls
 *************************************/
-void GameApp::iterGame()
+void GameApp::StartGame()
 {
     cout << "Try initialize game" << endl;
     initialize();
     TimeGuard* timeGuard = TimeGuard::getInstance();
-    timeGuard->iter();
+    timeGuard->Start();
     cout << "iter main Game cycle" << endl;
     while( m_gameStatus )
     {
@@ -70,6 +72,7 @@ void GameApp::initialize()
         m_gameStatus = false;
     }
 
+    m_unitController->init();
     m_gameProcessor->init();
     m_gameStatus &= m_render->init();
 
@@ -91,6 +94,7 @@ DESC: main game process handler
 void GameApp::gameProcessing()
 {
     m_gameProcessor->process();
+    m_unitController->process();
 }
 
 /*************************************

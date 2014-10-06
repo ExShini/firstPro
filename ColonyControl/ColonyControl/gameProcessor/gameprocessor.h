@@ -9,6 +9,7 @@
 #include "TimeManager/timeguard.h"
 #endif
 
+#include "unitcontroller.h"
 
 
 class ObjectController;
@@ -21,6 +22,7 @@ public:
     void init();
     void process();
     bool addSettlementToProcess(Settlement* sett);
+    void tryColonize(int x, int y, int colonists);
     void removeSettlementFromProcess(int key);
 
     static int getFieldKey(int x, int y);
@@ -30,6 +32,7 @@ protected:
 
     GameProcessor();
     ObjectController* m_objController;
+    UnitController* m_unitController;
     map<int, Settlement*> m_processMap;
 
     int m_eventID;

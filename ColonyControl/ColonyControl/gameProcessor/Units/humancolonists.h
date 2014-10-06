@@ -5,12 +5,16 @@
 class HumanColonists:  public Unit
 {
 public:
-    HumanColonists(int iterSecX, int iterSecY, int tarSecX, int trSecY, int colonists);
+    HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists);
     void process();
 
 protected:
     int m_stX, m_stY;
     int m_tgX, m_tgY;
+
+    int m_xSpeed, m_ySpeed;
+    int m_steps;
+    int m_colonists;
 };
 
 #endif // HUMANCOLONISTS_H

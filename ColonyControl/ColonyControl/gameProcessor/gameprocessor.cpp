@@ -1,5 +1,7 @@
-#include "gameprocessor.h"
+#include "iostream"
 
+#include "gameprocessor.h"
+#include "allUnits.h"
 
 #ifdef WIN32
 #include "../objectController/objectcontroller.h"
@@ -8,6 +10,8 @@
 #include "objectController/objectcontroller.h"
 #include "randomgen.h"
 #endif
+
+using namespace std;
 
 GameProcessor* GameProcessor::m_instance = new GameProcessor();
 
@@ -29,6 +33,7 @@ void GameProcessor::init()
 {
     m_objController = ObjectController::getInstance();
     m_timeGuard = TimeGuard::getInstance();
+    m_unitController = UnitController::getInstance();
     m_eventID = m_timeGuard->addEvent(500);
 }
 
@@ -89,18 +94,28 @@ void GameProcessor::process()
             int x = 0, y = 0;
             provideMovingCoordinat(&x, &y, settlement);
 
-            int newSettlementKey = getFieldKey(x, y);
-            if(m_processMap.find(newSettlementKey) != m_processMap.end())
-            {
-                Settlement* targetSettlement = m_processMap[newSettlementKey];
-                int colonists = settlement->sendColonists();
-                targetSettlement->inviteColonists(colonists);
-            }
-            else
-            {
-                m_objController->addNewSettlement(x, y, settlement->sendColonists());
-            }
+            HumanColonists* humCol = new HumanColonists(settlement->getX(), settlement->getY(),
+                                                        x, y, settlement->sendColonists());
+            m_unitController->addUnit(humCol);
         }
+    }
+}
+
+/*************************************
+FUNC: tryColonize(int x, int y, int colonists)
+DESC: try colonize targer sector with current number of colonists
+*************************************/
+void GameProcessor::tryColonize(int x, int y, int colonists)
+{
+    int newSettlementKey = getFieldKey(x, y);
+    if(m_processMap.find(newSettlementKey) != m_processMap.end())
+    {
+        Settlement* targetSettlement = m_processMap[newSettlementKey];
+        targetSettlement->inviteColonists(colonists);
+    }
+    else
+    {
+        m_objController->addNewSettlement(x, y, colonists);
     }
 }
 

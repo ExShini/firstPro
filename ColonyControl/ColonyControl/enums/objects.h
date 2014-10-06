@@ -19,6 +19,7 @@ enum ObjectsType
     t_HumanSettlers,
     t_LavaMount,
     t_Lava,
+    t_HumanFighter,
     NumberOfObjectTypes,
     NULLOBJECT
 };

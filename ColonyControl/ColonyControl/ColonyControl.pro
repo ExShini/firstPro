@@ -76,4 +76,6 @@ HEADERS += \
     objectController/objects/lava.h \
     gameProcessor/unitcontroller.h \
     gameProcessor/unit.h \
-    gameProcessor/Units/humancolonists.h
+    gameProcessor/Units/humancolonists.h \
+    enums/Units/humanUnits.h \
+    gameProcessor/allUnits.h

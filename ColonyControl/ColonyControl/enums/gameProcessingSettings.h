@@ -1,6 +1,10 @@
 #ifndef GAMEPROCESSINGSETTINGS_H
 #define GAMEPROCESSINGSETTINGS_H
 
+#define UNIT_PROC_RATE 16
+#define DEFAULT_PROC_TIME_POINT 1   //1 ms time point
+
+
 //human's group is 16 people
 #define HUMANS_GROPS(population) ( population >> 4 )
 #define HUMAN_FOOD_PRODUCING 19

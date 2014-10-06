@@ -1,0 +1,6 @@
+#ifndef HUMANUNITS_H
+#define HUMANUNITS_H
+
+#define HUM_COLONIST_SHUTL_SPEED 1
+
+#endif // HUMANUNITS_H

@@ -5,9 +5,11 @@
 #include"SDL.h"
 #include "../ColonyControlWin/stdafx.h"
 #include "../objectController/objectcontroller.h"
+#include "../gameProcessor/unitcontroller.h"
 #else
 #include"SDL2/SDL.h"
 #include "objectController/objectcontroller.h"
+#include "gameProcessor/unitcontroller.h"
 #endif
 
 #include "iostream"
@@ -32,11 +34,14 @@ private:
     TextureProvider * m_textureProvider;
 
     void drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend);
+    void drawSurfaceEx(int x, int y, int angle, FrameController* fcontroller, SDL_Renderer* rend);
     void drawBackground();
     void drawObjects();
+    void drawUnits();
     void checkCordinats(int* x, int* y, int* w, int* h);
 
     ObjectController* m_objController;
+    UnitController* m_unitController;
     PlanetMap* m_plMap;
 
 

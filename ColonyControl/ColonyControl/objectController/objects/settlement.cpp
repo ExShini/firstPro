@@ -84,6 +84,7 @@ int Settlement::sendColonists()
 
     m_colonists = 0;
     m_moveDesire = 0;
+    readyToMove = false;
 
     return var;
 }

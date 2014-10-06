@@ -19,7 +19,7 @@ class TimeGuard
 {
 public:
     static TimeGuard* getInstance();
-    void iter();
+    void Start();
     void checkTime();
 
     int addEvent(Uint32 timePoint);
