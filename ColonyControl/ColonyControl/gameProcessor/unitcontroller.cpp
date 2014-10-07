@@ -72,6 +72,8 @@ void UnitController::cleanProcList()
     for (; iter != end ; iter++)
     {
         list<Unit*>::iterator delIter = (list<Unit*>::iterator)(*iter);
+        Unit* unit = (Unit*)(*delIter);
+        delete unit;
         m_units->erase(delIter);
     }
 

@@ -12,6 +12,7 @@ class Unit
 {
 public:
     Unit();
+    virtual ~Unit();
     virtual void process() = 0;
     int getX() { return m_x; }
     int getY() { return m_y; }
