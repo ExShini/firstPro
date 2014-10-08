@@ -17,6 +17,7 @@ enum ObjectsType
     t_CameraObject,
     t_Sector,
     t_HumanSettlers,
+    t_HumanColonyCenter,
     t_LavaMount,
     t_Lava,
     t_HumanFighter,
@@ -34,11 +35,11 @@ enum ModuleObjLevel
 };
 
 //MAP field settings
-#define MAP_WIDTH 128  //WARNING! PART_OF_MAP_W and MAP_WIDTH should be synchronized!
-#define MAP_HEIGHT 128  //WARNING! PART_OF_MAP_ and MAP_HEIGHT should be synchronized!
+#define MAP_WIDTH 64  //WARNING! PART_OF_MAP_W and MAP_WIDTH should be synchronized!
+#define MAP_HEIGHT 64  //WARNING! PART_OF_MAP_ and MAP_HEIGHT should be synchronized!
 
-#define PART_OF_MAP_W >> 7  //WARNING! PART_OF_MAP_W and MAP_WIDTH should be synchronized!
-#define PART_OF_MAP_H >> 7  //WARNING! PART_OF_MAP_ and MAP_HEIGHT should be synchronized!
+#define PART_OF_MAP_W >> 6  //WARNING! PART_OF_MAP_W and MAP_WIDTH should be synchronized!
+#define PART_OF_MAP_H >> 6  //WARNING! PART_OF_MAP_ and MAP_HEIGHT should be synchronized!
 
 #define M_ACCURACY_FACTOR << 7
 #define D_ACCURACY_FACTOR >> 7

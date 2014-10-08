@@ -3,16 +3,19 @@
 
 #ifdef WIN32
 #include "../../objectController/gobject.h"
+#include "../sector.h"
 #else
 #include "objectController/gobject.h"
+#include "objectController/objects/sector.h"
 #endif
 
-#include "sector.h"
+
 
 class Settlement: public GObject
 {
 public:
     Settlement(Sector* sector);
+    Settlement();
 
 
     int getPopulation()         { return m_population; }

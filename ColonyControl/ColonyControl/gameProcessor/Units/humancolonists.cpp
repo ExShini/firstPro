@@ -30,46 +30,41 @@ HumanColonists::HumanColonists(int startSecX, int startSecY, int tarSecX, int ta
     a.X = tarSecX - startSecX;
     a.Y = tarSecY - startSecY;
 
-    m_steps = (sqrt(pow(a.X, 2) + pow(a.Y, 2)) * UNIT_PROC_RATE) / HUM_COLONIST_SHUTL_SPEED;
+    m_steps = (sqrt(pow(a.X, 2) + pow(a.Y, 2)) * UNIT_PROC_RATE) / HUM_SHUTL_TRANSPORT_SPEED;
 
     if(a.X != 0 && a.Y != 0)
     {
-        Vec b;
-        b.X = tarSecX - startSecX;
-        //b.Y = 0;
-
         //calc angle
-        m_alpha = acos((double)(a.X * b.X /*+ a.Y * b.Y*/) / (double)(sqrt(pow(a.X, 2) + pow(a.Y, 2)) * b.X ));
-        if(a.X > 0)
-            m_alpha = 360 - m_alpha;
-
-        //TODO: add speed calculating!!!
+        double radAng = atan((double)(a.Y)/((double)a.X));
+        m_alpha = radAng * RAD1;
+        m_xSpeed = ((HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE) * cos(radAng);
+        m_xSpeed = ((HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE) * sin(radAng);
     }
     else
     {
         if (a.X > 0)
         {
             m_alpha = 0;
-            m_xSpeed = (HUM_COLONIST_SHUTL_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
+            m_xSpeed = (HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
             m_ySpeed = 0;
         }
         else if(a.X < 0)
         {
             m_alpha = 180;
-            m_xSpeed = -(HUM_COLONIST_SHUTL_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
+            m_xSpeed = -(HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
             m_ySpeed = 0;
         }
         else if(a.Y > 0)
         {
             m_alpha = 90;
             m_xSpeed = 0;
-            m_ySpeed = (HUM_COLONIST_SHUTL_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
+            m_ySpeed = (HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
         }
         else if(a.Y < 0)
         {
             m_alpha = 270;
             m_xSpeed = 0;
-            m_ySpeed = -(HUM_COLONIST_SHUTL_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
+            m_ySpeed = -(HUM_SHUTL_TRANSPORT_SPEED * FIELD_SIZE) / UNIT_PROC_RATE;
         }
     }
 

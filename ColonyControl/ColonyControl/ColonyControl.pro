@@ -27,7 +27,7 @@ SOURCES += main.cpp \
     render/framecontroller.cpp \
     eventController/mouseeventproc.cpp \
     objectController/objects/sector.cpp \
-    objectController/objects/settlement.cpp \
+    objectController/objects/humanBuildings/settlement.cpp \
     objectController/mapGenarator/planetmap.cpp \
     objectController/mapGenarator/mapgenerator.cpp \
     TimeManager/timeguard.cpp \
@@ -37,7 +37,9 @@ SOURCES += main.cpp \
     objectController/objects/lava.cpp \
     gameProcessor/unitcontroller.cpp \
     gameProcessor/unit.cpp \
-    gameProcessor/Units/humancolonists.cpp
+    gameProcessor/Units/humancolonists.cpp \
+    objectController/objects/humanBuildings/colonycenter.cpp \
+    Subsystems/sectorradar.cpp
 
 
 LIBS += -lSDL2
@@ -64,7 +66,7 @@ HEADERS += \
     eventController/mouseeventproc.h \
     enums/event_handling_enum.h \
     objectController/objects/sector.h \
-    objectController/objects/settlement.h \
+    objectController/objects/humanBuildings/settlement.h \
     objectController/mapGenarator/planetmap.h \
     objectController/mapGenarator/mapgenerator.h \
     enums/mapGeneratorSattings.h \
@@ -78,4 +80,7 @@ HEADERS += \
     gameProcessor/unit.h \
     gameProcessor/Units/humancolonists.h \
     enums/Units/humanUnits.h \
-    gameProcessor/allUnits.h
+    gameProcessor/allUnits.h \
+    objectController/objects/humanBuildings/colonycenter.h \
+    Subsystems/sectorradar.h \
+    Subsystems/coordinate.h

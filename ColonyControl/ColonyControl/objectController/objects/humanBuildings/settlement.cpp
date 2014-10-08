@@ -34,6 +34,11 @@ Settlement::Settlement(Sector* sector):
     m_y = m_sector->getY();
 }
 
+Settlement::Settlement()
+{
+
+}
+
 void Settlement::process()
 {
     //food processing
@@ -69,11 +74,6 @@ void Settlement::process()
         int excess = m_population - HUMAN_POPULATION_BASE_LIMIT;
         m_population -= HUMAN_POPULATION_DEMAGE(excess);
     }
-
-    /*
-    cout << "Sector "<< m_x << ":" << m_y << " \tPopulation: " << m_population << "+" << growth
-         << " \tFood: " << m_food << " +" << produceFood << endl;
-    */
 }
 
 
