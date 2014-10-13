@@ -99,7 +99,11 @@
     <ClInclude Include="..\eventController\keyboardeventproc.h" />
     <ClInclude Include="..\eventController\mouseeventproc.h" />
     <ClInclude Include="..\gameapp.h" />
+    <ClInclude Include="..\gameProcessor\allUnits.h" />
     <ClInclude Include="..\gameProcessor\gameprocessor.h" />
+    <ClInclude Include="..\gameProcessor\unit.h" />
+    <ClInclude Include="..\gameProcessor\unitcontroller.h" />
+    <ClInclude Include="..\gameProcessor\Units\humancolonists.h" />
     <ClInclude Include="..\objectController\gobject.h" />
     <ClInclude Include="..\objectController\mapGenarator\mapgenerator.h" />
     <ClInclude Include="..\objectController\mapGenarator\planetmap.h" />
@@ -125,6 +129,9 @@
     <ClCompile Include="..\eventController\mouseeventproc.cpp" />
     <ClCompile Include="..\gameapp.cpp" />
     <ClCompile Include="..\gameProcessor\gameprocessor.cpp" />
+    <ClCompile Include="..\gameProcessor\unit.cpp" />
+    <ClCompile Include="..\gameProcessor\unitcontroller.cpp" />
+    <ClCompile Include="..\gameProcessor\Units\humancolonists.cpp" />
     <ClCompile Include="..\objectController\gobject.cpp" />
     <ClCompile Include="..\objectController\mapGenarator\mapgenerator.cpp" />
     <ClCompile Include="..\objectController\mapGenarator\planetmap.cpp" />

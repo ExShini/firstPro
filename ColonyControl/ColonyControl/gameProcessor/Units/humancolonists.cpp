@@ -6,6 +6,7 @@
 #include "../../enums/Units/humanUnits.h"
 #include "../../enums/gameProcessingSettings.h"
 #include "../../enums/gui_enums.h"
+#include "../gameprocessor.h"
 #else
 #include "enums/Units/humanUnits.h"
 #include "enums/gameProcessingSettings.h"

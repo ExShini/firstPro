@@ -12,7 +12,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "Create gameApp" << endl;
     GameApp * game = new GameApp();
     cout << "Start gameApp" << endl;
-    game->startGame();
+    game->StartGame();
 
     cout << "Finish gameApp" << endl;
     return 0;
