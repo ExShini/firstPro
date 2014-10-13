@@ -47,6 +47,10 @@ protected:
 
     Sector* m_sector;
 
+    int m_stateCount;
+    int m_level;
+    void checkState();
+
     //militaryPower, Energy and etc.
 };
 
