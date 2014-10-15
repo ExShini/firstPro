@@ -1,7 +1,8 @@
 #include "unit.h"
 
-Unit::Unit()
+Unit::Unit(int playerID)
 {
+    m_playerID = playerID;
 }
 
 Unit::~Unit()

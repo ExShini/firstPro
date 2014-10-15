@@ -12,7 +12,7 @@
 class HumanColonists:  public Unit
 {
 public:
-    HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists);
+    HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists, int playerID);
     void process();
 
 protected:

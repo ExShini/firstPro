@@ -11,6 +11,7 @@
 class GObject
 {
 public:
+    GObject();
     virtual ~GObject();
     virtual FrameController * getFController() { return m_fcontroller; }
 
@@ -30,8 +31,6 @@ public:
 
 
 protected:
-    GObject();
-
     //coordinates and sizes
     int m_x;
     int m_y;

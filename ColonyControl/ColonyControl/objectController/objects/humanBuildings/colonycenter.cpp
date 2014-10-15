@@ -6,22 +6,14 @@
 #include "enums/Units/humanUnits.h"
 #endif
 
-ColonyCenter::ColonyCenter(Sector *sec):
-    Settlement(),
+ColonyCenter::ColonyCenter(Sector *sec, int playerID):
+    Settlement(sec, playerID),
     m_transportInHangar(0),
     m_transportControlled(0),
     m_prodProgress(0)
 {
     m_type = t_HumanColonyCenter;
-    m_fcontroller = new FrameController(
-                TextureProvider::getInstance()->getTexture(m_type));
-
-    m_width = 1;
-    m_height = 1;
-
-    m_sector = sec;
-    m_x = m_sector->getX();
-    m_y = m_sector->getY();
+    m_fcontroller->setNewTexture(TextureProvider::getInstance()->getTexture(m_type));
 }
 
 void ColonyCenter::process()

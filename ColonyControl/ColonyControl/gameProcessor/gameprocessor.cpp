@@ -95,7 +95,7 @@ void GameProcessor::process()
             provideMovingCoordinat(&x, &y, settlement);
 
             HumanColonists* humCol = new HumanColonists(settlement->getX(), settlement->getY(),
-                                                        x, y, settlement->sendColonists());
+                                                        x, y, settlement->sendColonists(), settlement->getPlayerID());
             m_unitController->addUnit(humCol);
         }
     }
@@ -105,7 +105,7 @@ void GameProcessor::process()
 FUNC: tryColonize(int x, int y, int colonists)
 DESC: try colonize targer sector with current number of colonists
 *************************************/
-void GameProcessor::tryColonize(int x, int y, int colonists)
+void GameProcessor::tryColonize(int x, int y, int colonists, int playerID)
 {
     int newSettlementKey = getFieldKey(x, y);
     if(m_processMap.find(newSettlementKey) != m_processMap.end())
@@ -115,7 +115,7 @@ void GameProcessor::tryColonize(int x, int y, int colonists)
     }
     else
     {
-        m_objController->addNewSettlement(x, y, colonists);
+        m_objController->addNewSettlement(x, y, colonists, playerID);
     }
 }
 

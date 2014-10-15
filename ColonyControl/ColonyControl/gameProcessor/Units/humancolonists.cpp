@@ -16,7 +16,8 @@
 
 using namespace std;
 
-HumanColonists::HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists):
+HumanColonists::HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists, int playerID):
+    Unit(playerID),
     m_stX(startSecX),
     m_stY(startSecY),
     m_tgX(tarSecX),
@@ -83,7 +84,7 @@ void HumanColonists::process()
     if(m_steps <= 0)
     {
         //colonize target sector
-        GameProcessor::getInstance()->tryColonize(m_tgX, m_tgY, m_colonists);
+        GameProcessor::getInstance()->tryColonize(m_tgX, m_tgY, m_colonists, m_playerID);
         m_active = false;
     }
 

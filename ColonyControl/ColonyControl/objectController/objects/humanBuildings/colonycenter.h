@@ -5,7 +5,7 @@
 class ColonyCenter: public Settlement
 {
 public:
-    ColonyCenter(Sector* sec);
+    ColonyCenter(Sector* sec, int playerID);
     void process();
 
 

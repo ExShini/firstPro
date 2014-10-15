@@ -23,6 +23,17 @@ FrameController::FrameController(SDL_Texture* texture, bool fullTexture):
 }
 
 /*************************************
+FUNC: setNewTexture(SDL_Texture* texture, bool rotation, bool mooveble, Direction dir)
+DESC: set new texture
+*************************************/
+void FrameController::setNewTexture(SDL_Texture *texture, bool fullTexture)
+{
+    m_fullTexture = fullTexture;
+    m_texture = texture;
+    setTextureArea(0,0);
+}
+
+/*************************************
 FUNC: setDirection(Direction dir)
 DESC: set direction for current object
 *************************************/

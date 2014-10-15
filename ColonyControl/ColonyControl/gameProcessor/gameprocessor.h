@@ -22,7 +22,7 @@ public:
     void init();
     void process();
     bool addSettlementToProcess(Settlement* sett);
-    void tryColonize(int x, int y, int colonists);
+    void tryColonize(int x, int y, int colonists, int playerID);
     void removeSettlementFromProcess(int key);
 
     static int getFieldKey(int x, int y);

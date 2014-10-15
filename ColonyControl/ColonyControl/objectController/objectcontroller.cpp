@@ -37,7 +37,7 @@ void ObjectController::init()
     to1->setY(10);
     m_cameraObj = to1;
 
-    addNewSettlement(10, 10, 1500);
+    addNewSettlement(10, 10, 1500, 1);
 //    addNewSettlement(60, 60, 500);
 //    addNewSettlement(10, 60, 500);
 //    addNewSettlement(60, 10, 500);
@@ -90,7 +90,7 @@ ObjectController* ObjectController::getInstance()
 FUNC: addNewSettlement(int x, int y, int settlers)
 DESC: add new settlement to game map (in x,y corr) with settlers
 *************************************/
-bool ObjectController::addNewSettlement(int x, int y, int settlers)
+bool ObjectController::addNewSettlement(int x, int y, int settlers, int playerID)
 {
     //Check area for new settlement. If it already contain settlement return false.
     if (m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] != NULL)
@@ -102,7 +102,7 @@ bool ObjectController::addNewSettlement(int x, int y, int settlers)
     if (!sector->itApplicable())
         return false;
 
-    Settlement* settelment = new Settlement(sector);
+    Settlement* settelment = new Settlement(sector, playerID);
     settelment->setPopulation(settlers);
 
     //set new sector to game map and processMap

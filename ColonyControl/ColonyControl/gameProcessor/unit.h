@@ -11,7 +11,7 @@
 class Unit
 {
 public:
-    Unit();
+    Unit(int playerID);
     virtual ~Unit();
     virtual void process() = 0;
     int getX() { return m_x; }
@@ -19,12 +19,14 @@ public:
     int getAngle() { return m_alpha; }
     bool isActive() { return m_active; }
     FrameController* getFrameController() { return m_fcontroller; }
+    int getPlayerID() { return m_playerID; }
 
 protected:
     int m_x, m_y;
     int m_alpha;
     bool m_active;
     FrameController* m_fcontroller;
+    int m_playerID;
 };
 
 

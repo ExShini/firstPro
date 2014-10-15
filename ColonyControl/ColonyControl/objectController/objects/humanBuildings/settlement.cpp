@@ -12,18 +12,24 @@
 
 using namespace std;
 
-Settlement::Settlement(Sector* sector):
-    readyToMove(false),
-    m_population(0),
-    m_populationBaseLimit(HUMAN_POPULATION_BASE_LIMIT),
-    m_food(0),
-    m_minerals(0),
-    m_production(0),
-    m_colonists(0),
-    m_stateCount(0),
-    m_level(0)
-
+Settlement::Settlement(Sector* sector, int playerID):
+    Buildings(sector, playerID)
 {
+    //init members
+    readyToMove = false;
+    m_population = 0;
+    m_populationBaseLimit = HUMAN_POPULATION_BASE_LIMIT;
+    m_food = 0;
+    m_minerals = 0;
+    m_production = 0;
+    m_colonists = 0;
+    m_stateCount = 0;
+    m_level = 0;
+
+    m_immigrants = 0;
+    m_emigrants = 0;
+
+
     m_type = t_HumanSettlers;
     m_fcontroller = new FrameController(
                 TextureProvider::getInstance()->getTexture(m_type));
@@ -36,11 +42,6 @@ Settlement::Settlement(Sector* sector):
     m_sector = sector;
     m_x = m_sector->getX();
     m_y = m_sector->getY();
-}
-
-Settlement::Settlement()
-{
-
 }
 
 void Settlement::process()
