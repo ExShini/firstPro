@@ -41,7 +41,8 @@ SOURCES += main.cpp \
     objectController/objects/humanBuildings/colonycenter.cpp \
     Subsystems/sectorradar.cpp \
     gameProcessor/playercontroller.cpp \
-    gameProcessor/Playrs/player.cpp
+    gameProcessor/Playrs/player.cpp \
+    gameProcessor/Playrs/humanplayer.cpp
 
 
 LIBS += -lSDL2
@@ -88,4 +89,5 @@ HEADERS += \
     Subsystems/coordinate.h \
     gameProcessor/playercontroller.h \
     gameProcessor/Playrs/player.h \
-    objectController/objects/building.h
+    objectController/objects/building.h \
+    gameProcessor/Playrs/humanplayer.h

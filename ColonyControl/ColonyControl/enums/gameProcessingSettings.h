@@ -6,6 +6,14 @@
 #define DEFAULT_PROC_TIME_POINT 1   //1 ms time point
 
 
+enum Race
+{
+    Human = 0,
+    Aroi,
+    NoRace
+};
+
+
 //human's group is 16 people
 #define HUMANS_GROPS(population) ( population >> 4 )
 #define HUMAN_FOOD_PRODUCING 19
