@@ -19,8 +19,10 @@ public:
 
     void addEmigrantsRequest(GObject* settlement);
     void addImmigrantsRequest(GObject* settlement);
+    void addColonistTarget(GObject* settlement);
 
     virtual GObject* getEmigrantsTarget(int x, int y) = 0;
+    virtual GObject* getImmigrantsTarget(int x, int y) = 0;
 
 protected:
     int m_race;

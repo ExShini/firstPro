@@ -16,6 +16,10 @@
 
 using namespace std;
 
+/*************************************
+FUNC: HumanColonists()
+DESC: constructor
+*************************************/
 HumanColonists::HumanColonists(int startSecX, int startSecY, int tarSecX, int tarSecY, int colonists, int playerID):
     Unit(playerID),
     m_stX(startSecX),
@@ -75,6 +79,11 @@ HumanColonists::HumanColonists(int startSecX, int startSecY, int tarSecX, int ta
                 TextureProvider::getInstance()->getTexture(t_HumanFighter), true);
 }
 
+
+/*************************************
+FUNC: process()
+DESC: main process func
+*************************************/
 void HumanColonists::process()
 {
     m_x += m_xSpeed;
