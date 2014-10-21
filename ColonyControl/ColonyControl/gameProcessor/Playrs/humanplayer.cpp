@@ -26,19 +26,31 @@ DESC: find new emigrants for human shutle
 *************************************/
 GObject* HumanPlayer::getEmigrantsTarget(int x, int y)
 {
-    list<GObject*>::iterator iter = m_emigrantsRequests.begin();
-    list<GObject*>::iterator end = m_emigrantsRequests.end();
+    return getTargetFromList(x, y, m_emigrantsRequests, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
+}
+
+
+/*************************************
+FUNC: getTargetFromList(int x, int y, list<GObject *> source, int range)
+DESC: find target from current list
+*************************************/
+GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> source, int range)
+{
+    list<GObject*>::iterator iter = source.begin();
+    list<GObject*>::iterator end = source.end();
 
     GObject* targetSec = NULL;
     int tarDis = 999;
+    list<GObject*>::iterator tarIter;
 
     for(;iter != end; iter++)
     {
         GObject* sector = *iter;
         int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );
 
-        if(dist < HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE)
+        if(dist < range)
         {
+            source.erase(iter);
             return sector;
         }
         else
@@ -47,10 +59,12 @@ GObject* HumanPlayer::getEmigrantsTarget(int x, int y)
             {
                 tarDis = dist;
                 targetSec = sector;
+                tarIter = iter;
             }
         }
     }
-
+\
+    source.erase(tarIter);
     return targetSec;
 }
 
@@ -92,32 +106,7 @@ DESC: find new area for colonists
 *************************************/
 GObject* HumanPlayer::colonizeNewArea(int x, int y)
 {
-    list<GObject*>::iterator iter = m_colonizeTargets.begin();
-    list<GObject*>::iterator end = m_colonizeTargets.end();
-
-    GObject* targetSec = NULL;
-    int tarDis = 999;
-
-    for(;iter != end; iter++)
-    {
-        GObject* sector = *iter;
-        int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );
-
-        if(dist < HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE)
-        {
-            return sector;
-        }
-        else
-        {
-            if (dist < tarDis)
-            {
-                tarDis = dist;
-                targetSec = sector;
-            }
-        }
-    }
-
-    return targetSec;
+    return getTargetFromList(x, y, m_colonizeTargets, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
 }
 
 
@@ -128,30 +117,5 @@ DESC: find settlements for colonists
 *************************************/
 GObject* HumanPlayer::resettleColonists(int x, int y)
 {
-    list<GObject*>::iterator iter = m_immigrantsRequests.begin();
-    list<GObject*>::iterator end = m_immigrantsRequests.end();
-
-    GObject* targetSec = NULL;
-    int tarDis = 999;
-
-    for(;iter != end; iter++)
-    {
-        GObject* sector = *iter;
-        int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );
-
-        if(dist < HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE)
-        {
-            return sector;
-        }
-        else
-        {
-            if (dist < tarDis)
-            {
-                tarDis = dist;
-                targetSec = sector;
-            }
-        }
-    }
-
-    return targetSec;
+    return getTargetFromList(x, y, m_immigrantsRequests, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
 }

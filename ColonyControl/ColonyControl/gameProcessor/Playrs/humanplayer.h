@@ -14,6 +14,8 @@ protected:
     GObject* colonizeNewArea(int x, int y);
     GObject* resettleColonists(int x, int y);
 
+    GObject* getTargetFromList(int x, int y, list<GObject*> source, int range);
+
 };
 
 #endif // HUMANPLAYER_H

@@ -5,6 +5,7 @@
 #define UNIT_PROC_RATE 16
 #define DEFAULT_PROC_TIME_POINT 1   //1 ms time point
 
+#define NUMBER_OF_PLAYERS 8
 
 enum Race
 {
