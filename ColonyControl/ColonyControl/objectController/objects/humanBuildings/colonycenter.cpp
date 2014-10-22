@@ -2,10 +2,17 @@
 
 #ifdef WIN32
 #include "../../../enums/Units/humanUnits.h"
+#include "../../enums/gameProcessingSettings.h"
 #else
 #include "enums/Units/humanUnits.h"
+#include "enums/gameProcessingSettings.h"
 #endif
 
+
+/*************************************
+FUNC: ColonyCenter(Sector *sec, int playerID)
+DESC: Constructor
+*************************************/
 ColonyCenter::ColonyCenter(Sector *sec, int playerID):
     Settlement(sec, playerID),
     m_transportInHangar(0),
@@ -14,8 +21,14 @@ ColonyCenter::ColonyCenter(Sector *sec, int playerID):
 {
     m_type = t_HumanColonyCenter;
     m_fcontroller->setNewTexture(TextureProvider::getInstance()->getTexture(m_type));
+
+    m_level = HUMAN_MAX_SETTLEMENT_LEVEL;
 }
 
+/*************************************
+FUNC: process()
+DESC: Main proc func
+*************************************/
 void ColonyCenter::process()
 {
     Settlement::process();

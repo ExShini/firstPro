@@ -88,6 +88,7 @@ void GameProcessor::process()
         Settlement* settlement = (*iterator).second;
         settlement->process();
 
+        /*
         if (settlement->readyToMove)
         {
             //find coordinates for colonist
@@ -98,6 +99,7 @@ void GameProcessor::process()
                                                         x, y, settlement->sendColonists(), settlement->getPlayerID());
             m_unitController->addUnit(humCol);
         }
+        */
     }
 }
 

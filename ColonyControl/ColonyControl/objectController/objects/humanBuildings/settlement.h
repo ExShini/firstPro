@@ -12,17 +12,16 @@ class Settlement: public Buildings
 public:
     Settlement(Sector* sector, int playerID);
 
-    int sendColonists();
-    void inviteColonists(int colonists);
+    virtual int sendColonists(int maxColonists);
+    virtual void inviteColonists(int colonists);
     virtual void process();
-
-    bool readyToMove;
 
 protected:
 
     int m_immigrants;
     int m_emigrants;
 
+    bool m_readyToMove;
 
     int m_stateCount;
     int m_level;
@@ -37,6 +36,7 @@ protected:
     void checkState();
     void foodEmigartion();
     void popLimitEmigration();
+    void immigrationReq();
 
     //militaryPower, Energy and etc.
 };

@@ -16,6 +16,8 @@ public:
     void setMinerals(int value)         { m_minerals = value; }
     void setProduction(int value)       { m_production = value; }
 
+    virtual int sendColonists(int maxColonists) = 0;
+    virtual void inviteColonists(int colonists) = 0;
     virtual void process() = 0;
 
     int getPlayerID() { return m_playerID; }

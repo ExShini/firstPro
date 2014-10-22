@@ -15,24 +15,32 @@ enum Race
 };
 
 //human settlement settings:
+#define HUMAN_MAX_SETTLEMENT_LEVEL 9    //lower level = 0, top = 9, number of levels = 10
+#define MIN_HUMAN_MOVE_DESIE 2
 
-enum BuildingsLevels
-{
-    BUILD_LEVEL_0 = 0,
-    BUILD_LEVEL_1,
-    BUILD_LEVEL_2,
-    BUILD_LEVEL_3,
-    BUILD_LEVEL_4,
-    BUILD_LEVEL_5,
-    BUILD_LEVEL_6,
-    BUILD_LEVEL_7,
-    BUILD_LEVEL_8,
-    BUILD_LEVEL_9,
-    BUILD_LEVEL_10,
-    BUILD_LEVEL_11,
-    NUMBER_OF_LEVELS,
-    HUMAN_MAX_LEVEL = BUILD_LEVEL_9
-};
+//next value means - how much infrastructure must be provided for achieve next settlement's level
+#define HUM_INF_LVL_1 150
+#define HUM_INF_LVL_2 1250 + HUM_INF_LVL_1
+#define HUM_INF_LVL_3 7500 + HUM_INF_LVL_2
+#define HUM_INF_LVL_4 26200 + HUM_INF_LVL_3
+#define HUM_INF_LVL_5 135000 + HUM_INF_LVL_4
+#define HUM_INF_LVL_6 135000 + HUM_INF_LVL_5
+#define HUM_INF_LVL_7 135000 + HUM_INF_LVL_6
+#define HUM_INF_LVL_8 135000 + HUM_INF_LVL_7
+#define HUM_INF_LVL_9 135000 + HUM_INF_LVL_8
+
+//next value means - how much people can live at current colony-settlement
+#define HUM_POP_LIM_0 1000
+#define HUM_POP_LIM_1 2000
+#define HUM_POP_LIM_2 4000
+#define HUM_POP_LIM_3 7000
+#define HUM_POP_LIM_4 12000
+#define HUM_POP_LIM_5 20000
+#define HUM_POP_LIM_6 30000
+#define HUM_POP_LIM_7 42000
+#define HUM_POP_LIM_8 60000
+#define HUM_POP_LIM_9 100000
+
 
 //human's group is 16 people
 #define HUMANS_GROPS(population) ( population >> 4 )

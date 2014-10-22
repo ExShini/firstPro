@@ -13,7 +13,6 @@ protected:
     int m_transportInHangar;
     int m_transportControlled;
     int m_prodProgress;
-    int processingMap[][2];
 
     void TryFindTransportMission();
 

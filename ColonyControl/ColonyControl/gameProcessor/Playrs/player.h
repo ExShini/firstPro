@@ -24,6 +24,10 @@ public:
     virtual GObject* getEmigrantsTarget(int x, int y) = 0;
     virtual GObject* getImmigrantsTarget(int x, int y) = 0;
 
+    virtual int getTopInfSettlementLevel(int level) = 0;
+    virtual int getLowInfSettlementLevel(int level) = 0;
+    virtual int getPopulationLimit(int level) = 0;
+
 protected:
     int m_race;
     list<GObject*> m_emigrantsRequests;

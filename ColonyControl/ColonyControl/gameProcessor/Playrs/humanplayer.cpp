@@ -17,7 +17,28 @@ DESC: constructor
 HumanPlayer::HumanPlayer():
     Player(Human)
 {
+    //set unfrastructure limits
+    m_infrastructureLimits[0] = HUM_INF_LVL_1;
+    m_infrastructureLimits[1] = HUM_INF_LVL_2;
+    m_infrastructureLimits[2] = HUM_INF_LVL_3;
+    m_infrastructureLimits[3] = HUM_INF_LVL_4;
+    m_infrastructureLimits[4] = HUM_INF_LVL_5;
+    m_infrastructureLimits[5] = HUM_INF_LVL_6;
+    m_infrastructureLimits[6] = HUM_INF_LVL_7;
+    m_infrastructureLimits[7] = HUM_INF_LVL_8;
+    m_infrastructureLimits[8] = HUM_INF_LVL_9;
 
+    //set population limits
+    m_populationLimits[0] = HUM_POP_LIM_0;
+    m_populationLimits[1] = HUM_POP_LIM_1;
+    m_populationLimits[2] = HUM_POP_LIM_2;
+    m_populationLimits[3] = HUM_POP_LIM_3;
+    m_populationLimits[4] = HUM_POP_LIM_4;
+    m_populationLimits[5] = HUM_POP_LIM_5;
+    m_populationLimits[6] = HUM_POP_LIM_6;
+    m_populationLimits[7] = HUM_POP_LIM_7;
+    m_populationLimits[8] = HUM_POP_LIM_8;
+    m_populationLimits[9] = HUM_POP_LIM_9;
 }
 
 /*************************************
@@ -118,4 +139,37 @@ DESC: find settlements for colonists
 GObject* HumanPlayer::resettleColonists(int x, int y)
 {
     return getTargetFromList(x, y, m_immigrantsRequests, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
+}
+
+/*************************************
+FUNC: getTopInfSettlementLevel(int level)
+DESC: return top infrastructure limit for current settlement level
+*************************************/
+int HumanPlayer::getTopInfSettlementLevel(int level)
+{
+    if (level < HUMAN_MAX_SETTLEMENT_LEVEL)
+        return m_infrastructureLimits[level];
+    else
+        return 0;
+}
+
+/*************************************
+FUNC: getLowInfSettlementLevel(int level)
+DESC: return low infrastructure limit for current settlement level
+*************************************/
+int HumanPlayer::getLowInfSettlementLevel(int level)
+{
+    if (level > 0)
+        return m_infrastructureLimits[level - 1];
+    else
+        return 0;
+}
+
+/*************************************
+FUNC: getPopulationLimit(int level)
+DESC: return population limit for current settlement level
+*************************************/
+int HumanPlayer::getPopulationLimit(int level)
+{
+    return m_populationLimits[level];
 }
