@@ -3,7 +3,7 @@
 #include "settlement.h"
 
 #ifdef WIN32
-#include "../../enums/gameProcessingSettings.h"
+#include "../../../enums/gameProcessingSettings.h"
 #else
 #include "enums/gameProcessingSettings.h"
 #endif

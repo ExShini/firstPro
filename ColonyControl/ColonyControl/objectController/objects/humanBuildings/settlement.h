@@ -2,7 +2,7 @@
 #define SETTLEMENT_H
 
 #ifdef WIN32
-#include "../../objectController/gobject.h"
+#include "../../../objectController/gobject.h"
 #include "../sector.h"
 #else
 #include "objectController/gobject.h"
