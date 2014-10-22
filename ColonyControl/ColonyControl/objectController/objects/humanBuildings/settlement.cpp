@@ -53,12 +53,12 @@ void Settlement::process()
 
     m_food += produceFood;
 
+    //infrastructure building
+    if(m_level != HUMAN_MAX_LEVEL)
+    {
+        m_infrastructure += HUMANS_GROPS(m_population);
+    }
 
-    m_colonists += HUMAN_COLONIST(m_population);
-    m_moveDesire++;
-
-    if (m_moveDesire >= HUMAN_RATE_OF_MOVING && HUMANS_GROPS(m_colonists) > 0)
-        readyToMove = true;
 
     //population processing
     int growth = HUMAN_POPULATION_GROWTH(m_population);
@@ -71,13 +71,25 @@ void Settlement::process()
     {
         m_population -= HUMAN_HUNGER_DEMAGE(m_food * (-1));
         m_food = 0;
+        foodEmigartion();
+    }
+    else
+    {
+        //take 25% of population and compair it with food storage
+        //if food storege will be smoll - emigrate
+        int pop25 = m_population >> 4;
+        if(pop25 > m_food)
+        {
+            foodEmigartion();
+        }
     }
 
     //population
-    if(m_population > HUMAN_POPULATION_BASE_LIMIT)
+    if(m_population > m_populationLimit)
     {
-        int excess = m_population - HUMAN_POPULATION_BASE_LIMIT;
+        int excess = m_population - m_populationLimit;
         m_population -= HUMAN_POPULATION_DEMAGE(excess);
+        popLimitEmigration();
     }
 
     m_stateCount++;
@@ -87,6 +99,15 @@ void Settlement::process()
     }
 }
 
+void Settlement::foodEmigartion()
+{
+
+}
+
+void Settlement::popLimitEmigration()
+{
+
+}
 
 void Settlement::checkState()
 {

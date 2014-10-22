@@ -14,6 +14,25 @@ enum Race
     NoRace
 };
 
+//human settlement settings:
+
+enum BuildingsLevels
+{
+    BUILD_LEVEL_0 = 0,
+    BUILD_LEVEL_1,
+    BUILD_LEVEL_2,
+    BUILD_LEVEL_3,
+    BUILD_LEVEL_4,
+    BUILD_LEVEL_5,
+    BUILD_LEVEL_6,
+    BUILD_LEVEL_7,
+    BUILD_LEVEL_8,
+    BUILD_LEVEL_9,
+    BUILD_LEVEL_10,
+    BUILD_LEVEL_11,
+    NUMBER_OF_LEVELS,
+    HUMAN_MAX_LEVEL = BUILD_LEVEL_9
+};
 
 //human's group is 16 people
 #define HUMANS_GROPS(population) ( population >> 4 )
@@ -23,12 +42,9 @@ enum Race
 #define HUMAN_FOOD_CONSUMPTIONS(population) (population)
 #define HUMAN_HUNGER_DEMAGE(food) (food >> 2)   //25% will die
 
-//population growth for human = 6.25%
-#define HUMAN_POPULATION_GROWTH(population) (population >> 4)
+//population growth for human = 3.125%
+#define HUMAN_POPULATION_GROWTH(population) (population >> 5)
 
-//new human colonist equals 3.125% of population
-#define HUMAN_COLONIST(population) (population >> 5)
-#define HUMAN_RATE_OF_MOVING 2
 
 #define HUMAN_POPULATION_BASE_LIMIT 8000
 #define HUMAN_POPULATION_DEMAGE(food) (food >> 2)   //25% will die

@@ -26,7 +26,17 @@ protected:
 
     int m_stateCount;
     int m_level;
+
+
+
+    //infrastructure members
+    int m_infrastructure;
+    int m_lowInfLevel;
+    int m_topInfLevel;
+
     void checkState();
+    void foodEmigartion();
+    void popLimitEmigration();
 
     //militaryPower, Energy and etc.
 };

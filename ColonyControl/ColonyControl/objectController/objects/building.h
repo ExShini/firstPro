@@ -22,7 +22,7 @@ public:
 
 protected:
     int m_population;             //current number of settlers
-    int m_populationBaseLimit;    //maximum base number of settlers, which can live at this sector
+    int m_populationLimit;    //maximum base number of settlers, which can live at this sector
     int m_food;                   //food storage
 
     int m_minerals;               //mineral storage
