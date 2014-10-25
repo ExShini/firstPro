@@ -18,7 +18,8 @@ protected:
     GObject* colonizeNewArea(int x, int y);
     GObject* resettleColonists(int x, int y);
 
-    GObject* getTargetFromList(int x, int y, list<GObject*> source, int range);
+    GObject* getTargetFromList(int x, int y, list<GObject *> & source, int range);
+    GObject* getTargetFromMap(int x, int y, map<int, GObject *> & source);
 
     int m_infrastructureLimits[HUMAN_MAX_SETTLEMENT_LEVEL];
     int m_populationLimits[HUMAN_MAX_SETTLEMENT_LEVEL + 1];

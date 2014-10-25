@@ -9,6 +9,7 @@
 #endif
 
 #include "list"
+#include "map"
 
 using namespace std;
 
@@ -27,12 +28,13 @@ public:
     virtual int getTopInfSettlementLevel(int level) = 0;
     virtual int getLowInfSettlementLevel(int level) = 0;
     virtual int getPopulationLimit(int level) = 0;
+    int getRace() { return m_race; }
 
 protected:
     int m_race;
     list<GObject*> m_emigrantsRequests;
     list<GObject*> m_immigrantsRequests;
-    list<GObject*> m_colonizeTargets;
+    map<int, GObject*> m_colonizeTargets;
 };
 
 #endif // PLAYER_H

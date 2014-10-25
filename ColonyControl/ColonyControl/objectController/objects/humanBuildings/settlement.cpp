@@ -5,9 +5,11 @@
 #ifdef WIN32
 #include "../../enums/gameProcessingSettings.h"
 #include "../../gameProcessor/playercontroller.h"
+#include "../../../gameProcessor/gameprocessor.h"
 #else
 #include "enums/gameProcessingSettings.h"
 #include "gameProcessor/playercontroller.h"
+#include "gameProcessor/gameprocessor.h"
 #endif
 
 using namespace std;
@@ -23,7 +25,6 @@ Settlement::Settlement(Sector* sector, int playerID):
     //init members
     m_readyToMove = false;
     m_population = 0;
-    m_populationLimit = HUMAN_POPULATION_BASE_LIMIT;
     m_food = 0;
     m_minerals = 0;
     m_production = 0;
@@ -33,6 +34,9 @@ Settlement::Settlement(Sector* sector, int playerID):
 
     m_immigrants = 0;
     m_emigrants = 0;
+    m_moveDesire = 0;
+    m_infrastructure = 0;
+
 
     //set default values for limits
     Player* pl = PlayerController::getInstance()->getPlayer(playerID);
@@ -53,6 +57,8 @@ Settlement::Settlement(Sector* sector, int playerID):
     m_sector = sector;
     m_x = m_sector->getX();
     m_y = m_sector->getY();
+
+    GameProcessor::getInstance()->checkEmptyAreas(m_x, m_y, m_playerID);
 }
 
 /*************************************
@@ -68,18 +74,12 @@ void Settlement::process()
 
     m_food += produceFood;
 
-    //infrastructure building
-    if(m_level != HUMAN_MAX_SETTLEMENT_LEVEL)
-    {
-        m_infrastructure += HUMANS_GROPS(m_population);
-    }
-
 
     //population processing
     int growth = HUMAN_POPULATION_GROWTH(m_population);
     m_population +=  growth; //HUMAN_POPULATION_GROWTH(m_population);
 
-    //reset number of colonists
+    //reset emigrants
     m_colonists = 0;
 
     //check limits and consumptions
@@ -93,10 +93,10 @@ void Settlement::process()
     }
     else
     {
-        //take 25% of population and compair it with food storage
+        //take 12.5% of population and compair it with food storage
         //if food storege will be smoll - emigrate
-        int pop25 = m_population >> 2;
-        if(pop25 > m_food)
+        int pop125 = m_population >> 3;
+        if(pop125 > m_food)
         {
             foodEmigartion();
         }
@@ -120,11 +120,21 @@ void Settlement::process()
         }
     }
 
+    //infrastructure building
+    if(m_level != HUMAN_MAX_SETTLEMENT_LEVEL && m_food > 0)
+    {
+        m_infrastructure += HUMANS_GROPS(m_population);
+    }
+
     m_stateCount++;
     if(m_stateCount >= 5)
     {
         checkState();
     }
+
+
+//    cout << "Settlement: "<< m_x << ":" << m_y << " Colonists: " << m_colonists << " Population: "
+//         << m_population << " Food: " << m_food << endl;
 }
 
 /*************************************
@@ -144,6 +154,11 @@ DESC: Add emigration request (if it needed) and refresh number of colonists
 void Settlement::foodEmigartion()
 {
     m_moveDesire++;
+    //take 12.5% of population and change it by food storage
+    m_colonists = (m_population >> 3) - m_food;
+
+    cout << "foodEmigartion from " << m_x << ":" << m_y << " Food: " << m_food << " Population: " << m_population << " moveD = " << m_moveDesire << endl;
+
     if(m_moveDesire < MIN_HUMAN_MOVE_DESIE)
         return;
 
@@ -153,9 +168,6 @@ void Settlement::foodEmigartion()
         pl->addEmigrantsRequest(this);
         m_readyToMove = true;
     }
-
-    //take 25% of population and change it by food storage
-    m_colonists = (m_population >> 2) - m_food;
 }
 
 /*************************************
@@ -165,6 +177,15 @@ DESC: Add emigration request (if it needed) and increase number of colonists
 void Settlement::popLimitEmigration()
 {
     m_moveDesire++;
+    int col = m_population - m_populationLimit;
+
+    if(m_colonists < col)
+    {
+        m_colonists = col;
+    }
+
+    cout << "popLimitEmigration from " << m_x << ":" << m_y << " moveD = " << m_moveDesire << endl;
+
     if(m_moveDesire < MIN_HUMAN_MOVE_DESIE)
         return;
 
@@ -175,7 +196,7 @@ void Settlement::popLimitEmigration()
         m_readyToMove = true;
     }
 
-    m_colonists += m_population - m_populationLimit;
+
 }
 
 /*************************************
@@ -236,7 +257,15 @@ int Settlement::sendColonists(int maxColonists)
         emigrants = m_colonists;
     }
 
-    m_population -= emigrants;
+    if(emigrants < (m_population >> 1) )
+    {
+        m_population -= emigrants;
+    }
+    else
+    {
+        emigrants = m_population >> 1;
+        m_population -= emigrants;
+    }
 
     m_colonists = 0;
     m_moveDesire = 0;

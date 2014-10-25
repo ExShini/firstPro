@@ -13,5 +13,6 @@
 #define p_LavaMount "res/LavaMount.xcf"
 #define p_Lava "res/Lava.xcf"
 #define p_HumanFighter "res/HumanFighter.xcf"
+#define p_HumanColonyCenter "res/HumanColonyCenter.xcf"
 
 #endif // TEXTURES_PATHS_H

@@ -1,13 +1,18 @@
+#include "iostream"
 #include "colonycenter.h"
 
 #ifdef WIN32
 #include "../../../enums/Units/humanUnits.h"
 #include "../../enums/gameProcessingSettings.h"
+#include "../../../gameProcessor/playercontroller.h"
 #else
 #include "enums/Units/humanUnits.h"
+#include "gameProcessor/Units/humancolonists.h"
 #include "enums/gameProcessingSettings.h"
+#include "gameProcessor/playercontroller.h"
 #endif
 
+using namespace std;
 
 /*************************************
 FUNC: ColonyCenter(Sector *sec, int playerID)
@@ -23,6 +28,7 @@ ColonyCenter::ColonyCenter(Sector *sec, int playerID):
     m_fcontroller->setNewTexture(TextureProvider::getInstance()->getTexture(m_type));
 
     m_level = HUMAN_MAX_SETTLEMENT_LEVEL;
+    m_populationLimit = HUM_POP_LIM_1;
 }
 
 /*************************************
@@ -40,6 +46,7 @@ void ColonyCenter::process()
         {
             m_transportControlled++;
             m_transportInHangar++;
+            m_prodProgress = 0;
         }
     }
 
@@ -49,8 +56,29 @@ void ColonyCenter::process()
     }
 }
 
+void ColonyCenter::checkState()
+{
+    //stub - do nothing
+}
 
 void ColonyCenter::TryFindTransportMission()
 {
+    GObject* tar = PlayerController::getInstance()->getPlayer(m_playerID)->getEmigrantsTarget(m_x, m_y);
+    if(tar != NULL)
+    {
+        cout << "Send shutl to " << tar->getX() << ":" << tar->getY() << endl;
+        HumanColonists* shutle = new HumanColonists(this, tar, m_playerID);
+        UnitController::getInstance()->addUnit(shutle);
+        m_transportInHangar--;
+    }
+}
 
+void ColonyCenter::returnToBase()
+{
+    m_transportInHangar++;
+}
+
+void ColonyCenter::lostShutle()
+{
+    m_transportControlled--;
 }

@@ -36,18 +36,6 @@ void ObjectController::init()
     to1->setX(10);
     to1->setY(10);
     m_cameraObj = to1;
-
-    addNewSettlement(10, 10, 1500, 1);
-//    addNewSettlement(60, 60, 500);
-//    addNewSettlement(10, 60, 500);
-//    addNewSettlement(60, 10, 500);
-
-//    addNewSettlement(100, 60, 500);
-//    addNewSettlement(10, 100, 500);
-//    addNewSettlement(100, 100, 500);
-    //add to1 object to drawing camera object
-    //Layer* topMap = m_plMap->objects[MLEVEL_2];
-    //topMap->lMap[to1->getX()][to1->getY()] = to1;
 }
 
 /*************************************
@@ -87,12 +75,18 @@ ObjectController* ObjectController::getInstance()
 }
 
 /*************************************
-FUNC: addNewSettlement(int x, int y, int settlers)
+FUNC: addNewBuilding(int x, int y, int settlers)
 DESC: add new settlement to game map (in x,y corr) with settlers
 *************************************/
-bool ObjectController::addNewSettlement(int x, int y, int settlers, int playerID)
+bool ObjectController::addNewBuilding(Buildings* building)
 {
-    //Check area for new settlement. If it already contain settlement return false.
+    int x = building->getX();
+    int y = building->getY();
+
+    if(x < 0 || x >= MAP_WIDTH || y < 0 || y > MAP_HEIGHT)
+        return false;
+
+    //Check area for new buildings. If it already contain buildings return false.
     if (m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] != NULL)
         return false;
 
@@ -102,12 +96,9 @@ bool ObjectController::addNewSettlement(int x, int y, int settlers, int playerID
     if (!sector->itApplicable())
         return false;
 
-    Settlement* settelment = new Settlement(sector, playerID);
-    settelment->setPopulation(settlers);
-
     //set new sector to game map and processMap
-    m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] = settelment;
-    m_gameProc->addSettlementToProcess(settelment);
+    m_plMap->objects[SETTLEMENT_LEVEL]->lMap[x][y] = building;
+    m_gameProc->addBuildingToProcess(building);
 
     return true;
 }

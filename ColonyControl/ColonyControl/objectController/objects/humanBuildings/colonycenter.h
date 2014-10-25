@@ -7,6 +7,8 @@ class ColonyCenter: public Settlement
 public:
     ColonyCenter(Sector* sec, int playerID);
     void process();
+    void returnToBase();
+    void lostShutle();
 
 
 protected:
@@ -15,6 +17,8 @@ protected:
     int m_prodProgress;
 
     void TryFindTransportMission();
+    void checkState();
+
 
 };
 

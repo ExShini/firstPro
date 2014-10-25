@@ -1,3 +1,6 @@
+#include "iostream"
+#include "cmath"
+
 #include "humanplayer.h"
 
 #ifdef WIN32
@@ -8,7 +11,7 @@
 #include "enums/Units/humanUnits.h"
 #endif
 
-#include "cmath"
+using namespace std;
 
 /*************************************
 FUNC: HumanPlayer()
@@ -47,6 +50,7 @@ DESC: find new emigrants for human shutle
 *************************************/
 GObject* HumanPlayer::getEmigrantsTarget(int x, int y)
 {
+    cout << "HumanPlayer::getEmigrantsTarget" << endl;
     return getTargetFromList(x, y, m_emigrantsRequests, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
 }
 
@@ -55,7 +59,7 @@ GObject* HumanPlayer::getEmigrantsTarget(int x, int y)
 FUNC: getTargetFromList(int x, int y, list<GObject *> source, int range)
 DESC: find target from current list
 *************************************/
-GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> source, int range)
+GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> &source, int range)
 {
     list<GObject*>::iterator iter = source.begin();
     list<GObject*>::iterator end = source.end();
@@ -84,8 +88,48 @@ GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> source, in
             }
         }
     }
-\
-    source.erase(tarIter);
+    \
+    if(targetSec != NULL)
+    {
+        source.erase(tarIter);
+    }
+    return targetSec;
+}
+
+
+/*************************************
+FUNC: getTargetFromList(int x, int y, list<GObject *> source, int range)
+DESC: find target from current list
+*************************************/
+GObject* HumanPlayer::getTargetFromMap(int x, int y, map<int, GObject *> &source)
+{
+    map<int, GObject *>::iterator iter = source.begin();
+    map<int, GObject *>::iterator end = source.end();
+
+    int targetKey = -1;
+    GObject* targetSec = NULL;
+    int tarDis = 999;
+
+    for(;iter != end; iter++)
+    {
+        GObject* sector = (*iter).second;
+        int key = (*iter).first;
+
+        int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );
+
+        if (dist < tarDis)
+        {
+            tarDis = dist;
+            targetSec = sector;
+            targetKey = key;
+        }
+
+    }
+
+    if(targetKey != -1)
+    {
+        source.erase(targetKey);
+    }
     return targetSec;
 }
 
@@ -95,18 +139,20 @@ DESC: choose target for human-colonists shutle
 *************************************/
 GObject* HumanPlayer::getImmigrantsTarget(int x, int y)
 {
-    int colTargets = m_colonizeTargets.size();
+    int immigranstCount = m_immigrantsRequests.size();
+    int colTargets = m_colonizeTargets.size() + immigranstCount;
+
     if (colTargets > 0)
     {
-        //try choose target for colonists
-        short emigrantsCount = m_emigrantsRequests.size();
-        short immigranstCount = m_immigrantsRequests.size();
 
-        int randBorder = emigrantsCount + immigranstCount;
-
-        if(randBorder > 0)
+        if(immigranstCount > 0)
         {
-            short rand = RandomGen::getRand();
+            //try choose target for colonists
+            int emigrantsCount = m_emigrantsRequests.size() + 1;
+            int randBorder = emigrantsCount + immigranstCount;
+
+            short rand = RandomGen::getRand() % randBorder;
+
             if (rand > immigranstCount)
             {
                 return colonizeNewArea(x,y);
@@ -115,6 +161,10 @@ GObject* HumanPlayer::getImmigrantsTarget(int x, int y)
             {
                 return resettleColonists(x,y);
             }
+        }
+        else
+        {
+            return colonizeNewArea(x,y);
         }
     }
 
@@ -127,7 +177,7 @@ DESC: find new area for colonists
 *************************************/
 GObject* HumanPlayer::colonizeNewArea(int x, int y)
 {
-    return getTargetFromList(x, y, m_colonizeTargets, HUM_SHUTL_TRANSPORT_ACTIVITY_RANGE);
+    return getTargetFromMap(x, y, m_colonizeTargets);
 }
 
 

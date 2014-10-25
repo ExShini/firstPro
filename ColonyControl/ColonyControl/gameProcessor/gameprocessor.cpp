@@ -34,6 +34,7 @@ void GameProcessor::init()
     m_objController = ObjectController::getInstance();
     m_timeGuard = TimeGuard::getInstance();
     m_unitController = UnitController::getInstance();
+    m_plController = PlayerController::getInstance();
     m_eventID = m_timeGuard->addEvent(500);
 }
 
@@ -47,10 +48,10 @@ GameProcessor* GameProcessor::getInstance()
 }
 
 /*************************************
-FUNC: addSettlementToProcess(Settlement* sett)
+FUNC: addBuildingToProcess(Settlement* sett)
 DESC: add new settlement to process map
 *************************************/
-bool GameProcessor::addSettlementToProcess(Settlement* sett)
+bool GameProcessor::addBuildingToProcess(Buildings* sett)
 {
     int key = getFieldKey(sett->getX(), sett->getY());
 
@@ -80,26 +81,13 @@ void GameProcessor::process()
     if (!m_timeGuard->checkEvent(m_eventID, true))
         return;
 
-    map<int, Settlement*>::iterator iterator = m_processMap.begin();
-    map<int, Settlement*>::iterator end = m_processMap.end();
+    map<int, Buildings*>::iterator iterator = m_processMap.begin();
+    map<int, Buildings*>::iterator end = m_processMap.end();
 
     for(; iterator != end; iterator++)
     {
-        Settlement* settlement = (*iterator).second;
+        Buildings* settlement = (*iterator).second;
         settlement->process();
-
-        /*
-        if (settlement->readyToMove)
-        {
-            //find coordinates for colonist
-            int x = 0, y = 0;
-            provideMovingCoordinat(&x, &y, settlement);
-
-            HumanColonists* humCol = new HumanColonists(settlement->getX(), settlement->getY(),
-                                                        x, y, settlement->sendColonists(), settlement->getPlayerID());
-            m_unitController->addUnit(humCol);
-        }
-        */
     }
 }
 
@@ -107,66 +95,131 @@ void GameProcessor::process()
 FUNC: tryColonize(int x, int y, int colonists)
 DESC: try colonize targer sector with current number of colonists
 *************************************/
-void GameProcessor::tryColonize(int x, int y, int colonists, int playerID)
+bool GameProcessor::tryColonize(int x, int y, int colonists, int playerID)
 {
     int newSettlementKey = getFieldKey(x, y);
     if(m_processMap.find(newSettlementKey) != m_processMap.end())
     {
-        Settlement* targetSettlement = m_processMap[newSettlementKey];
-        targetSettlement->inviteColonists(colonists);
+        Settlement* targetSettlement = (Settlement*)m_processMap[newSettlementKey];
+        if(targetSettlement->getPlayerID() == playerID)
+        {
+            targetSettlement->inviteColonists(colonists);
+            return true;
+        }
+
+        return false;
     }
     else
     {
-        m_objController->addNewSettlement(x, y, colonists, playerID);
+        Buildings* sett = NULL;
+        Sector* sec = (Sector*)m_objController->getPlanetMap()->objects[SECTOR_LEVEL]->lMap[x][y];
+
+        switch (m_plController->getPlayer(playerID)->getRace()) {
+        case Human:
+            sett = new Settlement(sec, playerID);
+            sett->setPopulation(colonists);
+            break;
+        default:
+            cout << "EROR! GameProcessor::tryColonize uncknown race!" << endl;
+            break;
+        }
+
+        return m_objController->addNewBuilding(sett);
     }
 }
 
 /*************************************
-FUNC: provideMovingCoordinat(int *x, int *y, Settlement* set)
-DESC: find point for colonists moving
+FUNC: tryGetColonists(int x, int y, int maxCol, int playerID)
+DESC: Try get colonists from target sector for shutle boarding
 *************************************/
-void GameProcessor::provideMovingCoordinat(int *x, int *y, Settlement* set)
+int GameProcessor::tryGetColonists(int x, int y, int maxCol, int playerID)
 {
-    bool applicable = false;
-    while (!applicable)
+    int emigrantsSettlementKey = getFieldKey(x, y);
+    if(m_processMap.find(emigrantsSettlementKey) != m_processMap.end())
     {
-        int direction = RandomGen::getRand() % NUMBER_OF_DIRECTIONS;
-
-        switch(direction)
+        Settlement* emigrantsSettlement = (Settlement*)m_processMap[emigrantsSettlementKey];
+        if(emigrantsSettlement->getPlayerID() == playerID)
         {
-        case UP:
-            if (set->getY() > 0)
-            {
-                *x = set->getX();
-                *y = set->getY() - 1;
-                applicable = m_objController->checkAreaApplicable(*x, *y);
-            }
-            break;
-        case LEFT:
-            if (set->getX() > 0)
-            {
-                *x = set->getX() - 1;
-                *y = set->getY();
-                applicable = m_objController->checkAreaApplicable(*x, *y);
-            }
-            break;
-        case DOWN:
-            if (set->getY() < MAP_HEIGHT)
-            {
-                *x = set->getX();
-                *y = set->getY() + 1;
-                applicable = m_objController->checkAreaApplicable(*x, *y);
-            }
-            break;
-        case RIGHT:
-            if (set->getX() < MAP_WIDTH)
-            {
-                *x = set->getX() + 1;
-                *y = set->getY();
-                applicable = m_objController->checkAreaApplicable(*x, *y);
-            }
-            break;
+            return emigrantsSettlement->sendColonists(maxCol);
         }
+    }
+    return 0;
+}
+
+
+void GameProcessor::checkEmptyAreas(int x, int y, int playerID)
+{
+    Player* pl = m_plController->getPlayer(playerID);
+    PlanetMap* plmap = m_objController->getPlanetMap();
+
+    //check all sides
+    //left
+    if(m_objController->checkAreaApplicable(x - 1, y))
+    {
+        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x-1][y];
+        if (settlement == NULL)
+        {
+            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x-1][y]);
+        }
+    }
+
+    //right
+    if(m_objController->checkAreaApplicable(x + 1, y))
+    {
+        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x+1][y];
+        if (settlement == NULL)
+        {
+            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x+1][y]);
+        }
+    }
+
+    //down
+    if(m_objController->checkAreaApplicable(x, y + 1))
+    {
+        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x][y+1];
+        if (settlement == NULL)
+        {
+            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x][y+1]);
+        }
+    }
+
+    //top
+    if(m_objController->checkAreaApplicable(x, y - 1))
+    {
+        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x][y-1];
+        if (settlement == NULL)
+        {
+            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x][y-1]);
+        }
+    }
+
+}
+
+/*************************************
+FUNC: addNewPlayer(int x, int y, int playerID)
+DESC: add new player to game
+*************************************/
+void GameProcessor::addNewPlayer(int x, int y, int race)
+{
+
+    int playerID = m_plController->addNewPlayer(race);
+
+    if(playerID == -1)
+        return;
+
+    Sector* sec = (Sector*) m_objController->getPlanetMap()->objects[SECTOR_LEVEL]->lMap[x][y];
+
+    switch (race) {
+    case Human:
+    {
+        ColonyCenter* colC = new ColonyCenter(sec, playerID);
+        colC->setPopulation(1500);
+        m_objController->addNewBuilding(colC);
+        break;
+    }
+    default:
+        cout << "GameProcessor::addNewPlayer uncknown race!" <<endl;
+        break;
     }
 }
 

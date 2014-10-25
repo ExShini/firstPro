@@ -3,6 +3,7 @@
 
 #include "objects/sector.h"
 #include "objects/humanBuildings/settlement.h"
+#include "objects/humanBuildings/colonycenter.h"
 #include "objects/testobjects.h"
 #include "objects/lavamount.h"
 #include "objects/lava.h"

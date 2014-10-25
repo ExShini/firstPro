@@ -1,4 +1,13 @@
+#include "iostream"
+
 #include "player.h"
+
+#ifdef WIN32
+#else
+#include "enums/gui_enums.h"
+#endif
+
+using namespace std;
 
 /*************************************
 FUNC: Player()
@@ -34,5 +43,9 @@ DESC: add new sector for colony targets
 *************************************/
 void Player::addColonistTarget(GObject *settlement)
 {
-    m_colonizeTargets.push_back(settlement);
+    int key = (settlement->getX() MULTIPLY_FS) + settlement->getY();
+    if(m_colonizeTargets.find(key) == m_colonizeTargets.end())
+    {
+        m_colonizeTargets[key] = settlement;
+    }
 }

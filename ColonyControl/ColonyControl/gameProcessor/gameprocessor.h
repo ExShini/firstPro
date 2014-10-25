@@ -9,6 +9,7 @@
 #include "TimeManager/timeguard.h"
 #endif
 
+#include "playercontroller.h"
 #include "unitcontroller.h"
 
 
@@ -21,9 +22,14 @@ public:
     static GameProcessor* getInstance();
     void init();
     void process();
-    bool addSettlementToProcess(Settlement* sett);
-    void tryColonize(int x, int y, int colonists, int playerID);
+
+    void addNewPlayer(int x, int y, int race);
+
+    bool addBuildingToProcess(Buildings *sett);
+    int tryGetColonists(int x, int y, int maxCol, int playerID);
+    bool tryColonize(int x, int y, int colonists, int playerID);
     void removeSettlementFromProcess(int key);
+    void checkEmptyAreas(int x, int y, int playerID);
 
     static int getFieldKey(int x, int y);
 
@@ -33,12 +39,11 @@ protected:
     GameProcessor();
     ObjectController* m_objController;
     UnitController* m_unitController;
-    map<int, Settlement*> m_processMap;
+    map<int, Buildings*> m_processMap;
 
     int m_eventID;
     TimeGuard* m_timeGuard;
-
-    void provideMovingCoordinat(int* x, int* y, Settlement* set);
+    PlayerController* m_plController;
 };
 
 #endif // GAMEPROCESSOR_H

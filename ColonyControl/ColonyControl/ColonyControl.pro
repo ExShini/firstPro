@@ -42,7 +42,11 @@ SOURCES += main.cpp \
     Subsystems/sectorradar.cpp \
     gameProcessor/playercontroller.cpp \
     gameProcessor/Playrs/player.cpp \
-    gameProcessor/Playrs/humanplayer.cpp
+    gameProcessor/Playrs/humanplayer.cpp \
+    gameProcessor/Units/UnitProcessors/unitprocessor.cpp \
+    gameProcessor/Units/UnitProcessors/humshutlereturntobaseproc.cpp \
+    gameProcessor/Units/UnitProcessors/humshutleemigrationproc.cpp \
+    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.cpp
 
 
 LIBS += -lSDL2
@@ -90,4 +94,8 @@ HEADERS += \
     gameProcessor/playercontroller.h \
     gameProcessor/Playrs/player.h \
     objectController/objects/building.h \
-    gameProcessor/Playrs/humanplayer.h
+    gameProcessor/Playrs/humanplayer.h \
+    gameProcessor/Units/UnitProcessors/unitprocessor.h \
+    gameProcessor/Units/UnitProcessors/humshutlereturntobaseproc.h \
+    gameProcessor/Units/UnitProcessors/humshutleemigrationproc.h \
+    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.h

@@ -76,6 +76,8 @@ void GameApp::initialize()
     m_gameProcessor->init();
     m_gameStatus &= m_render->init();
 
+    m_gameProcessor->addNewPlayer(10, 10, Human);
+
 }
 
 /*************************************

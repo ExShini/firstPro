@@ -26,7 +26,7 @@ public:
     GObject* getBackGround();
     void init();
 
-    bool addNewSettlement(int x, int y, int settlers, int playerID);
+    bool addNewBuilding(Buildings* building);
     bool checkAreaApplicable(int x, int y);
 
 protected:

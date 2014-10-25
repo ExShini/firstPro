@@ -33,7 +33,7 @@ protected:
     int m_lowInfLevel;
     int m_topInfLevel;
 
-    void checkState();
+    virtual void checkState();
     void foodEmigartion();
     void popLimitEmigration();
     void immigrationReq();

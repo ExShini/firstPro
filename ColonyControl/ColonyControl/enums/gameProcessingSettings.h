@@ -50,8 +50,8 @@ enum Race
 #define HUMAN_FOOD_CONSUMPTIONS(population) (population)
 #define HUMAN_HUNGER_DEMAGE(food) (food >> 2)   //25% will die
 
-//population growth for human = 3.125%
-#define HUMAN_POPULATION_GROWTH(population) (population >> 5)
+//population growth for human = 6.25%
+#define HUMAN_POPULATION_GROWTH(population) (population >> 4)
 
 
 #define HUMAN_POPULATION_BASE_LIMIT 8000

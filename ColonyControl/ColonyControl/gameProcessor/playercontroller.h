@@ -16,11 +16,12 @@ public:
 
     static PlayerController* getInstance();
     Player* getPlayer(int playerID);
-    Player* addNewPlayer(int Race);
+    int addNewPlayer(int Race);
 
 protected:
     PlayerController();
     static PlayerController* m_instance;
+    int m_playerCounter;
 
     Player* m_players[NUMBER_OF_PLAYERS];
 };
