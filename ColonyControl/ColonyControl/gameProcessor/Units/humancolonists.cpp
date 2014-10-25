@@ -28,13 +28,13 @@ HumanColonists::HumanColonists(GObject* base, GObject *target, int playerID):
     Unit(playerID),
     m_shutlState(findEmigrants)
 {
+    m_colonists = 0;
     m_active = true;
     m_base = base;
 
     m_x = base->getX() MULTIPLY_FS;
     m_y = base->getY() MULTIPLY_FS;
 
-    cout << "HumanColonists 2. Position: " << m_x << ":" << m_y << endl;
     //set direction to first target
     setDirection(target);
 
@@ -74,9 +74,6 @@ void HumanColonists::setDirection(GObject *target)
     a.X = m_tx - (m_x DIVIDE_FS);
     a.Y = m_ty - (m_y DIVIDE_FS);
 
-    cout << "setDirection to: " << target->getX() << ":" << target->getY()
-         << " from " << (m_x DIVIDE_FS) << ":" << ((m_y DIVIDE_FS)) << endl;
-
     if(a.X == 0 && a.Y == 0)
     {
         m_steps = 0;
@@ -115,13 +112,6 @@ void HumanColonists::setDirection(GObject *target)
     {
         m_alpha += 180;
     }
-
-    cout << "!!! setDirection NOT NORMAL: " << m_xSpeed << " yspeed" << m_ySpeed << endl;
-    cout << "!!! alpha: " << m_alpha << " steps " << m_steps << endl;
-    cout << "!!! A: " << a.X << ":" << a.Y << endl;
-
-
-    cout << "setDirection end xspeed: " << m_xSpeed << " yspeed" << m_ySpeed << endl;
 }
 
 

@@ -148,7 +148,7 @@ GObject* HumanPlayer::getImmigrantsTarget(int x, int y)
         if(immigranstCount > 0)
         {
             //try choose target for colonists
-            int emigrantsCount = m_emigrantsRequests.size() + 1;
+            int emigrantsCount = m_emigrantsRequests.size() + 2;
             int randBorder = emigrantsCount + immigranstCount;
 
             short rand = RandomGen::getRand() % randBorder;

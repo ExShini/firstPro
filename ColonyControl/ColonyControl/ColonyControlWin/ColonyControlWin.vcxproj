@@ -137,10 +137,10 @@
     <ClCompile Include="..\objectController\mapGenarator\planetmap.cpp" />
     <ClCompile Include="..\objectController\movableobj.cpp" />
     <ClCompile Include="..\objectController\objectcontroller.cpp" />
+    <ClCompile Include="..\objectController\objects\humanBuildings\settlement.cpp" />
     <ClCompile Include="..\objectController\objects\lava.cpp" />
     <ClCompile Include="..\objectController\objects\lavamount.cpp" />
     <ClCompile Include="..\objectController\objects\sector.cpp" />
-    <ClCompile Include="..\objectController\objects\settlement.cpp" />
     <ClCompile Include="..\objectController\objects\testobjects.cpp" />
     <ClCompile Include="..\randomgen.cpp" />
     <ClCompile Include="..\render\framecontroller.cpp" />

@@ -3,7 +3,7 @@
 #include "settlement.h"
 
 #ifdef WIN32
-#include "../../enums/gameProcessingSettings.h"
+#include "../../../enums/gameProcessingSettings.h"
 #include "../../gameProcessor/playercontroller.h"
 #include "../../../gameProcessor/gameprocessor.h"
 #else
@@ -87,7 +87,10 @@ void Settlement::process()
     m_food -= HUMAN_FOOD_CONSUMPTIONS(m_population);
     if(m_food < 0)
     {
-        m_population -= HUMAN_HUNGER_DEMAGE(m_food * (-1));
+        cout << "I " << m_population << endl;
+        m_population -= HUMAN_HUNGER_DEMAGE(0);
+        //m_population -= HUMAN_HUNGER_DEMAGE(m_food * (-1));
+        cout << "I" << endl;
         foodEmigartion();
         m_food = 0;
     }
@@ -98,6 +101,7 @@ void Settlement::process()
         int pop125 = m_population >> 3;
         if(pop125 > m_food)
         {
+            cout << "II" << endl;
             foodEmigartion();
         }
     }
@@ -133,8 +137,8 @@ void Settlement::process()
     }
 
 
-//    cout << "Settlement: "<< m_x << ":" << m_y << " Colonists: " << m_colonists << " Population: "
-//         << m_population << " Food: " << m_food << endl;
+    cout << "Settlement: "<< m_x << ":" << m_y << " Colonists: " << m_colonists << " Population: "
+         << m_population << " Food: " << m_food << endl;
 }
 
 /*************************************
@@ -156,6 +160,12 @@ void Settlement::foodEmigartion()
     m_moveDesire++;
     //take 12.5% of population and change it by food storage
     m_colonists = (m_population >> 3) - m_food;
+
+    if(m_colonists < 0)
+    {
+        m_colonists = 0;
+        return;
+    }
 
     cout << "foodEmigartion from " << m_x << ":" << m_y << " Food: " << m_food << " Population: " << m_population << " moveD = " << m_moveDesire << endl;
 
@@ -184,6 +194,12 @@ void Settlement::popLimitEmigration()
         m_colonists = col;
     }
 
+    if(m_colonists < 0)
+    {
+        m_colonists = 0;
+        return;
+    }
+
     cout << "popLimitEmigration from " << m_x << ":" << m_y << " moveD = " << m_moveDesire << endl;
 
     if(m_moveDesire < MIN_HUMAN_MOVE_DESIE)
@@ -195,8 +211,6 @@ void Settlement::popLimitEmigration()
         pl->addEmigrantsRequest(this);
         m_readyToMove = true;
     }
-
-
 }
 
 /*************************************
