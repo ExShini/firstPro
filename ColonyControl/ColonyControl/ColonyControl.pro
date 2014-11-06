@@ -46,7 +46,10 @@ SOURCES += main.cpp \
     gameProcessor/Units/UnitProcessors/unitprocessor.cpp \
     gameProcessor/Units/UnitProcessors/humshutlereturntobaseproc.cpp \
     gameProcessor/Units/UnitProcessors/humshutleemigrationproc.cpp \
-    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.cpp
+    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.cpp \
+    UIController/uicontroller.cpp \
+    UIController/uielement.cpp \
+    UIController/uibar.cpp
 
 
 LIBS += -lSDL2
@@ -98,4 +101,8 @@ HEADERS += \
     gameProcessor/Units/UnitProcessors/unitprocessor.h \
     gameProcessor/Units/UnitProcessors/humshutlereturntobaseproc.h \
     gameProcessor/Units/UnitProcessors/humshutleemigrationproc.h \
-    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.h
+    gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.h \
+    UIController/uicontroller.h \
+    UIController/uielement.h \
+    UIController/uibar.h \
+    enums/uiElementSetting.h

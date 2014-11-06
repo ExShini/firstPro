@@ -44,6 +44,8 @@ protected:
     int m_eventID;
     TimeGuard* m_timeGuard;
     PlayerController* m_plController;
+
+    void TryAddAreaForColonize(int x, int y, Player* player);
 };
 
 #endif // GAMEPROCESSOR_H

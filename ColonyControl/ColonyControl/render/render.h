@@ -6,10 +6,12 @@
 #include "../ColonyControlWin/stdafx.h"
 #include "../objectController/objectcontroller.h"
 #include "../gameProcessor/unitcontroller.h"
+#include "../UIController/uicontroller.h"
 #else
 #include"SDL2/SDL.h"
 #include "objectController/objectcontroller.h"
 #include "gameProcessor/unitcontroller.h"
+#include "UIController/uicontroller.h"
 #endif
 
 #include "iostream"
@@ -38,10 +40,13 @@ private:
     void drawBackground();
     void drawObjects();
     void drawUnits();
+    void drawUI();
+
     void checkCordinats(int* x, int* y, int* w, int* h);
 
     ObjectController* m_objController;
     UnitController* m_unitController;
+    UIController* m_UIController;
     PlanetMap* m_plMap;
 
 

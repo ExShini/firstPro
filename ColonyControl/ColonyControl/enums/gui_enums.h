@@ -3,6 +3,7 @@
 #define GUI_EMUNS
 
 #include "textures_paths.h"
+#include "uiElementSetting.h"
 
 //default windows location and sizes
 #define X_COR_MAIN_WINDOW 100

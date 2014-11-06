@@ -146,53 +146,57 @@ int GameProcessor::tryGetColonists(int x, int y, int maxCol, int playerID)
     return 0;
 }
 
-
+/*************************************
+FUNC: checkEmptyAreas(int x, int y, int playerID)
+DESC: Try add empty areas newar current sector to colonists targets
+*************************************/
 void GameProcessor::checkEmptyAreas(int x, int y, int playerID)
 {
     Player* pl = m_plController->getPlayer(playerID);
+
+    int startDir = RandomGen::getRand() % NUMBER_OF_DIRECTIONS;
+
+    for(int i = 0; i < NUMBER_OF_DIRECTIONS; i++)
+    {
+        switch (startDir) {
+        case UP:
+            TryAddAreaForColonize(x, y - 1, pl);
+            break;
+        case DOWN:
+            TryAddAreaForColonize(x, y + 1, pl);
+            break;
+        case LEFT:
+            TryAddAreaForColonize(x - 1, y, pl);
+            break;
+        case RIGHT:
+            TryAddAreaForColonize(x + 1, y, pl);
+            break;
+        default:
+            break;
+        }
+
+
+        startDir++;
+        if(startDir == NUMBER_OF_DIRECTIONS)
+            startDir = UP;  // set startDir to 0;
+    }
+}
+
+/*************************************
+FUNC: TryAddAreaForColonize(int x, int y, Player *player)
+DESC: Try add current area to colonist target
+*************************************/
+void GameProcessor::TryAddAreaForColonize(int x, int y, Player *player)
+{
     PlanetMap* plmap = m_objController->getPlanetMap();
-
-    //check all sides
-    //left
-    if(m_objController->checkAreaApplicable(x - 1, y))
+    if(m_objController->checkAreaApplicable(x, y))
     {
-        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x-1][y];
+        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x][y];
         if (settlement == NULL)
         {
-            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x-1][y]);
+            player->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x][y]);
         }
     }
-
-    //right
-    if(m_objController->checkAreaApplicable(x + 1, y))
-    {
-        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x+1][y];
-        if (settlement == NULL)
-        {
-            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x+1][y]);
-        }
-    }
-
-    //down
-    if(m_objController->checkAreaApplicable(x, y + 1))
-    {
-        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x][y+1];
-        if (settlement == NULL)
-        {
-            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x][y+1]);
-        }
-    }
-
-    //top
-    if(m_objController->checkAreaApplicable(x, y - 1))
-    {
-        GObject* settlement = plmap->objects[SETTLEMENT_LEVEL]->lMap[x][y-1];
-        if (settlement == NULL)
-        {
-            pl->addColonistTarget(plmap->objects[SECTOR_LEVEL]->lMap[x][y-1]);
-        }
-    }
-
 }
 
 /*************************************

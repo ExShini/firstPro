@@ -6,9 +6,11 @@
 #ifdef WIN32
 #include "../../randomgen.h"
 #include "../../enums/Units/humanUnits.h"
+#include "../../enums/gui_enums.h"
 #else
 #include "randomgen.h"
 #include "enums/Units/humanUnits.h"
+#include "enums/gui_enums.h"
 #endif
 
 using namespace std;
@@ -106,8 +108,8 @@ GObject* HumanPlayer::getTargetFromMap(int x, int y, map<int, GObject *> &source
     map<int, GObject *>::iterator iter = source.begin();
     map<int, GObject *>::iterator end = source.end();
 
-    int targetKey = -1;
-    GObject* targetSec = NULL;
+    map<int, GObject*> candidates;
+
     int tarDis = 999;
 
     for(;iter != end; iter++)
@@ -119,17 +121,47 @@ GObject* HumanPlayer::getTargetFromMap(int x, int y, map<int, GObject *> &source
 
         if (dist < tarDis)
         {
+            candidates.clear();
+
+            candidates[key] = sector;
             tarDis = dist;
-            targetSec = sector;
-            targetKey = key;
+        }
+        else if(dist == tarDis)
+        {
+            candidates[key] = sector;
         }
 
     }
 
-    if(targetKey != -1)
+    GObject* targetSec = NULL;
+
+    int candSize = candidates.size();
+    if(candSize != 0)
     {
+        int posit = RandomGen::getRand() % candidates.size();
+        int count = 0;
+        int targetKey = -1;
+
+        iter = candidates.begin();
+        end = candidates.end();
+
+        for(; iter != end ; iter++)
+        {
+            if(count == posit)
+            {
+                targetSec = (*iter).second;
+                targetKey = (*iter).first;
+            }
+
+            count++;
+        }
+
         source.erase(targetKey);
     }
+
+
+
+
     return targetSec;
 }
 

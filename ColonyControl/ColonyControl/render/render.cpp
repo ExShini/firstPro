@@ -86,6 +86,9 @@ bool Render::init()
     //set UnitController to render
     m_unitController =  UnitController::getInstance();
 
+    //set UIController to render
+    m_UIController = UIController::getInstance();
+
     //set backGround object to render
     m_backGround = m_objController->getBackGround();
 
@@ -119,16 +122,36 @@ void Render::renderScreen()
 {
     //draw background
     drawBackground();
+
     //draw objects
     drawObjects();
+
     //draw all units
     drawUnits();
 
-
+    //drow all UIElements
+    drawUI();
 
     SDL_RenderPresent(m_rend);
 }
 
+/*************************************
+FUNC: drawUI()
+DESC: draw user interface elements
+*************************************/
+void Render::drawUI()
+{
+    vector<UIElement*> elements = m_UIController->getUIElements();
+
+    vector<UIElement*>::iterator iter = elements.begin();
+    vector<UIElement*>::iterator end = elements.end();
+
+    for(; iter != end ; iter++)
+    {
+        UIElement* element = *iter;
+        drawSurface( element->getX(), element->getY(), element->getFController(), m_rend);
+    }
+}
 
 /*************************************
 FUNC: drawObjects()
@@ -266,7 +289,7 @@ void Render::drawBackground()
     int y = -((( m_cameraObj->getY() M_ACCURACY_FACTOR) PART_OF_MAP_H )
               * (m_backGround->getH() - HEIGHT_MAIN_WINDOW) ) D_ACCURACY_FACTOR;
 
-        drawSurface( x, y, m_backGround->getFController(), m_rend);
+    drawSurface( x, y, m_backGround->getFController(), m_rend);
 }
 
 

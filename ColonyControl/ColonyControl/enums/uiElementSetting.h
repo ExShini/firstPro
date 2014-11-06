@@ -1,0 +1,7 @@
+#ifndef UIELEMENTSETTING_H
+#define UIELEMENTSETTING_H
+
+
+
+
+#endif // UIELEMENTSETTING_H
