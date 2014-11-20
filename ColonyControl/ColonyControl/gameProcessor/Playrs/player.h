@@ -3,6 +3,7 @@
 
 #ifdef WIN32
 #include "../../enums/gameProcessingSettings.h"
+#include "../../objectController/gobject.h"
 #else
 #include "enums/gameProcessingSettings.h"
 #include "objectController/gobject.h"

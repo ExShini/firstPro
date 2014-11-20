@@ -3,9 +3,9 @@
 
 #ifdef WIN32
 #include "../../../enums/Units/humanUnits.h"
-#include "../../enums/gui_enums.h"
+#include "../../../enums/gui_enums.h"
 #include "../humancolonists.h"
-#include "../../gameProcessor/playercontroller.h"
+#include "../../../gameProcessor/playercontroller.h"
 #else
 #include "enums/Units/humanUnits.h"
 #include "enums/gui_enums.h"

@@ -101,15 +101,23 @@
     <ClInclude Include="..\gameapp.h" />
     <ClInclude Include="..\gameProcessor\allUnits.h" />
     <ClInclude Include="..\gameProcessor\gameprocessor.h" />
+    <ClInclude Include="..\gameProcessor\playercontroller.h" />
+    <ClInclude Include="..\gameProcessor\Playrs\humanplayer.h" />
+    <ClInclude Include="..\gameProcessor\Playrs\player.h" />
     <ClInclude Include="..\gameProcessor\unit.h" />
     <ClInclude Include="..\gameProcessor\unitcontroller.h" />
     <ClInclude Include="..\gameProcessor\Units\humancolonists.h" />
+    <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutleemigrationproc.h" />
+    <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.h" />
+    <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.h" />
+    <ClInclude Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.h" />
     <ClInclude Include="..\objectController\gobject.h" />
     <ClInclude Include="..\objectController\mapGenarator\mapgenerator.h" />
     <ClInclude Include="..\objectController\mapGenarator\planetmap.h" />
     <ClInclude Include="..\objectController\movableobj.h" />
     <ClInclude Include="..\objectController\objectcontroller.h" />
     <ClInclude Include="..\objectController\objectList.h" />
+    <ClInclude Include="..\objectController\objects\humanBuildings\colonycenter.h" />
     <ClInclude Include="..\objectController\objects\lava.h" />
     <ClInclude Include="..\objectController\objects\lavamount.h" />
     <ClInclude Include="..\objectController\objects\sector.h" />
@@ -120,6 +128,9 @@
     <ClInclude Include="..\render\textureprovider.h" />
     <ClInclude Include="..\TimeManager\timeevent.h" />
     <ClInclude Include="..\TimeManager\timeguard.h" />
+    <ClInclude Include="..\UIController\uibar.h" />
+    <ClInclude Include="..\UIController\uicontroller.h" />
+    <ClInclude Include="..\UIController\uielement.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -129,14 +140,22 @@
     <ClCompile Include="..\eventController\mouseeventproc.cpp" />
     <ClCompile Include="..\gameapp.cpp" />
     <ClCompile Include="..\gameProcessor\gameprocessor.cpp" />
+    <ClCompile Include="..\gameProcessor\playercontroller.cpp" />
+    <ClCompile Include="..\gameProcessor\Playrs\humanplayer.cpp" />
+    <ClCompile Include="..\gameProcessor\Playrs\player.cpp" />
     <ClCompile Include="..\gameProcessor\unit.cpp" />
     <ClCompile Include="..\gameProcessor\unitcontroller.cpp" />
     <ClCompile Include="..\gameProcessor\Units\humancolonists.cpp" />
+    <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutleemigrationproc.cpp" />
+    <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.cpp" />
+    <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.cpp" />
+    <ClCompile Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.cpp" />
     <ClCompile Include="..\objectController\gobject.cpp" />
     <ClCompile Include="..\objectController\mapGenarator\mapgenerator.cpp" />
     <ClCompile Include="..\objectController\mapGenarator\planetmap.cpp" />
     <ClCompile Include="..\objectController\movableobj.cpp" />
     <ClCompile Include="..\objectController\objectcontroller.cpp" />
+    <ClCompile Include="..\objectController\objects\humanBuildings\colonycenter.cpp" />
     <ClCompile Include="..\objectController\objects\humanBuildings\settlement.cpp" />
     <ClCompile Include="..\objectController\objects\lava.cpp" />
     <ClCompile Include="..\objectController\objects\lavamount.cpp" />
@@ -148,6 +167,9 @@
     <ClCompile Include="..\render\textureprovider.cpp" />
     <ClCompile Include="..\TimeManager\timeevent.cpp" />
     <ClCompile Include="..\TimeManager\timeguard.cpp" />
+    <ClCompile Include="..\UIController\uibar.cpp" />
+    <ClCompile Include="..\UIController\uicontroller.cpp" />
+    <ClCompile Include="..\UIController\uielement.cpp" />
     <ClCompile Include="ColonyControlWin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
