@@ -4,7 +4,7 @@
 
 #ifdef WIN32
 #include "../../../enums/gameProcessingSettings.h"
-#include "../../gameProcessor/playercontroller.h"
+#include "../../../gameProcessor/playercontroller.h"
 #include "../../../gameProcessor/gameprocessor.h"
 #else
 #include "enums/gameProcessingSettings.h"
