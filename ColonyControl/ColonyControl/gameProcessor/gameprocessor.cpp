@@ -86,7 +86,7 @@ void GameProcessor::process()
 
     for(; iterator != end; iterator++)
     {
-        Buildings* settlement = (*iterator).second;
+        Buildings* settlement = static_cast<Buildings*>((*iterator).second);
         settlement->process();
     }
 }

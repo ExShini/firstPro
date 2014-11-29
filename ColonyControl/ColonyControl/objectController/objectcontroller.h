@@ -22,7 +22,9 @@ class ObjectController
 public:
     static ObjectController* getInstance();
     PlanetMap* getPlanetMap();
-    GObject* getCamera();
+    CameraObject* getCamera();
+    TargetObject* getTarget();
+
     GObject* getBackGround();
     void init();
 
@@ -34,7 +36,8 @@ protected:
     static ObjectController* m_instance;
     PlanetMap* m_plMap;
 
-    GObject * m_cameraObj;
+    CameraObject * m_cameraObj;
+    TargetObject * m_targetObj;
     GObject * m_backGround;
 
     GameProcessor* m_gameProc;

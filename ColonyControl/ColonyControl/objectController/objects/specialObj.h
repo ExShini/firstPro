@@ -9,6 +9,12 @@ public:
 
 };
 
+class TargetObject: public MovableObj
+{
+public:
+    TargetObject();
+    bool isValidLink();
+};
 
 class BackGround: public ImmovableObj
 {

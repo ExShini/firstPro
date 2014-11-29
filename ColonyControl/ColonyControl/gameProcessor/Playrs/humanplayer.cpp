@@ -72,7 +72,7 @@ GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> &source, i
 
     for(;iter != end; iter++)
     {
-        GObject* sector = *iter;
+        GObject* sector = static_cast<GObject*>(*iter);
         int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );
 
         if(dist < range)
@@ -114,7 +114,7 @@ GObject* HumanPlayer::getTargetFromMap(int x, int y, map<int, GObject *> &source
 
     for(;iter != end; iter++)
     {
-        GObject* sector = (*iter).second;
+        GObject* sector = static_cast<GObject*>((*iter).second);
         int key = (*iter).first;
 
         int dist = sqrt( pow((sector->getX() - x), 2) + pow((sector->getY() - y), 2) );

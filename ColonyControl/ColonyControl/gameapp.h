@@ -29,6 +29,7 @@ private:
     EventController * m_evController;
     GameProcessor * m_gameProcessor;
     UnitController* m_unitController;
+    UIController * m_uiController;
 
 
     // main handlers

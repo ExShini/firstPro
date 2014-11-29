@@ -2,19 +2,23 @@
 #define UIBAR_H
 #include "vector"
 
-#include "uielement.h"
+#ifdef WIN32
+#include "../gobject.h"
+#else
+#include "objectController/gobject.h"
+#endif
+
 
 using namespace std;
 
-class UIBar: public UIElement
+class UIBar: public GObject
 {
 public:
-    vector<UIElement*>* getElements();
-
+    vector<GObject*>& getElements();
 
 protected:
     UIBar();
-    vector<UIElement*> m_elements;
+    vector<GObject*> m_elements;
 };
 
 #endif // UIBAR_H

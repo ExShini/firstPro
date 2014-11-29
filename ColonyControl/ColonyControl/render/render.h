@@ -56,6 +56,7 @@ private:
         m_fieldGapX, m_fieldGapY;
     GObject* m_backGround;
     GObject* m_cameraObj;
+    GObject* m_targetObj;
 
     int m_widthInFields, m_heightInFields;
 };

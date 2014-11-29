@@ -22,7 +22,6 @@ SOURCES += main.cpp \
     eventController/eventcontroller.cpp \
     eventController/keyboardeventproc.cpp \
     objectController/movableobj.cpp \
-    objectController/objects/testobjects.cpp \
     randomgen.cpp \
     render/framecontroller.cpp \
     eventController/mouseeventproc.cpp \
@@ -48,12 +47,10 @@ SOURCES += main.cpp \
     gameProcessor/Units/UnitProcessors/humshutleemigrationproc.cpp \
     gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.cpp \
     UIController/uicontroller.cpp \
-    UIController/uielement.cpp \
-    UIController/uibar.cpp
+    UIController/uibar.cpp \
+    UIController/UIBars/infobar.cpp \
+    objectController/objects/specialObj.cpp
 
-
-LIBS += -lSDL2
-LIBS += -lSDL2_image
 
 HEADERS += \
     render/render.h \
@@ -69,7 +66,6 @@ HEADERS += \
     eventController/eventcontroller.h \
     eventController/keyboardeventproc.h \
     objectController/movableobj.h \
-    objectController/objects/testobjects.h \
     randomgen.h \
     objectController/objectList.h \
     render/framecontroller.h \
@@ -103,6 +99,12 @@ HEADERS += \
     gameProcessor/Units/UnitProcessors/humshutleemigrationproc.h \
     gameProcessor/Units/UnitProcessors/humshutleimmigrateproc.h \
     UIController/uicontroller.h \
-    UIController/uielement.h \
     UIController/uibar.h \
-    enums/uiElementSetting.h
+    enums/uiElementSetting.h \
+    UIController/UIBars/infobar.h \
+    objectController/objects/specialObj.h
+
+
+LIBS += -lSDL2
+LIBS += -lSDL2_image
+LIBS += -lSDL2_ttf

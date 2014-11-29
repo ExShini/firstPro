@@ -83,8 +83,14 @@ SDL_Rect FrameController::getFullRect()
     SDL_Rect pos;
     pos.x = 0;
     pos.y = 0;
+    pos.h = 0;
+    pos.w = 0;
 
-    SDL_QueryTexture(m_texture, NULL, NULL, &pos.w, &pos.h);
+    if (SDL_QueryTexture(m_texture, NULL, NULL, &pos.w, &pos.h) != 0)
+    {
+        cout << "FrameController::getFullRect() " << SDL_GetError() << endl;
+    }
+
 
     return pos;
 }

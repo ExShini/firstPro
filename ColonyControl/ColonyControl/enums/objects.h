@@ -15,12 +15,20 @@ enum ObjectsType
 {
     t_BACKGROUND,
     t_CameraObject,
+    t_TargetObject,
     t_Sector,
-    t_HumanSettlers,
-    t_HumanColonyCenter,
     t_LavaMount,
     t_Lava,
+
+    //human objects
+    t_HumanSettlers,
+    t_HumanColonyCenter,
     t_HumanFighter,
+
+
+    //UI Elements
+    t_HumanInfoBar,
+
     NumberOfObjectTypes,
     NULLOBJECT
 };

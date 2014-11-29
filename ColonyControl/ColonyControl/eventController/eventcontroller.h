@@ -16,15 +16,20 @@ class EventController
 public:
     EventController(short *gameStatus);
     void processEvent();
+    void Init();
 
 protected:
     void HandleCameraMoving();
+    void setTargetToSector();
 
     short * m_gameStatus;
     KeyboardEventProc * m_keyProc;
     MouseEventProc * m_mouseProc;
     ObjectController * m_objContr;
 
+
+    CameraObject* m_camera;
+    TargetObject* m_target;
 };
 
 #endif // EVENTCONTROLLER_H

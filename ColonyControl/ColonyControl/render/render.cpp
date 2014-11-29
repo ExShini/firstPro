@@ -102,6 +102,8 @@ bool Render::init()
     m_cameraObj = m_objController->getCamera();
     m_camera = new Camera(m_cameraObj, m_fieldGapX, m_fieldGapY);
 
+    m_targetObj = m_objController->getTarget();
+
     //check status
     if (m_window && m_rend)
     {
@@ -141,15 +143,36 @@ DESC: draw user interface elements
 *************************************/
 void Render::drawUI()
 {
-    vector<UIElement*> elements = m_UIController->getUIElements();
+    //draw terget object
 
-    vector<UIElement*>::iterator iter = elements.begin();
-    vector<UIElement*>::iterator end = elements.end();
+    drawSurface( (m_targetObj->getX() MULTIPLY_FS) - m_camera->x() + m_fieldGapX,
+                 (m_targetObj->getY() MULTIPLY_FS) - m_camera->y() + m_fieldGapY,
+                  m_targetObj->getFController(), m_rend);
+
+    //draw Bars and other UI elements
+    vector<UIBar*> bars = m_UIController->getBars();
+
+    vector<UIBar*>::iterator iter = bars.begin();
+    vector<UIBar*>::iterator end = bars.end();
 
     for(; iter != end ; iter++)
     {
-        UIElement* element = *iter;
-        drawSurface( element->getX(), element->getY(), element->getFController(), m_rend);
+
+        UIBar* bar = static_cast<UIBar*>(*iter);
+        drawSurface( bar->getX(), bar->getY(), bar->getFController(), m_rend);
+
+        vector<GObject*> uiElements = bar->getElements();
+
+        vector<GObject*>::iterator uiIter = uiElements.begin();
+        vector<GObject*>::iterator uiEnd = uiElements.end();
+
+        for(;uiIter != uiEnd; uiIter++)
+        {
+            GObject* uiEl = static_cast<GObject*>(*uiIter);
+            int x = uiEl->getX() + bar->getX();
+            int y = uiEl->getY() + bar->getY();
+            drawSurface( x, y, uiEl->getFController(), m_rend);
+        }
     }
 }
 
@@ -203,7 +226,7 @@ void Render::drawUnits()
 
     for(; iterator != end; iterator++)
     {
-        Unit* unit = (Unit*)(*iterator);
+        Unit* unit = static_cast<Unit*>(*iterator);
         drawSurfaceEx( unit->getX() - m_camera->x() + m_fieldGapX,
                        unit->getY() - m_camera->y() + m_fieldGapY,
                        unit->getAngle(),

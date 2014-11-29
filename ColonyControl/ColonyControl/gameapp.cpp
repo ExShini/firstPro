@@ -27,6 +27,7 @@ GameApp::GameApp():
     m_evController = new EventController(&m_gameStatus);
     m_gameProcessor = GameProcessor::getInstance();
     m_unitController = UnitController::getInstance();
+    m_uiController = UIController::getInstance();
 }
 
 /*************************************
@@ -75,6 +76,9 @@ void GameApp::initialize()
     m_unitController->init();
     m_gameProcessor->init();
     m_gameStatus &= m_render->init();
+    m_uiController->Init();
+    m_evController->Init();
+
 
     m_gameProcessor->addNewPlayer(10, 10, Human);
 

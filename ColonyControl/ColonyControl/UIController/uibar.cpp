@@ -1,11 +1,11 @@
 #include "uibar.h"
 
 UIBar::UIBar():
-    UIElement()
+    GObject()
 {
 }
 
-vector<UIElement*>* UIBar::getElements()
+vector<GObject *> &UIBar::getElements()
 {
-    return & m_elements;
+    return m_elements;
 }

@@ -32,10 +32,16 @@ void ObjectController::init()
     m_backGround->setX(0);
     m_backGround->setY(0);
 
-    CameraObject* to1 = new CameraObject();
-    to1->setX(10);
-    to1->setY(10);
-    m_cameraObj = to1;
+    CameraObject* cam = new CameraObject();
+    cam->setX(10);
+    cam->setY(10);
+    m_cameraObj = cam;
+
+    TargetObject* to = new TargetObject();
+    to->setX(10);
+    to->setY(10);
+    m_targetObj = to;
+
 }
 
 /*************************************
@@ -51,9 +57,18 @@ PlanetMap *ObjectController::getPlanetMap()
 FUNC: getCamera()
 DESC: return player (camera) object
 *************************************/
-GObject* ObjectController::getCamera()
+CameraObject *ObjectController::getCamera()
 {
     return m_cameraObj;
+}
+
+/*************************************
+FUNC: getTarget()
+DESC: return player (camera) object
+*************************************/
+TargetObject *ObjectController::getTarget()
+{
+    return m_targetObj;
 }
 
 /*************************************

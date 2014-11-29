@@ -48,13 +48,16 @@ void TextureProvider::initTextureProvider()
 {
     //initialize textures for all objects type
     m_textures[t_BACKGROUND] = loadImage(p_BACKGROUND);
-    m_textures[t_CameraObject] = loadImage(p_TEST_OBJ1);
+    m_textures[t_CameraObject] = loadImage(p_Camera);
+    m_textures[t_TargetObject] = loadImage(p_Target);
     m_textures[t_Sector] = loadImage(p_Sector);
     m_textures[t_HumanSettlers] = loadImage(p_HumanSettlers);
     m_textures[t_LavaMount] = loadImage(p_LavaMount);
     m_textures[t_Lava] = loadImage(p_Lava);
     m_textures[t_HumanFighter] = loadImage(p_HumanFighter);
     m_textures[t_HumanColonyCenter] = loadImage(p_HumanColonyCenter);
+
+    m_textures[t_HumanInfoBar] = loadImage(p_HumanInfoBar);
 }
 
 /*************************************

@@ -18,6 +18,12 @@ EventController::EventController(short *gameStatus)
     m_objContr = ObjectController::getInstance();
 }
 
+void EventController::Init()
+{
+    m_camera = m_objContr->getCamera();
+    m_target = m_objContr->getTarget();
+}
+
 void EventController::processEvent()
 {
     SDL_Event Event;
@@ -48,6 +54,7 @@ void EventController::processEvent()
     }
 
     HandleCameraMoving();
+    setTargetToSector();
 }
 
 
@@ -55,25 +62,32 @@ void EventController::processEvent()
 void EventController::HandleCameraMoving()
 {
     //check - should we move camera?
-    CameraObject* camera = (CameraObject*)m_objContr->getCamera();
-
     if (m_mouseProc->m_mouseXCor < W_MIN_SCKROL_AREA || m_keyProc->m_toLeft)
     {
-        camera->move(-1,0);
+        m_camera->move(-1,0);
     }
 
     if (m_mouseProc->m_mouseXCor > W_MAX_SCKROL_AREA || m_keyProc->m_toRight)
     {
-        camera->move(1,0);
+        m_camera->move(1,0);
     }
 
     if (m_mouseProc->m_mouseYCor > H_MAX_SCKROL_AREA || m_keyProc->m_toDown)
     {
-        camera->move(0,1);
+        m_camera->move(0,1);
     }
 
     if (m_mouseProc->m_mouseYCor < H_MIN_SCKROL_AREA || m_keyProc->m_toUp)
     {
-        camera->move(0,-1);
+        m_camera->move(0,-1);
     }
+}
+
+void EventController::setTargetToSector()
+{
+    int xTarget = m_camera->getX() + m_mouseProc->m_mouseXCor / FIELD_SIZE - ((WIDTH_MAIN_WINDOW) >> 1) / FIELD_SIZE;
+    int yTarget = m_camera->getY() + m_mouseProc->m_mouseYCor / FIELD_SIZE - ((HEIGHT_MAIN_WINDOW) >> 1) / FIELD_SIZE;
+
+    m_target->setX(xTarget);
+    m_target->setY(yTarget);
 }
