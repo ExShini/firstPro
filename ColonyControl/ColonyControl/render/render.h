@@ -14,6 +14,8 @@
 #include "UIController/uicontroller.h"
 #endif
 
+#include "textprovider.h"
+
 #include "iostream"
 
 
@@ -27,13 +29,13 @@ public:
     bool init();
     void renderScreen();
 
-
 private:
     SDL_Window * m_window;
     SDL_Renderer * m_rend;
     Camera * m_camera;
 
     TextureProvider * m_textureProvider;
+    TextProvider * m_textProvider;
 
     void drawSurface(int x, int y, FrameController* fcontroller, SDL_Renderer* rend);
     void drawSurfaceEx(int x, int y, int angle, FrameController* fcontroller, SDL_Renderer* rend);

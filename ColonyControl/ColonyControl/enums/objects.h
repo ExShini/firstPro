@@ -28,11 +28,25 @@ enum ObjectsType
 
     //UI Elements
     t_HumanInfoBar,
+    t_singleTextController,
 
     NumberOfObjectTypes,
     NULLOBJECT
 };
 
+enum UIElementType
+{
+    e_fertitilyUIC,
+    e_mineralWealthUIC,
+
+    e_populationUIC,
+    e_foodStorageUIC,
+    e_mineralStoargeUIC,
+
+
+    e_settlementLevelUIC,
+    e_infrostructureUIC
+};
 
 enum ModuleObjLevel
 {

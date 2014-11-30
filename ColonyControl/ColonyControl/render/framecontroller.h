@@ -15,6 +15,7 @@
 class FrameController
 {
 public:
+    FrameController(bool fullTexture = false);
     FrameController(SDL_Texture* texture, bool fullTexture = false);
     void setNewTexture(SDL_Texture* texture, bool fullTexture = false);
     void setTextureArea(int x, int y);

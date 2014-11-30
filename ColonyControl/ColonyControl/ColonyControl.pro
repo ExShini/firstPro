@@ -49,7 +49,11 @@ SOURCES += main.cpp \
     UIController/uicontroller.cpp \
     UIController/uibar.cpp \
     UIController/UIBars/infobar.cpp \
-    objectController/objects/specialObj.cpp
+    objectController/objects/specialObj.cpp \
+    render/textframecontroller.cpp \
+    render/textprovider.cpp \
+    UIController/UIBars/UIElements/singletextcontroll.cpp \
+    UIController/UIBars/UIElements/doubletextcontroll.cpp
 
 
 HEADERS += \
@@ -102,7 +106,12 @@ HEADERS += \
     UIController/uibar.h \
     enums/uiElementSetting.h \
     UIController/UIBars/infobar.h \
-    objectController/objects/specialObj.h
+    objectController/objects/specialObj.h \
+    render/textframecontroller.h \
+    enums/textSetting.h \
+    render/textprovider.h \
+    UIController/UIBars/UIElements/singletextcontroll.h \
+    UIController/UIBars/UIElements/doubletextcontroll.h
 
 
 LIBS += -lSDL2

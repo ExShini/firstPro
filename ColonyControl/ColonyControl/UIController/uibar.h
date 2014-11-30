@@ -1,6 +1,6 @@
 #ifndef UIBAR_H
 #define UIBAR_H
-#include "vector"
+#include "map"
 
 #ifdef WIN32
 #include "../gobject.h"
@@ -14,11 +14,11 @@ using namespace std;
 class UIBar: public GObject
 {
 public:
-    vector<GObject*>& getElements();
+    map<UIElementType, GObject*>& getElements();
 
 protected:
     UIBar();
-    vector<GObject*> m_elements;
+    map<UIElementType, GObject*> m_elements;
 };
 
 #endif // UIBAR_H

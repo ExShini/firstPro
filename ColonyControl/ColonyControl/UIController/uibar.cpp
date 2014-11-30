@@ -5,7 +5,7 @@ UIBar::UIBar():
 {
 }
 
-vector<GObject *> &UIBar::getElements()
+map<UIElementType, GObject *> &UIBar::getElements()
 {
     return m_elements;
 }

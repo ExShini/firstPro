@@ -12,13 +12,24 @@
 using namespace std;
 
 /*************************************
-FUNC: FrameController(SDL_Texture* texture, bool rotation, bool mooveble, Direction dir)
+FUNC: FrameController(SDL_Texture* texture, bool fullTexture)
 DESC: constructor
 *************************************/
 FrameController::FrameController(SDL_Texture* texture, bool fullTexture):
     m_fullTexture(fullTexture)
 {
     m_texture = texture;
+    setTextureArea(0,0);
+}
+
+/*************************************
+FUNC: FrameController(bool fullTexture)
+DESC: constructor
+*************************************/
+FrameController::FrameController(bool fullTexture):
+    m_fullTexture(fullTexture)
+{
+    m_texture = NULL;
     setTextureArea(0,0);
 }
 

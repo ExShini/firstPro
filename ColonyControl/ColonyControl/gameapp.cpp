@@ -101,6 +101,7 @@ void GameApp::gameProcessing()
 {
     m_gameProcessor->process();
     m_unitController->process();
+    m_uiController->process();
 }
 
 /*************************************

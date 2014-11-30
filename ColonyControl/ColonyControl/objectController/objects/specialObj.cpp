@@ -31,8 +31,8 @@ TargetObject::TargetObject():
 
 bool TargetObject::isValidLink()
 {
-    if(m_x < 0 && m_x >= MAP_WIDTH &&
-       m_y < 0 && m_y >= MAP_HEIGHT)
+    if(m_x < 0 || m_x >= MAP_WIDTH ||
+       m_y < 0 || m_y >= MAP_HEIGHT)
     {
         return false;
     }

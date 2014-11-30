@@ -8,7 +8,6 @@
 #ifdef WIN32
 #include "../enums/textures_paths.h"
 #include "../enums/objects.h"
-#include "../ColonyControlWin/stdafx.h"
 #else
 #include "enums/textures_paths.h"
 #include "enums/objects.h"
@@ -21,7 +20,7 @@ class TextureProvider
 public:
     static TextureProvider * getInstance();
     SDL_Texture* getTexture(ObjectsType objectType);
-    void setRender(SDL_Renderer * rend);
+    void setRenderer(SDL_Renderer * rend);
 
 protected:
     TextureProvider();

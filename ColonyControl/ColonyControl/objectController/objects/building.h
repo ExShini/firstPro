@@ -11,6 +11,7 @@ public:
     int getFood()               { return m_food; }
     int getMinerals()           { return m_minerals; }
     int getProduction()         { return m_production; }
+    int getPopulationLimit()    { return m_populationLimit; }
     void setPopulation(int value)       { m_population = value; }
     void setFood(int value)             { m_food = value; }
     void setMinerals(int value)         { m_minerals = value; }

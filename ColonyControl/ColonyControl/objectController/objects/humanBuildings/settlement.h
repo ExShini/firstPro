@@ -11,6 +11,9 @@ class Settlement: public Buildings
 {
 public:
     Settlement(Sector* sector, int playerID);
+    int getSettlementLevel() { return m_level; }
+    int getSettlementInfr() { return m_infrastructure; }
+    int getSettlementNextInfrBrd() { return m_topInfLevel; }
 
     virtual int sendColonists(int maxColonists);
     virtual void inviteColonists(int colonists);

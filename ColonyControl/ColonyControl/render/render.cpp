@@ -2,7 +2,6 @@
 
 #ifdef WIN32
 #include "../enums/enums.h"
-#include "../ColonyControlWin/stdafx.h"
 #else
 #include "enums/enums.h"
 #endif
@@ -24,7 +23,7 @@ Render::Render():
     m_rend(NULL),
     m_camera(NULL)
 {
-    m_textureProvider = TextureProvider::getInstance();
+
     m_widthInFields = WIDTH_MAIN_WINDOW / FIELD_SIZE;
     m_heightInFields = HEIGHT_MAIN_WINDOW / FIELD_SIZE;
 }
@@ -76,7 +75,12 @@ bool Render::init()
 
 
     //set sdl_render to textProvider
-    TextureProvider::getInstance()->setRender(m_rend);
+    m_textureProvider = TextureProvider::getInstance();
+    m_textureProvider->setRenderer(m_rend);
+
+    m_textProvider = TextProvider::getInstance();
+    m_textProvider->setRenderer(m_rend);
+    m_textProvider->Init();
 
     //set ObjectController to render
     m_objController = ObjectController::getInstance();
@@ -150,27 +154,28 @@ void Render::drawUI()
                   m_targetObj->getFController(), m_rend);
 
     //draw Bars and other UI elements
-    vector<UIBar*> bars = m_UIController->getBars();
+    map<ObjectsType, UIBar*> bars = m_UIController->getBars();
 
-    vector<UIBar*>::iterator iter = bars.begin();
-    vector<UIBar*>::iterator end = bars.end();
+    map<ObjectsType, UIBar*>::iterator iter = bars.begin();
+    map<ObjectsType, UIBar*>::iterator end = bars.end();
 
     for(; iter != end ; iter++)
     {
 
-        UIBar* bar = static_cast<UIBar*>(*iter);
+        UIBar* bar = static_cast<UIBar*>((*iter).second);
         drawSurface( bar->getX(), bar->getY(), bar->getFController(), m_rend);
 
-        vector<GObject*> uiElements = bar->getElements();
+        map<UIElementType, GObject*> uiElements = bar->getElements();
 
-        vector<GObject*>::iterator uiIter = uiElements.begin();
-        vector<GObject*>::iterator uiEnd = uiElements.end();
+        map<UIElementType, GObject*>::iterator uiIter = uiElements.begin();
+        map<UIElementType, GObject*>::iterator uiEnd = uiElements.end();
 
         for(;uiIter != uiEnd; uiIter++)
         {
-            GObject* uiEl = static_cast<GObject*>(*uiIter);
+            GObject* uiEl = static_cast<GObject*>((*uiIter).second);
             int x = uiEl->getX() + bar->getX();
             int y = uiEl->getY() + bar->getY();
+
             drawSurface( x, y, uiEl->getFController(), m_rend);
         }
     }

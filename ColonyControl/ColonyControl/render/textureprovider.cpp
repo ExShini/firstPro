@@ -23,7 +23,7 @@ TextureProvider::TextureProvider()
 FUNC: setRender()
 DESC: set render for textureProvider and initialize texture loading
 *************************************/
-void TextureProvider::setRender(SDL_Renderer *rend)
+void TextureProvider::setRenderer(SDL_Renderer *rend)
 {
     m_rend = rend;
     initTextureProvider();
