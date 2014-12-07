@@ -58,6 +58,14 @@ void TextureProvider::initTextureProvider()
     m_textures[t_HumanColonyCenter] = loadImage(p_HumanColonyCenter);
 
     m_textures[t_HumanInfoBar] = loadImage(p_HumanInfoBar);
+
+    //icons
+    m_textures[t_FirtilityIcon] =loadImage(p_FirtilityIcon);
+    m_textures[t_MineralWealthIcon] =loadImage(p_MineralWealthIcon);
+    m_textures[t_HumanPopulationIcon] = loadImage(p_PopulationIcon);
+    m_textures[t_FoodStorageIcon] = loadImage(p_FoodStorage);
+    m_textures[t_MineralStorageIcon] = loadImage(p_MineralStorage);
+    m_textures[t_InfrostructureIcon] = loadImage(p_InfrostructureIcon);
 }
 
 /*************************************

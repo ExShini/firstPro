@@ -87,8 +87,7 @@ void Settlement::process()
     m_food -= HUMAN_FOOD_CONSUMPTIONS(m_population);
     if(m_food < 0)
     {
-        m_population -= HUMAN_HUNGER_DEMAGE(0);
-        //m_population -= HUMAN_HUNGER_DEMAGE(m_food * (-1));
+        m_population -= HUMAN_HUNGER_DEMAGE(m_food * (-1));
         foodEmigartion();
         m_food = 0;
     }

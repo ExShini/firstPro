@@ -28,7 +28,14 @@ enum ObjectsType
 
     //UI Elements
     t_HumanInfoBar,
-    t_singleTextController,
+    t_UILabel,
+
+    t_FirtilityIcon,
+    t_MineralWealthIcon,
+    t_HumanPopulationIcon,
+    t_FoodStorageIcon,
+    t_MineralStorageIcon,
+    t_InfrostructureIcon,
 
     NumberOfObjectTypes,
     NULLOBJECT
@@ -36,7 +43,8 @@ enum ObjectsType
 
 enum UIElementType
 {
-    e_fertitilyUIC,
+    //Labels
+    e_firtitilyUIC,
     e_mineralWealthUIC,
 
     e_populationUIC,
@@ -45,7 +53,17 @@ enum UIElementType
 
 
     e_settlementLevelUIC,
-    e_infrostructureUIC
+    e_infrostructureUIC,
+
+
+    //Icons
+    e_firtitilyIcon,
+    e_mineralWealthIcon,
+
+    e_populationIcon,
+    e_foodStorageIcon,
+    e_mineralStoargeIcon,
+    e_infrostructureIcon
 };
 
 enum ModuleObjLevel

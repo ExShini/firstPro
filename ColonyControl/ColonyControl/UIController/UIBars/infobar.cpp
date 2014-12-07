@@ -11,8 +11,8 @@
 #include "objectController/objectcontroller.h"
 #endif
 
-#include "UIElements/singletextcontroll.h"
-#include "UIElements/doubletextcontroll.h"
+#include "UIElements/uilabel.h"
+#include "UIElements/uiicon.h"
 
 using namespace std;
 
@@ -32,68 +32,100 @@ InfoBar::InfoBar()
     m_objController = ObjectController::getInstance();
     m_target = m_objController->getTarget();
 
+    //set icons
+    UIIcon * firtilityIcon = new UIIcon(t_FirtilityIcon);
+    firtilityIcon->setX(5);
+    firtilityIcon->setY(19);
+    m_elements[e_firtitilyIcon] = firtilityIcon;
 
-    SingleTextControll * textFirtility = new SingleTextControll();
-    textFirtility->setData(0);
+    UIIcon * mineralWealthIcon = new UIIcon(t_MineralWealthIcon);
+    mineralWealthIcon->setX(5);
+    mineralWealthIcon->setY(39);
+    m_elements[e_mineralWealthIcon] = mineralWealthIcon;
+
+    UIIcon * populationIcon = new UIIcon(t_HumanPopulationIcon);
+    populationIcon->setX(105);
+    populationIcon->setY(19);
+    m_elements[e_populationIcon] = populationIcon;
+
+    UIIcon * foodStorageIcon = new UIIcon(t_FoodStorageIcon);
+    foodStorageIcon->setX(105);
+    foodStorageIcon->setY(39);
+    m_elements[e_foodStorageIcon] = foodStorageIcon;
+
+    UIIcon * mineralStorageIcon = new UIIcon(t_MineralStorageIcon);
+    mineralStorageIcon->setX(105);
+    mineralStorageIcon->setY(59);
+    m_elements[e_mineralStoargeIcon] = mineralStorageIcon;
+
+    UIIcon * infrostructureIcon = new UIIcon(t_InfrostructureIcon);
+    infrostructureIcon->setX(205);
+    infrostructureIcon->setY(39);
+    m_elements[e_infrostructureIcon] = infrostructureIcon;
+
+
+    //set labels
+    UILabel * textFirtility = new UILabel();
+    textFirtility->addData(0);
+    textFirtility->applyChanges();
     textFirtility->setX(25);
     textFirtility->setY(20);
-    m_elements[e_fertitilyUIC] = textFirtility;
+    m_elements[e_firtitilyUIC] = textFirtility;
 
-    SingleTextControll * textMineralW = new SingleTextControll();
-    textMineralW->setData(0);
+    UILabel * textMineralW = new UILabel();
+    textMineralW->addData(0);
+    textMineralW->applyChanges();
     textMineralW->setX(25);
     textMineralW->setY(40);
     m_elements[e_mineralWealthUIC] = textMineralW;
 
 
-    DoubleTextControll * population = new DoubleTextControll();
-    population->setFirstData(0);
-    population->setSecondData(0);
+    UILabel * population = new UILabel();
+    population->addData(0);
     string sep = "/";
-    population->setSeparator(sep);
+    population->addData(sep);
+    population->addData(0);
+    population->applyChanges();
     population->setX(125);
     population->setY(20);
-    population->ApplyChange();
     m_elements[e_populationUIC] = population;
 
-    DoubleTextControll * food = new DoubleTextControll();
-    food->setFirstData(0);
-    food->setSecondData(0);
-    food->setSeparator(sep);
+    UILabel * food = new UILabel();
+    food->addData(0);
+    food->addData(sep);
+    food->addData(0);
+    food->applyChanges();
     food->setX(125);
     food->setY(40);
-    food->ApplyChange();
     m_elements[e_foodStorageUIC] = food;
 
-    DoubleTextControll * mineralsS = new DoubleTextControll();
-    mineralsS->setFirstData(0);
-    mineralsS->setSecondData(0);
-    mineralsS->setSeparator(sep);
+    UILabel * mineralsS = new UILabel();
+    mineralsS->addData(0);
+    mineralsS->addData(sep);
+    mineralsS->addData(0);
     mineralsS->setX(125);
     mineralsS->setY(60);
-    mineralsS->ApplyChange();
+    mineralsS->applyChanges();
     m_elements[e_mineralStoargeUIC] = mineralsS;
 
 
-    DoubleTextControll * level = new DoubleTextControll();
-    string levelT = "Level";
-    level->setFirstData(levelT);
-    level->setSecondData(0);
-    string levelSep = ": ";
-    level->setSeparator(levelSep);
+    UILabel * level = new UILabel();
+    string levelT = "Level :";
+    level->addData(levelT);
+    level->addData(0);
+    level->applyChanges();
     level->setX(225);
     level->setY(20);
-    level->ApplyChange();
     m_elements[e_settlementLevelUIC] = level;
 
 
-    DoubleTextControll * Infr = new DoubleTextControll();
-    Infr->setFirstData(0);
-    Infr->setSecondData(0);
-    Infr->setSeparator(sep);
+    UILabel * Infr = new UILabel();
+    Infr->addData(0);
+    Infr->addData(sep);
+    Infr->addData(0);
     Infr->setX(225);
     Infr->setY(40);
-    Infr->ApplyChange();
+    Infr->applyChanges();
     m_elements[e_infrostructureUIC] = Infr;
 }
 
@@ -111,46 +143,47 @@ void InfoBar::UpdateInfo()
         Sector* sector = static_cast<Sector*>(pMap->objects[SECTOR_LEVEL]->lMap[x][y]);
 
         //set fertitily to UIC
-        SingleTextControll * fer = static_cast<SingleTextControll*>(m_elements[e_fertitilyUIC]);
-        fer->setData(sector->getFertility());
+        UILabel * fer = static_cast<UILabel*>(m_elements[e_firtitilyUIC]);
+        fer->setDataTo(0, sector->getFertility());
+        fer->applyChanges();
 
         //set mineral wealth to UIC
-        SingleTextControll * minW = static_cast<SingleTextControll*>(m_elements[e_mineralWealthUIC]);
-        minW->setData(sector->getMineralWealth());
-
+        UILabel * minW = static_cast<UILabel*>(m_elements[e_mineralWealthUIC]);
+        minW->setDataTo(0, sector->getMineralWealth());
+        minW->applyChanges();
 
         //Settlement UICs
         Settlement* settl = static_cast<Settlement*>(pMap->objects[SETTLEMENT_LEVEL]->lMap[x][y]);
         if(settl != NULL)
         {
             //set population to UIC
-            DoubleTextControll * pop = static_cast<DoubleTextControll*>(m_elements[e_populationUIC]);
-            pop->setFirstData(settl->getPopulation());
-            pop->setSecondData(settl->getPopulationLimit());
-            pop->ApplyChange();
+            UILabel * pop = static_cast<UILabel*>(m_elements[e_populationUIC]);
+            pop->setDataTo(0, settl->getPopulation());
+            pop->setDataTo(2, settl->getPopulationLimit());
+            pop->applyChanges();
 
             //set food storage to UIC
-            DoubleTextControll * food = static_cast<DoubleTextControll*>(m_elements[e_foodStorageUIC]);
-            food->setFirstData(settl->getFood());
+            UILabel * food = static_cast<UILabel*>(m_elements[e_foodStorageUIC]);
+            food->setDataTo(0, settl->getFood());
             //food->setSecondData(settl->getPopulationLimit());
-            food->ApplyChange();
+            food->applyChanges();
 
             //set mineral storage to UIC
-            DoubleTextControll * mineralS = static_cast<DoubleTextControll*>(m_elements[e_mineralStoargeUIC]);
-            mineralS->setFirstData(settl->getMinerals());
+            UILabel * mineralS = static_cast<UILabel*>(m_elements[e_mineralStoargeUIC]);
+            mineralS->setDataTo(0, settl->getMinerals());
             //food->setSecondData(settl->getPopulationLimit());
-            mineralS->ApplyChange();
+            mineralS->applyChanges();
 
             //set settlement's level to UIC
-            DoubleTextControll * lev = static_cast<DoubleTextControll*>(m_elements[e_settlementLevelUIC]);
-            lev->setSecondData(settl->getSettlementLevel());
-            lev->ApplyChange();
+            UILabel * lev = static_cast<UILabel*>(m_elements[e_settlementLevelUIC]);
+            lev->setDataTo(1, settl->getSettlementLevel());
+            lev->applyChanges();
 
             //set settlement's infrostructure to UIC
-            DoubleTextControll * infr = static_cast<DoubleTextControll*>(m_elements[e_infrostructureUIC]);
-            infr->setFirstData(settl->getSettlementInfr());
-            infr->setSecondData(settl->getSettlementNextInfrBrd());
-            infr->ApplyChange();
+            UILabel * infr = static_cast<UILabel*>(m_elements[e_infrostructureUIC]);
+            infr->setDataTo(0, settl->getSettlementInfr());
+            infr->setDataTo(2, settl->getSettlementNextInfrBrd());
+            infr->applyChanges();
         }
     }
 }

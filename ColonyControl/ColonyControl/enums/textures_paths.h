@@ -17,4 +17,10 @@
 #define p_HumanColonyCenter "res/HumanColonyCenter.xcf"
 #define p_HumanInfoBar "res/HumanInfoBar.xcf"
 
+#define p_FirtilityIcon "res/Icons/Fertility.xcf"
+#define p_MineralWealthIcon "res/Icons/MineralWealth.xcf"
+#define p_PopulationIcon "res/Icons/PopulationIcon.xcf"
+#define p_FoodStorage "res/Icons/FoodStorage.xcf"
+#define p_MineralStorage "res/Icons/MineralStorage.xcf"
+#define p_InfrostructureIcon "res/Icons/Infrostructure.xcf"
 #endif // TEXTURES_PATHS_H

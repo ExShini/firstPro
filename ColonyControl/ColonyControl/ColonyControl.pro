@@ -52,8 +52,8 @@ SOURCES += main.cpp \
     objectController/objects/specialObj.cpp \
     render/textframecontroller.cpp \
     render/textprovider.cpp \
-    UIController/UIBars/UIElements/singletextcontroll.cpp \
-    UIController/UIBars/UIElements/doubletextcontroll.cpp
+    UIController/UIBars/UIElements/uilabel.cpp \
+    UIController/UIBars/UIElements/uiicon.cpp
 
 
 HEADERS += \
@@ -110,8 +110,8 @@ HEADERS += \
     render/textframecontroller.h \
     enums/textSetting.h \
     render/textprovider.h \
-    UIController/UIBars/UIElements/singletextcontroll.h \
-    UIController/UIBars/UIElements/doubletextcontroll.h
+    UIController/UIBars/UIElements/uilabel.h \
+    UIController/UIBars/UIElements/uiicon.h
 
 
 LIBS += -lSDL2
