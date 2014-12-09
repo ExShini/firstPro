@@ -3,7 +3,7 @@
 #include "map"
 
 #ifdef WIN32
-#include "../gobject.h"
+#include "../objectController/gobject.h"
 #else
 #include "objectController/gobject.h"
 #endif

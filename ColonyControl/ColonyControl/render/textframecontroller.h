@@ -2,7 +2,14 @@
 #define TEXTFRAMECONTROLLER_H
 #include "iostream"
 #include "string"
+
+#ifdef WIN32
+#include "SDL_ttf.h"
+#else
 #include "SDL2/SDL_ttf.h"
+#endif
+
+
 
 #include "framecontroller.h"
 
