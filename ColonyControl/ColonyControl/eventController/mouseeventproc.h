@@ -15,11 +15,14 @@ class MouseEventProc
 {
 public:
     MouseEventProc();
-    void processEvent(SDL_Event* event);
+    void processMouseMotionEvent(SDL_Event* event);
+	void processMouseButtonEvent(SDL_Event* event);
+
     int m_mouseXCor, m_mouseYCor;
 
 protected:
-
+	bool m_pressedButton;
+	bool m_releasedButton;
 
 };
 

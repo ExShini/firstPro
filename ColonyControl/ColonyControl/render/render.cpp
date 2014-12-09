@@ -44,6 +44,7 @@ DESC: initialize and prepare render's members
 *************************************/
 bool Render::init()
 {
+	cout << "Render::init() 1" << endl;
     //Craeta new main window
     m_window = SDL_CreateWindow ("Main Window",
                                  SDL_WINDOWPOS_UNDEFINED,
@@ -51,9 +52,14 @@ bool Render::init()
                                  WIDTH_MAIN_WINDOW,
                                  HEIGHT_MAIN_WINDOW,
                                  SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP);
+	cout << "Render::init() 2" << endl;
     m_rend = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	cout << "Render::init() 3" << endl;
     SDL_RenderClear(m_rend);
+	cout << "Render::init() 4" << endl;
     SDL_RenderSetLogicalSize(m_rend, WIDTH_MAIN_WINDOW, HEIGHT_MAIN_WINDOW);
+	cout << "Render::init() 5" << endl;
+	
 
     //set resolution for displaing
     //get current display mode

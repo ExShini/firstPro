@@ -71,13 +71,18 @@ void GameApp::initialize()
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
     {
         m_gameStatus = false;
+		cout << "GameApp::initialize() :: SDL_Init failure" << endl;
     }
 
-    m_unitController->init();
+	m_unitController->init();
     m_gameProcessor->init();
+	cout << 3 << endl;
     m_gameStatus &= m_render->init();
+	cout << 4 << endl;
     m_uiController->Init();
+	cout << 5 << endl;
     m_evController->Init();
+	cout << 6 << endl;
 
 
     m_gameProcessor->addNewPlayer(10, 10, Human);

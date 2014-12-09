@@ -2,8 +2,8 @@
 #define RENDER_H
 
 #ifdef WIN32
-#include"SDL.h"
 #include "../ColonyControlWin/stdafx.h"
+#include"SDL.h"
 #include "../objectController/objectcontroller.h"
 #include "../gameProcessor/unitcontroller.h"
 #include "../UIController/uicontroller.h"
@@ -15,8 +15,6 @@
 #endif
 
 #include "textprovider.h"
-
-#include "iostream"
 
 
 class Camera;

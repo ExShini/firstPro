@@ -39,8 +39,12 @@ void EventController::processEvent()
             m_keyProc->processEvent(&Event);
             break;
         case SDL_MOUSEMOTION:
-            m_mouseProc->processEvent(&Event);
+            m_mouseProc->processMouseMotionEvent(&Event);
             break;
+		case SDL_MOUSEBUTTONDOWN:
+		case SDL_MOUSEBUTTONUP:
+			m_mouseProc->processMouseButtonEvent(&Event);
+			break;
         default:
             //cout << "unused event ";
             break;
