@@ -34,6 +34,8 @@ private:
 
     // main handlers
     void initialize();
+    void initSDL();
+
     void eventHandler();
     void gameProcessing();
     void rendring();

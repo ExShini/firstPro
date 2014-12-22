@@ -8,11 +8,11 @@ TextProvider::TextProvider()
 
 bool TextProvider::Init()
 {
-    if (TTF_Init() != 0)
-    {
-        cout << "TextProvider::Init TTF_Init fail: " << SDL_GetError() << endl ;
-        return false;
-    }
+//    if (TTF_Init() != 0)
+//    {
+//        cout << "TextProvider::Init TTF_Init fail: " << SDL_GetError() << endl ;
+//        return false;
+//    }
 
     return true;
 }

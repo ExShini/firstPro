@@ -68,25 +68,34 @@ DESC: initialize and prepare all game's members
 *************************************/
 void GameApp::initialize()
 {
-    if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
-    {
-        m_gameStatus = false;
-		cout << "GameApp::initialize() :: SDL_Init failure" << endl;
-    }
+    initSDL();
 
 	m_unitController->init();
     m_gameProcessor->init();
-	cout << 3 << endl;
     m_gameStatus &= m_render->init();
-	cout << 4 << endl;
     m_uiController->Init();
-	cout << 5 << endl;
     m_evController->Init();
-	cout << 6 << endl;
-
 
     m_gameProcessor->addNewPlayer(10, 10, Human);
 
+}
+
+/*************************************
+FUNC: initialize()
+DESC: initialize SDL libraries
+*************************************/
+void GameApp::initSDL()
+{
+    if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+    {
+        m_gameStatus = false;
+        cout << "GameApp::initialize() :: SDL_Init failure" << endl;
+    }
+
+    if (TTF_Init() != 0)
+    {
+        cout << "TextProvider::Init TTF_Init fail: " << SDL_GetError() << endl ;
+    }
 }
 
 /*************************************

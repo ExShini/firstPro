@@ -28,13 +28,17 @@ void MouseEventProc::processMouseMotionEvent(SDL_Event *event)
     m_mouseYCor = ev->y;
 }
 
-void MouseEventProc::processMouseButtonEvent(SDL_Event *event)
+void MouseEventProc::processMouseButtonEvent(SDL_Event *event, bool pressed)
 {
-	SDL_MouseButtonEvent * ev = (SDL_MouseButtonEvent*)(event);
-	m_pressedButton |= (ev->which == SDL_PRESSED);
-	m_releasedButton = (ev->which == SDL_RELEASED);
 
-	if(m_pressedButton && m_releasedButton)
+	SDL_MouseButtonEvent * ev = (SDL_MouseButtonEvent*)(event);
+    m_pressedButton = m_pressedButton || pressed;
+    m_releasedButton = !pressed;
+
+
+    cout << "EVENT!!! " << m_pressedButton << " " << m_releasedButton << endl;
+
+    if(m_pressedButton && m_releasedButton)
 	{
 		cout << "Mouse Button was pressed!" << endl;
 	}

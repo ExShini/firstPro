@@ -16,7 +16,7 @@ class MouseEventProc
 public:
     MouseEventProc();
     void processMouseMotionEvent(SDL_Event* event);
-	void processMouseButtonEvent(SDL_Event* event);
+    void processMouseButtonEvent(SDL_Event* event, bool pressed);
 
     int m_mouseXCor, m_mouseYCor;
 
