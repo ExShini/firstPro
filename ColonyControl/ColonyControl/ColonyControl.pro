@@ -53,7 +53,9 @@ SOURCES += main.cpp \
     render/textframecontroller.cpp \
     render/textprovider.cpp \
     UIController/UIBars/UIElements/uilabel.cpp \
-    UIController/UIBars/UIElements/uiicon.cpp
+    UIController/UIBars/UIElements/uiicon.cpp \
+    Net/socet.cpp \
+    Net/message.cpp
 
 
 HEADERS += \
@@ -111,7 +113,9 @@ HEADERS += \
     enums/textSetting.h \
     render/textprovider.h \
     UIController/UIBars/UIElements/uilabel.h \
-    UIController/UIBars/UIElements/uiicon.h
+    UIController/UIBars/UIElements/uiicon.h \
+    Net/socet.h \
+    Net/message.h
 
 
 LIBS += -lSDL2
