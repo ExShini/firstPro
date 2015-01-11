@@ -2,7 +2,7 @@
 
 #include "objectcontroller.h"
 
-#include "mapGenarator/mapgenerator.h"
+#include "mapGenerator/mapgenerator.h"
 
 using namespace std;
 

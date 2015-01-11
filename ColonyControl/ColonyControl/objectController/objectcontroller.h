@@ -3,12 +3,12 @@
 
 #ifdef WIN32
 #include "gobject.h"
-#include "mapGenarator/planetmap.h"
+#include "mapGenerator/planetmap.h"
 #include "objectList.h"
 #include "../gameProcessor/gameprocessor.h"
 #else
 #include "gobject.h"
-#include "objectController/mapGenarator/planetmap.h"
+#include "objectController/mapGenerator/planetmap.h"
 #include "objectList.h"
 #include "gameProcessor/gameprocessor.h"
 #endif

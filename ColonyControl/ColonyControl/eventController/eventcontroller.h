@@ -3,7 +3,6 @@
 
 #ifdef WIN32
 #include"SDL.h"
-#include "../ColonyControlWin/stdafx.h"
 #else
 #include"SDL2/SDL.h"
 #endif

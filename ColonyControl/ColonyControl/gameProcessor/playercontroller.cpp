@@ -1,7 +1,7 @@
 #include "iostream"
 
 #include "playercontroller.h"
-#include "Playrs/humanplayer.h"
+#include "Players/humanplayer.h"
 
 using namespace std;
 

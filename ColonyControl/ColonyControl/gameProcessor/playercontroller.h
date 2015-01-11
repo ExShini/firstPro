@@ -1,7 +1,7 @@
 #ifndef PLAYERCONTROLLER_H
 #define PLAYERCONTROLLER_H
 
-#include "Playrs/player.h"
+#include "Players/player.h"
 
 #ifdef WIN32
 #include "../enums/gameProcessingSettings.h"

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -55,13 +55,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\include;F:\REPs\SDL\VC\SDL2-2.0.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\SDL\VC\SDL2_image-2.0.0\include;D:\SDL\VC\SDL2-2.0.3\include;D:\SDL\VC\SDL2_ttf-2.0.12\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\REPs\SDL\VC\SDL2_image-2.0.0\lib\x86;F:\REPs\SDL\VC\SDL2-2.0.3\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\SDL\VC\SDL2_image-2.0.0\lib\x86;D:\SDL\VC\SDL2-2.0.3\lib\x86;D:\SDL\VC\SDL2_ttf-2.0.12\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;SDL2test.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -102,8 +102,8 @@
     <ClInclude Include="..\gameProcessor\allUnits.h" />
     <ClInclude Include="..\gameProcessor\gameprocessor.h" />
     <ClInclude Include="..\gameProcessor\playercontroller.h" />
-    <ClInclude Include="..\gameProcessor\Playrs\humanplayer.h" />
-    <ClInclude Include="..\gameProcessor\Playrs\player.h" />
+    <ClInclude Include="..\gameProcessor\Players\humanplayer.h" />
+    <ClInclude Include="..\gameProcessor\Players\player.h" />
     <ClInclude Include="..\gameProcessor\unit.h" />
     <ClInclude Include="..\gameProcessor\unitcontroller.h" />
     <ClInclude Include="..\gameProcessor\Units\humancolonists.h" />
@@ -112,8 +112,8 @@
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.h" />
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.h" />
     <ClInclude Include="..\objectController\gobject.h" />
-    <ClInclude Include="..\objectController\mapGenarator\mapgenerator.h" />
-    <ClInclude Include="..\objectController\mapGenarator\planetmap.h" />
+    <ClInclude Include="..\objectController\mapGenerator\mapgenerator.h" />
+    <ClInclude Include="..\objectController\mapGenerator\planetmap.h" />
     <ClInclude Include="..\objectController\movableobj.h" />
     <ClInclude Include="..\objectController\objectcontroller.h" />
     <ClInclude Include="..\objectController\objectList.h" />
@@ -145,8 +145,8 @@
     <ClCompile Include="..\gameapp.cpp" />
     <ClCompile Include="..\gameProcessor\gameprocessor.cpp" />
     <ClCompile Include="..\gameProcessor\playercontroller.cpp" />
-    <ClCompile Include="..\gameProcessor\Playrs\humanplayer.cpp" />
-    <ClCompile Include="..\gameProcessor\Playrs\player.cpp" />
+    <ClCompile Include="..\gameProcessor\Players\humanplayer.cpp" />
+    <ClCompile Include="..\gameProcessor\Players\player.cpp" />
     <ClCompile Include="..\gameProcessor\unit.cpp" />
     <ClCompile Include="..\gameProcessor\unitcontroller.cpp" />
     <ClCompile Include="..\gameProcessor\Units\humancolonists.cpp" />
@@ -155,8 +155,8 @@
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.cpp" />
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.cpp" />
     <ClCompile Include="..\objectController\gobject.cpp" />
-    <ClCompile Include="..\objectController\mapGenarator\mapgenerator.cpp" />
-    <ClCompile Include="..\objectController\mapGenarator\planetmap.cpp" />
+    <ClCompile Include="..\objectController\mapGenerator\mapgenerator.cpp" />
+    <ClCompile Include="..\objectController\mapGenerator\planetmap.cpp" />
     <ClCompile Include="..\objectController\movableobj.cpp" />
     <ClCompile Include="..\objectController\objectcontroller.cpp" />
     <ClCompile Include="..\objectController\objects\humanBuildings\colonycenter.cpp" />
