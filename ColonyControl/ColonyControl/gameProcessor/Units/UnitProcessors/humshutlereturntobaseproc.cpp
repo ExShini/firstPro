@@ -24,6 +24,10 @@ void HumShutleReturnToBaseProc::process()
     shutle->finishActive();
 
     GObject* base = shutle->getBase();
+
+	if (base == NULL)
+		return;
+
     if(base->getType() == t_HumanColonyCenter)
     {
         ColonyCenter* colonyCenter = (ColonyCenter*)base;

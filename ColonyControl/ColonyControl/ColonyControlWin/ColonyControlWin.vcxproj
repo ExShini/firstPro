@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
@@ -91,10 +91,12 @@
     <ClInclude Include="..\enums\event_handling_enum.h" />
     <ClInclude Include="..\enums\gameProcessingSettings.h" />
     <ClInclude Include="..\enums\gui_enums.h" />
+    <ClInclude Include="..\enums\mailing\mailsettings.h" />
     <ClInclude Include="..\enums\mapGeneratorSattings.h" />
     <ClInclude Include="..\enums\objects.h" />
     <ClInclude Include="..\enums\random_enums.h" />
     <ClInclude Include="..\enums\textures_paths.h" />
+    <ClInclude Include="..\enums\Units\humanUnits.h" />
     <ClInclude Include="..\eventController\eventcontroller.h" />
     <ClInclude Include="..\eventController\keyboardeventproc.h" />
     <ClInclude Include="..\eventController\mouseeventproc.h" />
@@ -111,6 +113,9 @@
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.h" />
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.h" />
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.h" />
+    <ClInclude Include="..\icontroller.h" />
+    <ClInclude Include="..\mailController\mailcontroller.h" />
+    <ClInclude Include="..\mailController\message.h" />
     <ClInclude Include="..\objectController\gobject.h" />
     <ClInclude Include="..\objectController\mapGenerator\mapgenerator.h" />
     <ClInclude Include="..\objectController\mapGenerator\planetmap.h" />
@@ -118,10 +123,10 @@
     <ClInclude Include="..\objectController\objectcontroller.h" />
     <ClInclude Include="..\objectController\objectList.h" />
     <ClInclude Include="..\objectController\objects\humanBuildings\colonycenter.h" />
+    <ClInclude Include="..\objectController\objects\humanBuildings\settlement.h" />
     <ClInclude Include="..\objectController\objects\lava.h" />
     <ClInclude Include="..\objectController\objects\lavamount.h" />
     <ClInclude Include="..\objectController\objects\sector.h" />
-    <ClInclude Include="..\objectController\objects\settlement.h" />
     <ClInclude Include="..\objectController\objects\specialObj.h" />
     <ClInclude Include="..\render\framecontroller.h" />
     <ClInclude Include="..\render\render.h" />
@@ -154,6 +159,9 @@
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.cpp" />
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutlereturntobaseproc.cpp" />
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\unitprocessor.cpp" />
+    <ClCompile Include="..\icontroller.cpp" />
+    <ClCompile Include="..\mailController\mailcontroller.cpp" />
+    <ClCompile Include="..\mailController\message.cpp" />
     <ClCompile Include="..\objectController\gobject.cpp" />
     <ClCompile Include="..\objectController\mapGenerator\mapgenerator.cpp" />
     <ClCompile Include="..\objectController\mapGenerator\planetmap.cpp" />

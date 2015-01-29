@@ -14,9 +14,6 @@
 #endif
 
 
-
-using namespace std;
-
 class ObjectController
 {
 public:

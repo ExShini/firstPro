@@ -79,3 +79,8 @@ void UnitController::cleanProcList()
 
     m_unitsToDelete->clear();
 }
+
+Message* UnitController::ReseveMessage(Message* message)
+{
+	return NULL; // stub
+}

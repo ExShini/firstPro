@@ -4,6 +4,7 @@
 #ifdef WIN32
 #include "../enums/gameProcessingSettings.h"
 #include "../TimeManager/timeguard.h"
+#include "../icontroller.h"
 #else
 #include "enums/gameProcessingSettings.h"
 #include "TimeManager/timeguard.h"
@@ -16,7 +17,7 @@
 
 using namespace std;
 
-class UnitController
+class UnitController: public IController
 {
 public:
     static UnitController* getInstance();
@@ -24,6 +25,8 @@ public:
     void process();
     void addUnit(Unit*unit);
     list<Unit*>* getUnitList() { return m_units; }
+
+	Message* ReseveMessage(Message* message);
 
 protected:
     static UnitController* m_instance;

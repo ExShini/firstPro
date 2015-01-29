@@ -16,7 +16,7 @@ protected:
     int m_transportControlled;
     int m_prodProgress;
 
-    void TryFindTransportMission();
+    void TryStartHumanColonistShutl();
     void checkState();
 
 

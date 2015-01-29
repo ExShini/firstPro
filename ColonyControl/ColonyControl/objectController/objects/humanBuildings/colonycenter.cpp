@@ -53,7 +53,7 @@ void ColonyCenter::process()
 
     if(m_transportInHangar > 0)
     {
-        TryFindTransportMission();
+        TryStartHumanColonistShutl();
     }
 }
 
@@ -62,8 +62,9 @@ void ColonyCenter::checkState()
     //stub - do nothing
 }
 
-void ColonyCenter::TryFindTransportMission()
+void ColonyCenter::TryStartHumanColonistShutl()
 {
+	MailController* mailContr = MailController::getInstance();
     GObject* tar = PlayerController::getInstance()->getPlayer(m_playerID)->getEmigrantsTarget(m_x, m_y);
     if(tar != NULL)
     {

@@ -3,8 +3,10 @@
 
 #ifdef WIN32
 #include "../building.h"
+#include "../../../mailController/mailcontroller.h"
 #else
 #include "objectController/objects/building.h"
+#include "mailController/mailcontroller.h"
 #endif
 
 class Settlement: public Buildings
