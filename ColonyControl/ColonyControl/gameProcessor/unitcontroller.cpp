@@ -1,11 +1,18 @@
 #include "unitcontroller.h"
 #include "iostream"
 
+#ifdef WIN32
+#include "../objectController/objects/building.h"
+#else
+#include "objectController/objects/building.h"
+#endif
+
 using namespace std;
 
 UnitController* UnitController::m_instance = new UnitController();
 
-UnitController::UnitController()
+UnitController::UnitController() :
+	IController()
 {
     m_units = new list<Unit*>();
     m_unitsToDelete = new list<list<Unit*>::iterator>();
@@ -82,5 +89,28 @@ void UnitController::cleanProcList()
 
 Message* UnitController::ReseveMessage(Message* message)
 {
+
+	switch (message->type)
+	{
+	case e_NoneMailType:
+	{
+		cout << "ERROR!!! UnitController::ReseveMessage: NoneMailType message!" << endl;
+		break;
+	}
+	case e_Response:
+		break;
+	case e_CreateUnit:
+	{
+		CreateUnitMessage * createUMessage = static_cast<CreateUnitMessage*>(message);
+		//createUMessage->base->getPlayerID(); // send this to unit factory
+		break;
+	}
+	default:
+		cout << "ERROR!!! UnitController::ReseveMessage: Unused type of message!" << endl;
+		break;
+	}
+
+	delete message;
+
 	return NULL; // stub
 }

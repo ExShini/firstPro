@@ -23,7 +23,7 @@ enum ObjectsType
     //human objects
     t_HumanSettlers,
     t_HumanColonyCenter,
-    t_HumanFighter,
+    t_HumanShuttle,
 
 
     //UI Elements

@@ -2,8 +2,8 @@
 #include "mailcontroller.h"
 
 #ifdef WIN32
-#include "../objectController/objectcontroller.h"
-#include "../gameProcessor/playercontroller.h"
+//#include "../objectController/objectcontroller.h"
+//#include "../gameProcessor/playercontroller.h"
 #include "../gameProcessor/unitcontroller.h"
 #else
 #endif
@@ -19,10 +19,9 @@ MailController::MailController()
 void MailController::Init()
 {
 	
-	m_objController = ObjectController::getInstance();
-	m_playerController = PlayerController::getInstance();
+	//m_objController = ObjectController::getInstance();
+	//m_playerController = PlayerController::getInstance();
 	m_unitController = UnitController::getInstance();
-	
 }
 
 MailController* MailController::getInstance()
@@ -34,9 +33,17 @@ MailController::~MailController()
 {
 }
 
-Message* MailController::sendMessage(Controllers addres, Message* message)
+Message* MailController::sendMessage(Message* message)
 {
 	Message* response = NULL;
+
+	if (message == NULL)
+	{
+		cout << "MailController::sendMessage: Error!!! NULL message!" << endl;
+		return NULL;
+	}
+
+	Controllers addres = message->addres;
 	switch (addres)
 	{
 	case e_NoneController:
@@ -47,7 +54,7 @@ Message* MailController::sendMessage(Controllers addres, Message* message)
 	case e_ObjectController:
 		break;
 	case e_UnitController:
-		//response = m_unitController.ReseveMessage(message);
+		response = m_unitController->ReseveMessage(message);
 		break;
 	case e_PlayerController:
 		break;
@@ -59,4 +66,6 @@ Message* MailController::sendMessage(Controllers addres, Message* message)
 		cout << "ERROR! MailController::sendMessage:: Unvalide mail addres!" << endl;
 		break;
 	}
+
+	return response;
 }

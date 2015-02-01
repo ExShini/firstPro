@@ -41,7 +41,7 @@ HumanColonists::HumanColonists(GObject* base, GObject *target, int playerID):
 
     //set graphic settings
     m_fcontroller = new FrameController(
-                TextureProvider::getInstance()->getTexture(t_HumanFighter), true);
+                TextureProvider::getInstance()->getTexture(t_HumanShuttle), true);
 
     m_processors[findEmigrants] = new HumShutleEmigrationProc(this);
     m_processors[moveImmigrants] = new HumShutleImmigrateProc(this);

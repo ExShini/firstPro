@@ -65,14 +65,24 @@ void ColonyCenter::checkState()
 void ColonyCenter::TryStartHumanColonistShutl()
 {
 	MailController* mailContr = MailController::getInstance();
-    GObject* tar = PlayerController::getInstance()->getPlayer(m_playerID)->getEmigrantsTarget(m_x, m_y);
+	Message* shutleRecvest = new CreateUnitMessage(t_HumanShuttle, this);
+	Message* responce = mailContr->sendMessage(shutleRecvest);
+
+	if (responce != NULL)
+	{
+		m_transportInHangar--;
+	}
+
+	delete responce;
+
+    /*GObject* tar = PlayerController::getInstance()->getPlayer(m_playerID)->getEmigrantsTarget(m_x, m_y);
     if(tar != NULL)
     {
         cout << "Send shutl to " << tar->getX() << ":" << tar->getY() << endl;
-        HumanColonists* shutle = new HumanColonists(this, tar, m_playerID);
-        UnitController::getInstance()->addUnit(shutle);
+        HumanColonists* Shuttle = new HumanColonists(this, tar, m_playerID);
+        UnitController::getInstance()->addUnit(Shuttle);
         m_transportInHangar--;
-    }
+    }*/
 }
 
 void ColonyCenter::returnToBase()

@@ -22,20 +22,20 @@ HumShutleImmigrateProc::HumShutleImmigrateProc(Unit* unit):
 
 void HumShutleImmigrateProc::process()
 {
-    HumanColonists* shutle = (HumanColonists*)m_unit;
+    HumanColonists* Shuttle = (HumanColonists*)m_unit;
 
-    if(shutle->getSteps() > 0)
+    if(Shuttle->getSteps() > 0)
         return;
 
-    shutle->setX(shutle->getTX() MULTIPLY_FS);
-    shutle->setY(shutle->getTY() MULTIPLY_FS);
+    Shuttle->setX(Shuttle->getTX() MULTIPLY_FS);
+    Shuttle->setY(Shuttle->getTY() MULTIPLY_FS);
 
-    int tarSecX = shutle->getTX();
-    int tarSecY = shutle->getTY();
-    int colonists = shutle->getColonists();
+    int tarSecX = Shuttle->getTX();
+    int tarSecY = Shuttle->getTY();
+    int colonists = Shuttle->getColonists();
 
     //colonize target sector
-    bool success = GameProcessor::getInstance()->tryColonize(tarSecX, tarSecY, colonists, shutle->getPlayerID());
+    bool success = GameProcessor::getInstance()->tryColonize(tarSecX, tarSecY, colonists, Shuttle->getPlayerID());
 
     if (!success)
     {
@@ -43,19 +43,19 @@ void HumShutleImmigrateProc::process()
     }
     else
     {
-        shutle->setColonists(0);
-        GObject* target = PlayerController::getInstance()->getPlayer(shutle->getPlayerID())
-                ->getEmigrantsTarget(shutle->getTX(), shutle->getTY());
+        Shuttle->setColonists(0);
+        GObject* target = PlayerController::getInstance()->getPlayer(Shuttle->getPlayerID())
+                ->getEmigrantsTarget(Shuttle->getTX(), Shuttle->getTY());
 
         if (target != NULL)
         {
-            shutle->setStatuse(findEmigrants);
-            shutle->setDirection(target);
+            Shuttle->setStatuse(findEmigrants);
+            Shuttle->setDirection(target);
         }
         else
         {
-            shutle->setStatuse(returnToBase);
-            shutle->setDirection(shutle->getBase());
+            Shuttle->setStatuse(returnToBase);
+            Shuttle->setDirection(Shuttle->getBase());
         }
     }
 }
@@ -63,19 +63,19 @@ void HumShutleImmigrateProc::process()
 
 void HumShutleImmigrateProc::findTagertImmgrateColonists()
 {
-    HumanColonists* shutle = (HumanColonists*)m_unit;
-    GObject* target = PlayerController::getInstance()->getPlayer(shutle->getPlayerID())
-            ->getImmigrantsTarget(shutle->getTX(), shutle->getTY());
+    HumanColonists* Shuttle = (HumanColonists*)m_unit;
+    GObject* target = PlayerController::getInstance()->getPlayer(Shuttle->getPlayerID())
+            ->getImmigrantsTarget(Shuttle->getTX(), Shuttle->getTY());
 
     if(target != NULL)
     {
-        shutle->setStatuse(moveImmigrants);
-        shutle->setDirection(target);
+        Shuttle->setStatuse(moveImmigrants);
+        Shuttle->setDirection(target);
     }
     else
     {
-        shutle->setStatuse(returnToBase);
-        shutle->setDirection(shutle->getBase());
+        Shuttle->setStatuse(returnToBase);
+        Shuttle->setDirection(Shuttle->getBase());
     }
 }
 

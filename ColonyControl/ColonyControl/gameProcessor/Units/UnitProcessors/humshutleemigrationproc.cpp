@@ -23,24 +23,24 @@ HumShutleEmigrationProc::HumShutleEmigrationProc(Unit* unit):
 
 void HumShutleEmigrationProc::process()
 {
-    HumanColonists* shutle = (HumanColonists*)m_unit;
+    HumanColonists* Shuttle = (HumanColonists*)m_unit;
 
-    if(shutle->getSteps() > 0)
+    if(Shuttle->getSteps() > 0)
         return;
 
-    shutle->setX(shutle->getTX() MULTIPLY_FS);
-    shutle->setY(shutle->getTY() MULTIPLY_FS);
+    Shuttle->setX(Shuttle->getTX() MULTIPLY_FS);
+    Shuttle->setY(Shuttle->getTY() MULTIPLY_FS);
 
-    int currSecX = shutle->getTX();
-    int currSecY = shutle->getTY();
+    int currSecX = Shuttle->getTX();
+    int currSecY = Shuttle->getTY();
 
-    int colonists = shutle->getColonists();
-    int playerID = shutle->getPlayerID();
+    int colonists = Shuttle->getColonists();
+    int playerID = Shuttle->getPlayerID();
 
     colonists += GameProcessor::getInstance()->tryGetColonists(currSecX, currSecY,
                                                                HUM_SHITL_COLONISTS_CAPACITY - colonists,
                                                                playerID);
-    shutle->setColonists(colonists);
+    Shuttle->setColonists(colonists);
 
     if(colonists >= HUM_SHITL_COLONISTS_CAPACITY - HUM_SHUTL_COLONISTS_ADMISSION)
     {
@@ -52,7 +52,7 @@ void HumShutleEmigrationProc::process()
 
         if(target != NULL)
         {
-            shutle->setDirection(target);
+            Shuttle->setDirection(target);
         }
         else
         {
@@ -65,19 +65,19 @@ void HumShutleEmigrationProc::process()
 
 void HumShutleEmigrationProc::findTagertImmgrateColonists()
 {
-    HumanColonists* shutle = (HumanColonists*)m_unit;
-    GObject* target = PlayerController::getInstance()->getPlayer(shutle->getPlayerID())
-            ->getImmigrantsTarget(shutle->getTX(), shutle->getTY());
+    HumanColonists* Shuttle = (HumanColonists*)m_unit;
+    GObject* target = PlayerController::getInstance()->getPlayer(Shuttle->getPlayerID())
+            ->getImmigrantsTarget(Shuttle->getTX(), Shuttle->getTY());
 
 
     if(target != NULL)
     {
-        shutle->setStatuse(moveImmigrants);
-        shutle->setDirection(target);
+        Shuttle->setStatuse(moveImmigrants);
+        Shuttle->setDirection(target);
     }
     else
     {
-        shutle->setStatuse(returnToBase);
-        shutle->setDirection(shutle->getBase());
+        Shuttle->setStatuse(returnToBase);
+        Shuttle->setDirection(Shuttle->getBase());
     }
 }

@@ -26,7 +26,7 @@ public:
     void addUnit(Unit*unit);
     list<Unit*>* getUnitList() { return m_units; }
 
-	Message* ReseveMessage(Message* message);
+	virtual Message* ReseveMessage(Message* message);
 
 protected:
     static UnitController* m_instance;

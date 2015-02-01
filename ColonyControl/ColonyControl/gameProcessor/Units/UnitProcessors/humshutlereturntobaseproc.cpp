@@ -15,15 +15,15 @@ HumShutleReturnToBaseProc::HumShutleReturnToBaseProc(Unit *unit):
 
 void HumShutleReturnToBaseProc::process()
 {
-    HumanColonists* shutle = (HumanColonists*)m_unit;
+    HumanColonists* Shuttle = (HumanColonists*)m_unit;
 
-    if(shutle->getSteps() > 0)
+    if(Shuttle->getSteps() > 0)
         return;
 
 
-    shutle->finishActive();
+    Shuttle->finishActive();
 
-    GObject* base = shutle->getBase();
+    GObject* base = Shuttle->getBase();
 
 	if (base == NULL)
 		return;

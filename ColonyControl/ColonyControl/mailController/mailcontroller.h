@@ -3,9 +3,11 @@
 
 #include "message.h"
 
-class ObjectController;
-class UnitController;
-class PlayerController;
+#ifdef WIN32
+#include "../icontroller.h"
+#else
+#include "icontroller.h"
+#endif
 
 class MailController
 {
@@ -13,15 +15,15 @@ public:
 	static MailController * getInstance();
 	void Init();
 
-	Message* sendMessage(Controllers addres, Message* message);
+	Message* sendMessage(Message* message);
 
 protected:
 	//instances
 	static MailController * m_instance;
 
-	ObjectController * m_objController;
-	UnitController * m_unitController;
-	PlayerController * m_playerController;
+	IController * m_objController;
+	IController * m_unitController;
+	IController * m_playerController;
 
 	MailController();
 	~MailController();

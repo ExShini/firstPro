@@ -130,7 +130,7 @@ bool GameProcessor::tryColonize(int x, int y, int colonists, int playerID)
 
 /*************************************
 FUNC: tryGetColonists(int x, int y, int maxCol, int playerID)
-DESC: Try get colonists from target sector for shutle boarding
+DESC: Try get colonists from target sector for shuttle boarding
 *************************************/
 int GameProcessor::tryGetColonists(int x, int y, int maxCol, int playerID)
 {

@@ -54,7 +54,7 @@ void TextureProvider::initTextureProvider()
     m_textures[t_HumanSettlers] = loadImage(p_HumanSettlers);
     m_textures[t_LavaMount] = loadImage(p_LavaMount);
     m_textures[t_Lava] = loadImage(p_Lava);
-    m_textures[t_HumanFighter] = loadImage(p_HumanFighter);
+    m_textures[t_HumanShuttle] = loadImage(p_HumanFighter);
     m_textures[t_HumanColonyCenter] = loadImage(p_HumanColonyCenter);
 
     m_textures[t_HumanInfoBar] = loadImage(p_HumanInfoBar);

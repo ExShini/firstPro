@@ -48,7 +48,7 @@ HumanPlayer::HumanPlayer():
 
 /*************************************
 FUNC: getEmigrantsTarget(int x, int y)
-DESC: find new emigrants for human shutle
+DESC: find new emigrants for human Shuttle
 *************************************/
 GObject* HumanPlayer::getEmigrantsTarget(int x, int y)
 {
@@ -167,7 +167,7 @@ GObject* HumanPlayer::getTargetFromMap(int x, int y, map<int, GObject *> &source
 
 /*************************************
 FUNC: getImmigrantsTarget(int x, int y)
-DESC: choose target for human-colonists shutle
+DESC: choose target for human-colonists Shuttle
 *************************************/
 GObject* HumanPlayer::getImmigrantsTarget(int x, int y)
 {

@@ -246,7 +246,7 @@ void Settlement::checkState()
 
 /*************************************
 FUNC: sendColonists(int maxColonists)
-DESC: Send colonists to shutle
+DESC: Send colonists to shuttle
 *************************************/
 int Settlement::sendColonists(int maxColonists)
 {

@@ -4,7 +4,8 @@
 enum MailType
 {
 	e_NoneMailType,
-	e_Response
+	e_Response,
+	e_CreateUnit
 };
 
 enum Controllers

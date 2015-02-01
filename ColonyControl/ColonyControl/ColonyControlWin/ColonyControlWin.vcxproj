@@ -108,6 +108,7 @@
     <ClInclude Include="..\gameProcessor\Players\player.h" />
     <ClInclude Include="..\gameProcessor\unit.h" />
     <ClInclude Include="..\gameProcessor\unitcontroller.h" />
+    <ClInclude Include="..\gameProcessor\unitfactory.h" />
     <ClInclude Include="..\gameProcessor\Units\humancolonists.h" />
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutleemigrationproc.h" />
     <ClInclude Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="..\gameProcessor\Players\player.cpp" />
     <ClCompile Include="..\gameProcessor\unit.cpp" />
     <ClCompile Include="..\gameProcessor\unitcontroller.cpp" />
+    <ClCompile Include="..\gameProcessor\unitfactory.cpp" />
     <ClCompile Include="..\gameProcessor\Units\humancolonists.cpp" />
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutleemigrationproc.cpp" />
     <ClCompile Include="..\gameProcessor\Units\UnitProcessors\humshutleimmigrateproc.cpp" />
