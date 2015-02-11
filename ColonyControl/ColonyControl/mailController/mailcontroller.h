@@ -21,9 +21,7 @@ protected:
 	//instances
 	static MailController * m_instance;
 
-	IController * m_objController;
-	IController * m_unitController;
-	IController * m_playerController;
+	IController * m_controllers[e_Numbers_of_Controllers];
 
 	MailController();
 	~MailController();

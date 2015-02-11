@@ -14,14 +14,19 @@ MailController* MailController::m_instance = new MailController();
 
 MailController::MailController()
 {
+	for (int i = 0; i < e_Numbers_of_Controllers; i++)
+	{
+		m_controllers[i] = NULL;
+	}
 }
 
 void MailController::Init()
 {
-	
+	m_controllers[e_UnitController] = UnitController::getInstance();
+
+
 	//m_objController = ObjectController::getInstance();
 	//m_playerController = PlayerController::getInstance();
-	m_unitController = UnitController::getInstance();
 }
 
 MailController* MailController::getInstance()
@@ -44,27 +49,18 @@ Message* MailController::sendMessage(Message* message)
 	}
 
 	Controllers addres = message->addres;
-	switch (addres)
+
+	if (addres == e_NoneController)
 	{
-	case e_NoneController:
 		cout << "ERROR! MailController::sendMessage:: e_NoneController addres!" << endl;
-		break;
-	case e_Render:
-		break;
-	case e_ObjectController:
-		break;
-	case e_UnitController:
-		response = m_unitController->ReseveMessage(message);
-		break;
-	case e_PlayerController:
-		break;
-	case e_UIController:
-		break;
-	case e_GameProcessor:
-		break;
-	default:
-		cout << "ERROR! MailController::sendMessage:: Unvalide mail addres!" << endl;
-		break;
+		return NULL;
+	}
+
+	IController* controller = m_controllers[addres];
+
+	if (controller != NULL)
+	{
+		response = controller->ReseveMessage(message);
 	}
 
 	return response;

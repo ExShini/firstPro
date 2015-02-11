@@ -10,13 +10,14 @@ enum MailType
 
 enum Controllers
 {
-	e_NoneController = 0,
-	e_Render,
-	e_ObjectController,
-	e_UnitController,
-	e_PlayerController,
-	e_UIController,
-	e_GameProcessor
+	e_NoneController = -1,
+	e_Render = 0,
+	e_ObjectController = 1,
+	e_UnitController = 2,
+	e_PlayerController = 3,
+	e_UIController = 4,
+	e_GameProcessor = 5,
+	e_Numbers_of_Controllers
 };
 
 #endif // MAIL_SETTINGS_H
