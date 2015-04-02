@@ -74,15 +74,6 @@ void ColonyCenter::TryStartHumanColonistShutl()
 	}
 
 	delete responce;
-
-    /*GObject* tar = PlayerController::getInstance()->getPlayer(m_playerID)->getEmigrantsTarget(m_x, m_y);
-    if(tar != NULL)
-    {
-        cout << "Send shutl to " << tar->getX() << ":" << tar->getY() << endl;
-        HumanColonists* Shuttle = new HumanColonists(this, tar, m_playerID);
-        UnitController::getInstance()->addUnit(Shuttle);
-        m_transportInHangar--;
-    }*/
 }
 
 void ColonyCenter::returnToBase()

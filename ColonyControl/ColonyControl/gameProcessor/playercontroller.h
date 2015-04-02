@@ -5,18 +5,20 @@
 
 #ifdef WIN32
 #include "../enums/gameProcessingSettings.h"
+#include "../icontroller.h"
 #else
 #include "enums/gameProcessingSettings.h"
 #endif
 
 
-class PlayerController
+class PlayerController : public IController
 {
 public:
 
     static PlayerController* getInstance();
     Player* getPlayer(int playerID);
     int addNewPlayer(int Race);
+	virtual Message* ReseveMessage(Message* message);
 
 protected:
     PlayerController();

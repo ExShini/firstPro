@@ -3,9 +3,11 @@
 
 #ifdef WIN32
 //#include "../objectController/objectcontroller.h"
-//#include "../gameProcessor/playercontroller.h"
+#include "../gameProcessor/playercontroller.h"
 #include "../gameProcessor/unitcontroller.h"
 #else
+#include "gameProcessor/playercontroller.h"
+#include "gameProcessor/unitcontroller.h"
 #endif
 
 using namespace std;
@@ -23,7 +25,7 @@ MailController::MailController()
 void MailController::Init()
 {
 	m_controllers[e_UnitController] = UnitController::getInstance();
-
+	m_controllers[e_PlayerController] = PlayerController::getInstance();
 
 	//m_objController = ObjectController::getInstance();
 	//m_playerController = PlayerController::getInstance();

@@ -58,3 +58,33 @@ int PlayerController::addNewPlayer(int Race)
     m_playerCounter++;
     return plID;
 }
+
+Message* PlayerController::ReseveMessage(Message* message)
+{
+	Message * receve = NULL;
+
+	if (message == NULL)
+	{
+		cout << "PlayerController::ReseveMessage: Error! NULL incoming message " << endl;
+		return NULL;
+	}
+
+	switch (message->type)
+	{
+	case e_TargetRequest:
+	{
+		TargetRequestMessage * tarRMessage = static_cast<TargetRequestMessage*>(message);
+		Player* player = getPlayer(tarRMessage->playerID);
+		if (player != NULL)
+		{
+
+		}
+		break;
+	}
+	default:
+		break;
+	}
+		
+
+	return receve;
+}

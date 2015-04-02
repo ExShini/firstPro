@@ -90,7 +90,7 @@ GObject* HumanPlayer::getTargetFromList(int x, int y, list<GObject *> &source, i
             }
         }
     }
-    \
+    
     if(targetSec != NULL)
     {
         source.erase(tarIter);

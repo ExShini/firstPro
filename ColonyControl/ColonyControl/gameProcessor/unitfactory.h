@@ -9,6 +9,7 @@
 
 class Buildings;
 class Unit;
+class MailController;
 
 class UnitFactory
 {
@@ -19,6 +20,7 @@ public:
 	Unit * createUnit(ObjectsType type, Buildings* base);
 
 private:
+	MailController * m_mailController;
 
 };
 

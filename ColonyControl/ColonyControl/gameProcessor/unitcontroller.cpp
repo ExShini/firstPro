@@ -1,5 +1,6 @@
-#include "unitcontroller.h"
 #include "iostream"
+#include "unitcontroller.h"
+#include "unitfactory.h"
 
 #ifdef WIN32
 #include "../objectController/objects/building.h"
@@ -16,6 +17,7 @@ UnitController::UnitController() :
 {
     m_units = new list<Unit*>();
     m_unitsToDelete = new list<list<Unit*>::iterator>();
+	m_unitFactory = new UnitFactory();
 }
 
 void UnitController::init()
@@ -89,6 +91,7 @@ void UnitController::cleanProcList()
 
 Message* UnitController::ReseveMessage(Message* message)
 {
+	Message* response = NULL;
 
 	switch (message->type)
 	{
@@ -102,7 +105,12 @@ Message* UnitController::ReseveMessage(Message* message)
 	case e_CreateUnit:
 	{
 		CreateUnitMessage * createUMessage = static_cast<CreateUnitMessage*>(message);
-		//createUMessage->base->getPlayerID(); // send this to unit factory
+		Unit* unit = m_unitFactory->createUnit(createUMessage->unitType, createUMessage->base);
+		if (unit != NULL)
+		{
+			addUnit(unit);
+			response = new UnittMessage(unit);
+		}
 		break;
 	}
 	default:
@@ -110,7 +118,8 @@ Message* UnitController::ReseveMessage(Message* message)
 		break;
 	}
 
+	//clear memory 
 	delete message;
 
-	return NULL; // stub
+	return response;
 }

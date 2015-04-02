@@ -5,7 +5,10 @@ enum MailType
 {
 	e_NoneMailType,
 	e_Response,
-	e_CreateUnit
+	e_CreateUnit,
+	e_TargetRequest,
+	e_GObjectMessage,
+	e_UnitMessage
 };
 
 enum Controllers

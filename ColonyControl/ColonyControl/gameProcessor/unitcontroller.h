@@ -8,9 +8,10 @@
 #else
 #include "enums/gameProcessingSettings.h"
 #include "TimeManager/timeguard.h"
+#include "icontroller.h"
 #endif
 
-
+class UnitFactory;
 
 #include "list"
 #include "unit.h"
@@ -39,6 +40,7 @@ protected:
     int m_eventIDs[UNIT_PROC_RATE];
     TimeGuard* m_timeGuard;
     int m_currTimeStep;
+	UnitFactory * m_unitFactory;
 };
 
 #endif // UNITCONTROLLER_H
