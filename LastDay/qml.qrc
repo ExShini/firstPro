@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>QML/main.qml</file>
+        <file>QML/MainSettlersBar.qml</file>
+        <file>QML/HeaderBar.qml</file>
+        <file>QML/Resourses.qml</file>
+        <file>QML/EventBar.qml</file>
+        <file>QML/CentralArea.qml</file>
+        <file>QML/ResourseItem.qml</file>
+
+        <file>QML/Res/mainScene1.png</file>
+
+    </qresource>
+</RCC>
